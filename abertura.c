@@ -7,48 +7,48 @@
 int main()
 {
     // Inicializacao
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-    InitWindow(screenWidth, screenHeight, "Abertura do jogo");
+    SetConfigFlags(FLAG_VSYNC_HINT);
+    InitWindow(0, 0, "Abertura do jogo");
+    if (!IsWindowFullscreen())
+    {
+        ToggleFullscreen();
+    }
 
     // Musica
     InitAudioDevice();
     Music music = LoadMusicStream("assets/mini1111.wav");
     music.looping = false;
-
     PlayMusicStream(music);
-
     bool pause = false; // Fazer um botao de mudo dps
 
     // Fonte
     Font font = LoadFont("resources/fonts/pixantiqua.png");
-
-    SetTargetFPS(60);
 
     // Imagem
     Image image = LoadImage("assets/nomeJogo.png");
     Texture2D texture = LoadTextureFromImage(image);
     UnloadImage(image);
 
-    SetTargetFPS(60);
-
     // Botoes do menu
-    Button startButton = {(Rectangle){330, 200, 140, 40}, PINK, "COMEÇAR"};
-    Button howToPLayButton = {(Rectangle){330, 250, 140, 40}, PINK, "COMO JOGAR"};
-    Button creditsButton = {(Rectangle){330, 300, 140, 40}, PINK, "CRÉDITOS"};
-    Button exitButton = {(Rectangle){330, 350, 140, 40}, PINK, "SAIR"};
-    Button backButton = {(Rectangle){330, 350, 140, 40}, PINK, "VOLTAR"};
+    int screenWidth = GetScreenWidth();
+    int posXbutton = (screenWidth - 200) / 2;
+    Button startButton = {(Rectangle){posXbutton, 350, 200, 50}, SKYBLUE, "COMEÇAR"};
+    Button howToPLayButton = {(Rectangle){posXbutton, 425, 200, 50}, SKYBLUE, "COMO JOGAR"};
+    Button creditsButton = {(Rectangle){posXbutton, 500, 200, 50}, SKYBLUE, "CRÉDITOS"};
+    Button exitButton = {(Rectangle){posXbutton, 575, 200, 50}, SKYBLUE, "SAIR"};
+    Button backButton = {(Rectangle){posXbutton, 650, 200, 50}, SKYBLUE, "VOLTAR"};
 
+    // Status do jogo
     GameState gameState = STATE_MENU;
+
+    SetTargetFPS(60);
 
     while (!WindowShouldClose())
     {
         UpdateMusicStream(music);
-
         BeginDrawing();
-
         ClearBackground(BLACK);
-        DrawBorders(8, 5, 5, PINK, BLACK, PINK);
+        DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
 
         switch (gameState)
         {
@@ -57,13 +57,13 @@ int main()
             int textureWidth = texture.width;
             int posX = (screenWidth - textureWidth) / 2;
             // Nome do jogo
-            DrawTexture(texture, posX, 50, WHITE);
+            DrawTexture(texture, posX, 150, WHITE);
 
             // Desenha botoes
-            DrawButton(startButton, 2, PINK, 4, BLACK);
-            DrawButton(howToPLayButton, 2, PINK, 4, BLACK);
-            DrawButton(creditsButton, 2, PINK, 4, BLACK);
-            DrawButton(exitButton, 2, PINK, 4, BLACK);
+            DrawButton(startButton, 3, SKYBLUE, 5, BLACK);
+            DrawButton(howToPLayButton, 3, SKYBLUE, 5, BLACK);
+            DrawButton(creditsButton, 3, SKYBLUE, 5, BLACK);
+            DrawButton(exitButton, 3, SKYBLUE, 5, BLACK);
 
             // Menu
             if (CheckCollisionPointRec(GetMousePosition(), startButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -91,14 +91,14 @@ int main()
             DrawMaze();
             break;
         case STATE_HOW_TO_PLAY:
-            DrawButton(backButton, 2, PINK, 4, BLACK);
+            DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 gameState = STATE_MENU;
             }
             break;
         case STATE_CREDITS:
-            DrawButton(backButton, 2, PINK, 4, BLACK);
+            DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 gameState = STATE_MENU;
@@ -115,7 +115,6 @@ int main()
             CloseWindow();
             return 0;
             break;
-            // Nao sei se pode fazer isso
         }
 
         EndDrawing();
@@ -155,9 +154,10 @@ void DrawButton(Button button, int borderWidth1, Color borderColor1, int borderW
     DrawRectangleLinesEx(button.rect, borderWidth1, borderColor1);
     DrawRectangleLinesEx((Rectangle){button.rect.x + borderWidth1, button.rect.y + borderWidth1, button.rect.width - 2 * borderWidth1, button.rect.height - 2 * borderWidth1}, borderWidth2, borderColor2);
 
-    float textX = button.rect.x + (button.rect.width - MeasureText(button.text, 18)) / 2;
+    float textX = button.rect.x + (button.rect.width - MeasureText(button.text, 26)) / 2;
+    float textY = button.rect.y + (button.rect.height - 26) / 2;
     // Texto
-    DrawText(button.text, textX, button.rect.y + 10, 18, BLACK);
+    DrawText(button.text, textX, textY, 26, BLACK);
 }
 
 void DrawMaze()
