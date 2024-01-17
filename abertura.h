@@ -11,6 +11,7 @@ typedef struct
 {
     Rectangle rect;
     Color color;
+    Color hoverColor;
     const char *text;
 } Button;
 

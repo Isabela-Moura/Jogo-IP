@@ -32,11 +32,12 @@ int main()
     // Botoes do menu
     int screenWidth = GetScreenWidth();
     int posXbutton = (screenWidth - 200) / 2;
-    Button startButton = {(Rectangle){posXbutton, 350, 200, 50}, SKYBLUE, "COMEÇAR"};
-    Button howToPLayButton = {(Rectangle){posXbutton, 425, 200, 50}, SKYBLUE, "COMO JOGAR"};
-    Button creditsButton = {(Rectangle){posXbutton, 500, 200, 50}, SKYBLUE, "CRÉDITOS"};
-    Button exitButton = {(Rectangle){posXbutton, 575, 200, 50}, SKYBLUE, "SAIR"};
-    Button backButton = {(Rectangle){posXbutton, 650, 200, 50}, SKYBLUE, "VOLTAR"};
+    Color colorButton = SKYBLUE;
+    Button startButton = {(Rectangle){posXbutton, 350, 200, 50}, colorButton, BLUE, "COMEÇAR"};
+    Button howToPLayButton = {(Rectangle){posXbutton, 425, 200, 50}, colorButton, BLUE, "COMO JOGAR"};
+    Button creditsButton = {(Rectangle){posXbutton, 500, 200, 50}, colorButton, BLUE, "CRÉDITOS"};
+    Button exitButton = {(Rectangle){posXbutton, 575, 200, 50}, colorButton, BLUE, "SAIR"};
+    Button backButton = {(Rectangle){posXbutton, 650, 200, 50}, colorButton, BLUE, "VOLTAR"};
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -66,25 +67,41 @@ int main()
             DrawButton(exitButton, 3, SKYBLUE, 5, BLACK);
 
             // Menu
-            if (CheckCollisionPointRec(GetMousePosition(), startButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (CheckCollisionPointRec(GetMousePosition(), startButton.rect))
             {
-                // Inicia jogo
-                gameState = STATE_PLAY;
+                DrawButton(startButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    // Inicia jogo
+                    gameState = STATE_PLAY;
+                }
             }
-            if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect))
             {
-                // Como Jogar
-                gameState = STATE_HOW_TO_PLAY;
+                DrawButton(howToPLayButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    // Como Jogar
+                    gameState = STATE_HOW_TO_PLAY;
+                }
             }
-            if (CheckCollisionPointRec(GetMousePosition(), creditsButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (CheckCollisionPointRec(GetMousePosition(), creditsButton.rect))
             {
-                // Creditos
-                gameState = STATE_CREDITS;
+                DrawButton(creditsButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    // Creditos
+                    gameState = STATE_CREDITS;
+                }
             }
-            if (CheckCollisionPointRec(GetMousePosition(), exitButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (CheckCollisionPointRec(GetMousePosition(), exitButton.rect))
             {
-                // Sai do jogo
-                gameState = STATE_EXIT;
+                DrawButton(exitButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    // Sai do jogo
+                    gameState = STATE_EXIT;
+                }
             }
             break;
         case STATE_PLAY:
@@ -92,16 +109,24 @@ int main()
             break;
         case STATE_HOW_TO_PLAY:
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
             {
-                gameState = STATE_MENU;
+                DrawButton(backButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    gameState = STATE_MENU;
+                }
             }
             break;
         case STATE_CREDITS:
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
             {
-                gameState = STATE_MENU;
+                DrawButton(backButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    gameState = STATE_MENU;
+                }
             }
             break;
         case STATE_EXIT:
@@ -147,8 +172,15 @@ void DrawBorders(int borderWidth1, int borderWidth2, int borderWidth3, Color col
 
 void DrawButton(Button button, int borderWidth1, Color borderColor1, int borderWidth2, Color borderColor2)
 {
+    Color buttonColor = button.color;
+
+    if (CheckCollisionPointRec(GetMousePosition(), button.rect))
+    {
+        buttonColor = button.hoverColor;
+    }
+
     // Desenha retangulo
-    DrawRectangleRec(button.rect, button.color);
+    DrawRectangleRec(button.rect, buttonColor);
 
     // Bordas duplas
     DrawRectangleLinesEx(button.rect, borderWidth1, borderColor1);
