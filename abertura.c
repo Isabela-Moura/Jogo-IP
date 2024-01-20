@@ -40,7 +40,7 @@ int main()
     Button howToPLayButton = {(Rectangle){posXbutton, 460, 200, 50}, colorButton, BLUE, "COMO JOGAR"};
     Button creditsButton = {(Rectangle){posXbutton, 535, 200, 50}, colorButton, BLUE, "CRÉDITOS"};
     Button exitButton = {(Rectangle){posXbutton, 610, 200, 50}, colorButton, BLUE, "SAIR"};
-    Button backButton = {(Rectangle){posXbutton, 650, 200, 50}, colorButton, BLUE, "VOLTAR"};
+    Button backButton = {(Rectangle){posXbutton, 610, 200, 50}, colorButton, BLUE, "VOLTAR"};
 
     // Status do jogo
     GameState gameState = STATE_MENU;
