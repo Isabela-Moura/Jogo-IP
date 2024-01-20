@@ -19,7 +19,6 @@ int main()
     Music music = LoadMusicStream("assets/mini1111.wav");
     music.looping = false;
     PlayMusicStream(music);
-    bool pause = false; // Fazer um botao de mudo dps
 
     // Fonte
     Font font = LoadFont("resources/fonts/pixantiqua.png");
@@ -28,6 +27,10 @@ int main()
     Image image = LoadImage("assets/nomeJogo.png");
     Texture2D texture = LoadTextureFromImage(image);
     UnloadImage(image);
+
+    Image imageCredits = LoadImage("assets/creditos.png");
+    Texture2D textureCredits = LoadTextureFromImage(imageCredits);
+    UnloadImage(imageCredits);
 
     // Botoes do menu
     int screenWidth = GetScreenWidth();
@@ -47,6 +50,7 @@ int main()
     while (!WindowShouldClose())
     {
         UpdateMusicStream(music);
+
         BeginDrawing();
         ClearBackground(BLACK);
         DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
@@ -119,9 +123,16 @@ int main()
             }
             break;
         case STATE_CREDITS:
+            // Adicionando creditos
+            int textureWidthcredits = textureCredits.width;
+            int textureHeightcredits = textureCredits.height;
+            int posXcredits = (screenWidth - textureWidthcredits) / 2;
+            int posYcredits = (650 + 18 - textureHeightcredits) / 2;
+            DrawTexture(textureCredits, posXcredits, posYcredits, WHITE);
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
             {
+
                 DrawButton(backButton, 3, BLUE, 5, BLACK);
                 if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
                 {
@@ -201,11 +212,11 @@ void DrawMaze()
         {
             if (maze[i][j] == 1)
             {
-                DrawRectangle((j * cellSize) + 25, (i * cellSize) + 22, cellSize, cellSize, PINK);
+                DrawRectangle((j * cellSize) + 59, (i * cellSize) + 70, cellSize, cellSize, SKYBLUE);
             }
             else
             {
-                DrawRectangle((j * cellSize) + 25, (i * cellSize) + 22, cellSize, cellSize, BLACK);
+                DrawRectangle((j * cellSize) + 59, (i * cellSize) + 70, cellSize, cellSize, BLACK);
             }
         }
     }
