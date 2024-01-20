@@ -36,10 +36,10 @@ int main()
     int screenWidth = GetScreenWidth();
     int posXbutton = (screenWidth - 200) / 2;
     Color colorButton = SKYBLUE;
-    Button startButton = {(Rectangle){posXbutton, 350, 200, 50}, colorButton, BLUE, "COMEÇAR"};
-    Button howToPLayButton = {(Rectangle){posXbutton, 425, 200, 50}, colorButton, BLUE, "COMO JOGAR"};
-    Button creditsButton = {(Rectangle){posXbutton, 500, 200, 50}, colorButton, BLUE, "CRÉDITOS"};
-    Button exitButton = {(Rectangle){posXbutton, 575, 200, 50}, colorButton, BLUE, "SAIR"};
+    Button startButton = {(Rectangle){posXbutton, 385, 200, 50}, colorButton, BLUE, "COMEÇAR"};
+    Button howToPLayButton = {(Rectangle){posXbutton, 460, 200, 50}, colorButton, BLUE, "COMO JOGAR"};
+    Button creditsButton = {(Rectangle){posXbutton, 535, 200, 50}, colorButton, BLUE, "CRÉDITOS"};
+    Button exitButton = {(Rectangle){posXbutton, 610, 200, 50}, colorButton, BLUE, "SAIR"};
     Button backButton = {(Rectangle){posXbutton, 650, 200, 50}, colorButton, BLUE, "VOLTAR"};
 
     // Status do jogo
@@ -62,7 +62,7 @@ int main()
             int textureWidth = texture.width;
             int posX = (screenWidth - textureWidth) / 2;
             // Nome do jogo
-            DrawTexture(texture, posX, 150, WHITE);
+            DrawTexture(texture, posX, 45, WHITE);
 
             // Desenha botoes
             DrawButton(startButton, 3, SKYBLUE, 5, BLACK);
@@ -125,10 +125,8 @@ int main()
         case STATE_CREDITS:
             // Adicionando creditos
             int textureWidthcredits = textureCredits.width;
-            int textureHeightcredits = textureCredits.height;
             int posXcredits = (screenWidth - textureWidthcredits) / 2;
-            int posYcredits = (650 + 18 - textureHeightcredits) / 2;
-            DrawTexture(textureCredits, posXcredits, posYcredits, WHITE);
+            DrawTexture(textureCredits, posXcredits, 50, WHITE);
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
             {
