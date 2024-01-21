@@ -42,6 +42,19 @@ int main()
     Button exitButton = {(Rectangle){posXbutton, 610, 200, 50}, colorButton, BLUE, "SAIR"};
     Button backButton = {(Rectangle){posXbutton, 610, 200, 50}, colorButton, BLUE, "VOLTAR"};
 
+    // Animacao de Ana Laura
+    Texture2D anaR = LoadTexture("assets/analauradireita.png");
+    Vector2 positionAna = {200.0f, 430.0f};
+    Rectangle frameRecAna = {0.0f, 0.0f, (float)anaR.width / 4, (float)anaR.height};
+    int currentFrame = 0;
+    int framesCounter = 0;
+    int framesSpeed = 8;
+
+    // Animacao de Quinhas
+    Texture2D quinhasR = LoadTexture("assets/quinhasdireita.png");
+    Vector2 positionQuinhas = {965.0f, 430.f};
+    Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasR.width / 4, (float)quinhasR.height};
+
     // Status do jogo
     GameState gameState = STATE_MENU;
 
@@ -50,7 +63,17 @@ int main()
     while (!WindowShouldClose())
     {
         UpdateMusicStream(music);
-
+        framesCounter++;
+        if (framesCounter >= (60 / framesSpeed))
+        {
+            framesCounter = 0;
+            currentFrame++;
+            if (currentFrame > 3)
+            {
+                frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+            }
+        }
         BeginDrawing();
         ClearBackground(BLACK);
         DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
@@ -63,6 +86,10 @@ int main()
             int posX = (screenWidth - textureWidth) / 2;
             // Nome do jogo
             DrawTexture(texture, posX, 45, WHITE);
+
+            // Ana Laura e Quinhas
+            DrawTextureRec(anaR, frameRecAna, positionAna, WHITE);
+            DrawTextureRec(quinhasR, frameRecQuinhas, positionQuinhas, WHITE);
 
             // Desenha botoes
             DrawButton(startButton, 3, SKYBLUE, 5, BLACK);
@@ -140,12 +167,14 @@ int main()
             break;
         case STATE_EXIT:
             // Encerramento
-            // Musica
+            // Descarregamento da musica
             UnloadMusicStream(music);
             CloseAudioDevice();
             // Descarregamento da fonte
             UnloadFont(font);
-
+            // Descarregamento das animacoes
+            UnloadTexture(anaR);
+            UnloadTexture(quinhasR);
             CloseWindow();
             return 0;
             break;
