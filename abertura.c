@@ -62,7 +62,10 @@ int main()
 
     while (!WindowShouldClose())
     {
+        // Atualizacao
         UpdateMusicStream(music);
+
+        // Frames das animacões
         framesCounter++;
         if (framesCounter >= (60 / framesSpeed))
         {
@@ -74,6 +77,8 @@ int main()
                 frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
             }
         }
+
+        // Desenho
         BeginDrawing();
         ClearBackground(BLACK);
         DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
@@ -81,13 +86,13 @@ int main()
         switch (gameState)
         {
         case STATE_MENU:
+            // Nome do jogo
             int screenWidth = GetScreenWidth();
             int textureWidth = texture.width;
             int posX = (screenWidth - textureWidth) / 2;
-            // Nome do jogo
             DrawTexture(texture, posX, 45, WHITE);
 
-            // Ana Laura e Quinhas
+            // Ana Laura e Quinhas na entrada
             DrawTextureRec(anaR, frameRecAna, positionAna, WHITE);
             DrawTextureRec(quinhasR, frameRecQuinhas, positionQuinhas, WHITE);
 
@@ -175,6 +180,7 @@ int main()
             // Descarregamento das animacoes
             UnloadTexture(anaR);
             UnloadTexture(quinhasR);
+            // FechandoS
             CloseWindow();
             return 0;
             break;
