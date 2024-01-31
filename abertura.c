@@ -1,8 +1,8 @@
-#include "raylib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "abertura.h"
+#include "raylib.h"
 
 int main()
 {
@@ -43,16 +43,16 @@ int main()
     Button backButton = {(Rectangle){posXbutton, 610, 200, 50}, colorButton, BLUE, "VOLTAR"};
 
     // Animacao de Ana Laura
-    Texture2D anaR = LoadTexture("assets/analauradireita.png");
-    Vector2 positionAna = {200.0f, 430.0f};
+    Texture2D anaR = LoadTexture("assets/analaura.direita.png");
+    Vector2 positionAna = {175.0f, 380.0f};
     Rectangle frameRecAna = {0.0f, 0.0f, (float)anaR.width / 4, (float)anaR.height};
     int currentFrame = 0;
     int framesCounter = 0;
     int framesSpeed = 8;
 
     // Animacao de Quinhas
-    Texture2D quinhasR = LoadTexture("assets/quinhasdireita.png");
-    Vector2 positionQuinhas = {965.0f, 430.f};
+    Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
+    Vector2 positionQuinhas = {925.0f, 380.f};
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasR.width / 4, (float)quinhasR.height};
 
     // Status do jogo
@@ -182,69 +182,16 @@ int main()
 
         EndDrawing();
     }
-}
-
-void DrawBorders(int borderWidth1, int borderWidth2, int borderWidth3, Color color1, Color color2, Color color3)
-{
-    int screenWidth = GetScreenWidth();
-    int screenHeight = GetScreenHeight();
-
-    DrawRectangle(0, 0, screenWidth, borderWidth1, color1);
-    DrawRectangle(0, screenHeight - borderWidth1, screenWidth, borderWidth1, color1);
-
-    DrawRectangle(borderWidth1, borderWidth1, screenWidth - 2 * borderWidth1, borderWidth2, color2);
-    DrawRectangle(borderWidth1, screenHeight - borderWidth1 - borderWidth2, screenWidth - 2 * borderWidth1, borderWidth2, color2);
-
-    DrawRectangle(borderWidth1 + borderWidth2, borderWidth1 + borderWidth2, screenWidth - 2 * borderWidth1 - 2 * borderWidth2, borderWidth3, color3);
-    DrawRectangle(borderWidth1 + borderWidth2, screenHeight - borderWidth1 - borderWidth2 - borderWidth3, screenWidth - 2 * borderWidth1 - 2 * borderWidth2, borderWidth3, color3);
-
-    DrawRectangle(0, 0, borderWidth1, screenHeight, color1);
-    DrawRectangle(screenWidth - borderWidth1, 0, borderWidth1, screenHeight, color1);
-
-    DrawRectangle(borderWidth1, borderWidth1, borderWidth2, screenHeight - 2 * borderWidth1, color2);
-    DrawRectangle(screenWidth - borderWidth1 - borderWidth2, borderWidth1, borderWidth2, screenHeight - 2 * borderWidth1, color2);
-
-    DrawRectangle(borderWidth1 + borderWidth2, borderWidth1 + borderWidth2, borderWidth3, screenHeight - 2 * borderWidth1 - 2 * borderWidth2, color3);
-    DrawRectangle(screenWidth - borderWidth1 - borderWidth2 - borderWidth3, borderWidth1 + borderWidth2, borderWidth3, screenHeight - 2 * borderWidth1 - 2 * borderWidth2, color3);
-}
-
-void DrawButton(Button button, int borderWidth1, Color borderColor1, int borderWidth2, Color borderColor2)
-{
-    Color buttonColor = button.color;
-
-    if (CheckCollisionPointRec(GetMousePosition(), button.rect))
-    {
-        buttonColor = button.hoverColor;
-    }
-
-    // Desenha retangulo
-    DrawRectangleRec(button.rect, buttonColor);
-
-    // Bordas duplas
-    DrawRectangleLinesEx(button.rect, borderWidth1, borderColor1);
-    DrawRectangleLinesEx((Rectangle){button.rect.x + borderWidth1, button.rect.y + borderWidth1, button.rect.width - 2 * borderWidth1, button.rect.height - 2 * borderWidth1}, borderWidth2, borderColor2);
-
-    float textX = button.rect.x + (button.rect.width - MeasureText(button.text, 26)) / 2;
-    float textY = button.rect.y + (button.rect.height - 26) / 2;
-    // Texto
-    DrawText(button.text, textX, textY, 26, BLACK);
-}
-
-void DrawMaze()
-{
-
-    for (int i = 0; i < mazeWidth; i++)
-    {
-        for (int j = 0; j < mazeHeight; j++)
-        {
-            if (maze[i][j] == 1)
-            {
-                DrawRectangle((j * cellSize) + 59, (i * cellSize) + 70, cellSize, cellSize, SKYBLUE);
-            }
-            else
-            {
-                DrawRectangle((j * cellSize) + 59, (i * cellSize) + 70, cellSize, cellSize, BLACK);
-            }
-        }
-    }
+    // Encerramento
+    // Descarregamento da musica
+    UnloadMusicStream(music);
+    CloseAudioDevice();
+    // Descarregamento da fonte
+    UnloadFont(font);
+    // Descarregamento das animacoes
+    UnloadTexture(anaR);
+    UnloadTexture(quinhasR);
+    // Fechando
+    CloseWindow();
+    return 0;
 }
