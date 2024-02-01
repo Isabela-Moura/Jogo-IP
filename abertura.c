@@ -33,6 +33,7 @@ int main()
     UnloadImage(imageCredits);
 
     // Botoes do menu
+    int screenHeight = GetScreenHeight();
     int screenWidth = GetScreenWidth();
     int posXbutton = (screenWidth - 200) / 2;
     Color colorButton = SKYBLUE;
@@ -55,6 +56,12 @@ int main()
     Vector2 positionQuinhas = {925.0f, 380.f};
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasR.width / 4, (float)quinhasR.height};
 
+    //Coisas do temporizador
+    int segundospassados = 0;
+    int tempominutos = 0;
+    int temposegundos = 0;
+    int confirmador = 0;
+
     // Status do jogo
     GameState gameState = STATE_MENU;
 
@@ -64,6 +71,11 @@ int main()
     {
         // Atualizacao
         UpdateMusicStream(music);
+
+        //Identificar quantos segundo se passaram antes do comeco do jogo para o temporizador comecar do 0
+        if(gameState != STATE_PLAY){
+            segundospassados = (int)GetTime();
+        }
 
         // Frames das animacões
         framesCounter++;
@@ -142,6 +154,23 @@ int main()
             break;
         case STATE_PLAY:
             DrawMaze();
+             //Temporizador e FPS
+            if(temposegundos % 60 == 0 && temposegundos != 0 && confirmador == 0){tempominutos++; confirmador++;}
+            if(temposegundos % 60 != 0){confirmador = 0;}
+            temposegundos = GetTime() - tempominutos*60 - segundospassados;
+            DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth/2, (screenHeight - screenHeight/7), 30, WHITE);
+            DrawFPS(screenWidth/7, (screenHeight - screenHeight/7));
+            //Botao de voltar
+            DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
+             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
+            {
+                DrawButton(backButton, 3, BLUE, 5, BLACK);
+                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+                {
+                    gameState = STATE_MENU;
+                }
+            }
+
             break;
         case STATE_HOW_TO_PLAY:
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
