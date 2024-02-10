@@ -60,11 +60,12 @@ void DrawMaze()
         {
             if (maze[i][j] == 1)
             {
-                DrawRectangle((j * cellSize) + 59, (i * cellSize) + 70, cellSize, cellSize, SKYBLUE);
+
+                DrawRectangle((j * cellSize) + cellSize * 2.3, (i * cellSize) + cellSize * 4, cellSize, cellSize, SKYBLUE);
             }
             else
             {
-                DrawRectangle((j * cellSize) + 59, (i * cellSize) + 70, cellSize, cellSize, BLACK);
+                DrawRectangle((j * cellSize) + cellSize * 2.3, (i * cellSize) + cellSize * 4, cellSize, cellSize, BLACK);
             }
         }
     }
@@ -114,6 +115,12 @@ void DrawBorders(int borderWidth1, int borderWidth2, int borderWidth3, Color col
 
     DrawRectangle(borderWidth1 + borderWidth2, borderWidth1 + borderWidth2, borderWidth3, screenHeight - 2 * borderWidth1 - 2 * borderWidth2, color3);
     DrawRectangle(screenWidth - borderWidth1 - borderWidth2 - borderWidth3, borderWidth1 + borderWidth2, borderWidth3, screenHeight - 2 * borderWidth1 - 2 * borderWidth2, color3);
+}
+
+void DrawBase()
+{
+    ClearBackground(BLACK);
+    DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
 }
 
 #endif
