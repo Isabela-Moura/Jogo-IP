@@ -27,10 +27,10 @@ int main()
     Image image = LoadImage("assets/nomeJogo.png");
     Texture2D texture = LoadTextureFromImage(image);
     UnloadImage(image);
-
     Image imageCredits = LoadImage("assets/creditos.png");
     Texture2D textureCredits = LoadTextureFromImage(imageCredits);
     UnloadImage(imageCredits);
+    Texture2D story = LoadTexture("assets/historia.png");
 
     // Botoes do menu
     int screenHeight = GetScreenHeight();
@@ -113,7 +113,7 @@ int main()
                 if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
                 {
                     // Inicia jogo
-                    gameState = STATE_PLAY;
+                    gameState = STATE_STORY;
                 }
             }
             if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect))
@@ -139,6 +139,12 @@ int main()
                     // Sai do jogo
                     gameState = STATE_EXIT;
                 }
+            }
+            break;
+        case STATE_STORY:
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                gameState = STATE_PLAY;
             }
             break;
         case STATE_PLAY:
@@ -229,6 +235,10 @@ int main()
                 DrawButton(exitButton, 3, BLUE, 5, BLACK);
             }
             break;
+        case STATE_STORY:
+            DrawStory(story);
+            // Talvez colocar os bonequinhos andando, ou colocar quinhas, varias analauras e os posteres
+            break;
         case STATE_PLAY:
             DrawMaze();
             DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
@@ -243,9 +253,9 @@ int main()
                     gameState = STATE_MENU;
                 }
             }
-
             break;
         case STATE_HOW_TO_PLAY:
+            // Como Jogar
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
             {

@@ -20,6 +20,7 @@ typedef enum
     STATE_MENU,
     STATE_CREDITS,
     STATE_PLAY,
+    STATE_STORY,
     STATE_HOW_TO_PLAY,
     STATE_EXIT
 } GameState;
@@ -121,6 +122,17 @@ void DrawBase()
 {
     ClearBackground(BLACK);
     DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
+}
+
+void DrawStory(Texture2D texture)
+{
+    static float alpha = 0.0f;
+    alpha += GetFrameTime() * 0.5f;
+    if (alpha > 1.0f)
+    {
+        alpha = 1.0f;
+    }
+    DrawTexturePro(texture, (Rectangle){0, 0, texture.width, texture.height}, (Rectangle){20, 20, GetScreenWidth() - 40, GetScreenHeight() - 40}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
 }
 
 #endif
