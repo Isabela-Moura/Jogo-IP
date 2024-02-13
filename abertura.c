@@ -157,6 +157,7 @@ int main()
             }
             break;
         case STATE_PLAY:
+            DrawMaze(); //DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
             // Temporizador e FPS
             if (temposegundos % 60 == 0 && temposegundos != 0 && confirmador == 0)
             {
@@ -176,13 +177,21 @@ int main()
             if(IsKeyReleased(KEY_S)){checagem = 3;}
           //caso o boneco pare de se mexer, a checagem e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa  
           if(checagem == 0) 
-          {DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);}
+          {DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE); 
+          if(IsKeyReleased(KEY_D)) {currentFrame = 0; frameRecAna.x = 0;} //Para deixar o boneco no frame em que esta parado
+           }
           if(checagem == 1) 
-          {DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);}
+          {DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE); 
+          if(IsKeyReleased(KEY_W)) {currentFrame = 2; frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;}
+          }
           if(checagem == 2) 
-          {DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);}
+          {DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE); 
+          if(IsKeyReleased(KEY_A)) {currentFrame = 3; frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;}
+          }
           if(checagem == 3) 
-          {DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);}
+          {DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE); 
+          if(IsKeyReleased(KEY_S)) {currentFrame = 3; frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;}
+          }
           //direita ana
             if(IsKeyDown(KEY_D)){
                 checagem = 0;
@@ -210,7 +219,7 @@ int main()
             currentFrame++;
             if (currentFrame > 3)
             {
-                frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                frameRecAna.x = (float)currentFrame * (float)anaU.width / 4;
                 frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
             }
         } 
@@ -226,7 +235,7 @@ int main()
             currentFrame++;
             if (currentFrame > 3)
             {
-                frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                frameRecAna.x = (float)currentFrame * (float)anaL.width / 4;
                 frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
             }
         } 
@@ -242,7 +251,7 @@ int main()
             currentFrame++;
             if (currentFrame > 3)
             {
-                frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                frameRecAna.x = (float)currentFrame * (float)anaD.width / 4;
                 frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
             }
         } 
@@ -325,7 +334,6 @@ int main()
             }
             break;
         case STATE_PLAY:
-            DrawMaze();
             DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
             DrawFPS(screenWidth / 10, screenHeight / 15);
             // Botao de voltar temporario

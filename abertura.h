@@ -3,7 +3,7 @@
 
 #include "raylib.h"
 
-#define cellSize 25
+#define cellSize 34
 #define mazeWidth 25
 #define mazeHeight 50
 
