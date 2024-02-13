@@ -50,6 +50,9 @@ int main()
 
     // Animacao de Ana Laura Menu
     Texture2D anaR = LoadTexture("assets/analaura.direita.png");
+    Texture2D anaU = LoadTexture("assets/analaura.cima.png");
+    Texture2D anaL = LoadTexture("assets/analaura.esquerda.png");
+    Texture2D anaD = LoadTexture("assets/analaura.frente.png");
     int textureAx = anaR.width;
     int textureAy = anaR.height;
     float posXa = (screenWidth - textureAx) * 4 / 5;
@@ -75,6 +78,10 @@ int main()
     int temposegundos = 0;
     int confirmador = 0;
 
+    // Analaura andando(depois trocar para quinhas quando seu movimento for resolvido)
+    Vector2 anamovimento = {0, 500};
+    int checagem = 0;
+
     // Status do jogo
     GameState gameState = STATE_MENU;
 
@@ -90,17 +97,26 @@ int main()
         {
             segundospassados = (int)GetTime();
         }
-
-        // Frames das animacões
-        framesCounter++;
-        if (framesCounter >= (60 / framesSpeed))
+        // Posicao original de Ana(depois trocar para quinhas)
+        if (gameState != STATE_PLAY)
         {
-            framesCounter = 0;
-            currentFrame++;
-            if (currentFrame > 3)
+            checagem = 0;
+            anamovimento.x = 0;
+            anamovimento.y = 500;
+        }
+        // Frames das animacões
+        if (gameState == STATE_MENU)
+        {
+            framesCounter++;
+            if (framesCounter >= (60 / framesSpeed))
             {
-                frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
-                frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                framesCounter = 0;
+                currentFrame++;
+                if (currentFrame > 3)
+                {
+                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                    frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                }
             }
         }
 
@@ -148,6 +164,7 @@ int main()
             }
             break;
         case STATE_PLAY:
+            DrawMaze(); // DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
             // Temporizador e FPS
             if (temposegundos % 60 == 0 && temposegundos != 0 && confirmador == 0)
             {
@@ -159,6 +176,130 @@ int main()
                 confirmador = 0;
             }
             temposegundos = GetTime() - tempominutos * 60 - segundospassados;
+
+            // checar o valor da checagem
+            if (IsKeyReleased(KEY_D))
+            {
+                checagem = 0;
+            }
+            if (IsKeyReleased(KEY_W))
+            {
+                checagem = 1;
+            }
+            if (IsKeyReleased(KEY_A))
+            {
+                checagem = 2;
+            }
+            if (IsKeyReleased(KEY_S))
+            {
+                checagem = 3;
+            }
+            // caso o boneco pare de se mexer, a checagem e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa
+            if (checagem == 0)
+            {
+                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_D))
+                {
+                    currentFrame = 0;
+                    frameRecAna.x = 0;
+                } // Para deixar o boneco no frame em que esta parado
+            }
+            if (checagem == 1)
+            {
+                DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_W))
+                {
+                    currentFrame = 2;
+                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                }
+            }
+            if (checagem == 2)
+            {
+                DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_A))
+                {
+                    currentFrame = 3;
+                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                }
+            }
+            if (checagem == 3)
+            {
+                DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_S))
+                {
+                    currentFrame = 3;
+                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                }
+            }
+            // direita ana
+            if (IsKeyDown(KEY_D))
+            {
+                checagem = 0;
+                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                anamovimento.x = anamovimento.x + 4;
+                framesCounter++;
+                if (framesCounter >= (60 / framesSpeed))
+                {
+                    currentFrame++;
+                    if (currentFrame > 3)
+                    {
+                        frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                    }
+                }
+            }
+            // cima ana
+            if (IsKeyDown(KEY_W))
+            {
+                checagem = 1;
+                DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
+                anamovimento.y = anamovimento.y - 4;
+                framesCounter++;
+                if (framesCounter >= (60 / framesSpeed))
+                {
+                    currentFrame++;
+                    if (currentFrame > 3)
+                    {
+                        frameRecAna.x = (float)currentFrame * (float)anaU.width / 4;
+                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                    }
+                }
+            }
+            // esquerda ana
+            if (IsKeyDown(KEY_A))
+            {
+                checagem = 2;
+                DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
+                anamovimento.x = anamovimento.x - 4;
+                framesCounter++;
+                if (framesCounter >= (60 / framesSpeed))
+                {
+                    currentFrame++;
+                    if (currentFrame > 3)
+                    {
+                        frameRecAna.x = (float)currentFrame * (float)anaL.width / 4;
+                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                    }
+                }
+            }
+            // baixo ana
+            if (IsKeyDown(KEY_S))
+            {
+                checagem = 3;
+                DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
+                anamovimento.y = anamovimento.y + 4;
+                framesCounter++;
+                if (framesCounter >= (60 / framesSpeed))
+                {
+                    currentFrame++;
+                    if (currentFrame > 3)
+                    {
+                        frameRecAna.x = (float)currentFrame * (float)anaD.width / 4;
+                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                    }
+                }
+            }
+
             break;
         case STATE_HOW_TO_PLAY:
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
@@ -240,7 +381,6 @@ int main()
             // Talvez colocar os bonequinhos andando, ou colocar quinhas, varias analauras e os posteres
             break;
         case STATE_PLAY:
-            DrawMaze();
             DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
             DrawFPS(screenWidth / 10, screenHeight / 15);
             // Botao de voltar temporario
@@ -253,6 +393,7 @@ int main()
                     gameState = STATE_MENU;
                 }
             }
+
             break;
         case STATE_HOW_TO_PLAY:
             // Como Jogar
