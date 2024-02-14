@@ -24,12 +24,9 @@ int main()
     Font font = LoadFont("resources/fonts/pixantiqua.png");
 
     // Imagem
-    Image image = LoadImage("assets/nomeJogo.png");
-    Texture2D texture = LoadTextureFromImage(image);
-    UnloadImage(image);
-    Image imageCredits = LoadImage("assets/creditos.png");
-    Texture2D textureCredits = LoadTextureFromImage(imageCredits);
-    UnloadImage(imageCredits);
+    Texture2D texture = LoadTexture("assets/nomeJogo.png");
+    Texture2D textureHowToPlay = LoadTexture("assets/comojogar.png");
+    Texture2D textureCredits = LoadTexture("assets/creditos.png");
     Texture2D story = LoadTexture("assets/historia.png");
 
     // Botoes do menu
@@ -87,7 +84,7 @@ int main()
 
     SetTargetFPS(60);
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && gameState != STATE_EXIT)
     {
         // Atualizacao
         UpdateMusicStream(music);
@@ -124,37 +121,25 @@ int main()
         {
         case STATE_MENU:
             // Menu
-            if (CheckCollisionPointRec(GetMousePosition(), startButton.rect))
+            if (CheckCollisionPointRec(GetMousePosition(), startButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    // Inicia jogo
-                    gameState = STATE_STORY;
-                }
+                // Vai para historia
+                gameState = STATE_STORY;
             }
-            if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect))
+            if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    // Como Jogar
-                    gameState = STATE_HOW_TO_PLAY;
-                }
+                // Como Jogar
+                gameState = STATE_HOW_TO_PLAY;
             }
-            if (CheckCollisionPointRec(GetMousePosition(), creditsButton.rect))
+            if (CheckCollisionPointRec(GetMousePosition(), creditsButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    // Creditos
-                    gameState = STATE_CREDITS;
-                }
+                // Creditos
+                gameState = STATE_CREDITS;
             }
-            if (CheckCollisionPointRec(GetMousePosition(), exitButton.rect))
+            if (CheckCollisionPointRec(GetMousePosition(), exitButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    // Sai do jogo
-                    gameState = STATE_EXIT;
-                }
+                // Sai do jogo
+                gameState = STATE_EXIT;
             }
             break;
         case STATE_STORY:
@@ -302,36 +287,19 @@ int main()
 
             break;
         case STATE_HOW_TO_PLAY:
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
+            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    gameState = STATE_MENU;
-                }
+                gameState = STATE_MENU;
             }
             break;
         case STATE_CREDITS:
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
+            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    gameState = STATE_MENU;
-                }
+                gameState = STATE_MENU;
             }
             break;
         case STATE_EXIT:
-            // Encerramento
-            // Descarregamento da musica
-            UnloadMusicStream(music);
-            CloseAudioDevice();
-            // Descarregamento da fonte
-            UnloadFont(font);
-            // Descarregamento das animacoes
-            UnloadTexture(anaR);
-            UnloadTexture(quinhasR);
-            // FechandoS
-            CloseWindow();
-            return 0;
+            // Sai do jogo
             break;
         }
 
@@ -342,47 +310,16 @@ int main()
         switch (gameState)
         {
         case STATE_MENU:
-            // Nome do jogo
-            int textureWidth = texture.width;
-            int textureHeight = texture.height;
-            int posX = (screenWidth - textureWidth) / 2;
-            int posY = (screenHeight - textureHeight) / 8;
-            DrawTexture(texture, posX, posY, WHITE);
-
-            // Ana Laura e Quinhas na entrada
-            DrawTextureRec(anaR, frameRecAna, positionAna, WHITE);
-            DrawTextureRec(quinhasR, frameRecQuinhas, positionQuinhas, WHITE);
-
-            // Desenha botoes
-            DrawButton(startButton, 3, SKYBLUE, 5, BLACK);
-            DrawButton(howToPLayButton, 3, SKYBLUE, 5, BLACK);
-            DrawButton(creditsButton, 3, SKYBLUE, 5, BLACK);
-            DrawButton(exitButton, 3, SKYBLUE, 5, BLACK);
             // Menu
-            if (CheckCollisionPointRec(GetMousePosition(), startButton.rect))
-            {
-                DrawButton(startButton, 3, BLUE, 5, BLACK);
-            }
-            if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect))
-            {
-                DrawButton(howToPLayButton, 3, BLUE, 5, BLACK);
-            }
-            if (CheckCollisionPointRec(GetMousePosition(), creditsButton.rect))
-            {
-                DrawButton(creditsButton, 3, BLUE, 5, BLACK);
-            }
-            if (CheckCollisionPointRec(GetMousePosition(), exitButton.rect))
-            {
-                DrawButton(exitButton, 3, BLUE, 5, BLACK);
-            }
+            ShowMenu(screenWidth, screenHeight, texture, anaR, frameRecAna, positionAna, quinhasR, frameRecQuinhas, positionQuinhas, startButton, howToPLayButton, creditsButton, exitButton);
             break;
         case STATE_STORY:
-            DrawStory(story);
+            ShowStory(story);
             // Talvez colocar os bonequinhos andando, ou colocar quinhas, varias analauras e os posteres
             break;
         case STATE_PLAY:
-            DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
-            DrawFPS(screenWidth / 10, screenHeight / 15);
+            // Jogo
+            ShowPlay(screenWidth, screenHeight, tempominutos, temposegundos);
             // Botao de voltar temporario
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
@@ -393,32 +330,17 @@ int main()
                     gameState = STATE_MENU;
                 }
             }
-
             break;
         case STATE_HOW_TO_PLAY:
             // Como Jogar
-            DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
-            {
-                DrawButton(backButton, 3, BLUE, 5, BLACK);
-            }
+            ShowHowToPlay(screenWidth, screenHeight, textureHowToPlay, backButton);
             break;
         case STATE_CREDITS:
             // Adicionando creditos
-            int textureWidthcredits = textureCredits.width;
-            int textureHeightcredits = textureCredits.height;
-            int posXcredits = (screenWidth - textureWidthcredits) / 2;
-            int posYcredits = (screenHeight - textureHeightcredits) / 4;
-            DrawTexture(textureCredits, posXcredits, posYcredits, WHITE);
-            DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
-            {
-
-                DrawButton(backButton, 3, BLUE, 5, BLACK);
-            }
+            ShowCredits(screenWidth, screenHeight, textureCredits, backButton);
             break;
         case STATE_EXIT:
-            // talvez colocar alguma despedida depois
+            // Sai do jogo
             break;
         }
         EndDrawing();
@@ -432,6 +354,14 @@ int main()
     // Descarregamento das animacoes
     UnloadTexture(anaR);
     UnloadTexture(quinhasR);
+    UnloadTexture(anaU);
+    UnloadTexture(anaL);
+    UnloadTexture(anaD);
+    // Descarregamento das texturas
+    UnloadTexture(texture);
+    UnloadTexture(textureHowToPlay);
+    UnloadTexture(textureCredits);
+    UnloadTexture(story);
     // Fechando
     CloseWindow();
     return 0;

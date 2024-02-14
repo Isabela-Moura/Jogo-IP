@@ -124,7 +124,7 @@ void DrawBase()
     DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
 }
 
-void DrawStory(Texture2D texture)
+void ShowStory(Texture2D texture)
 {
     static float alpha = 0.0f;
     alpha += GetFrameTime() * 0.5f;
@@ -133,6 +133,85 @@ void DrawStory(Texture2D texture)
         alpha = 1.0f;
     }
     DrawTexturePro(texture, (Rectangle){0, 0, texture.width, texture.height}, (Rectangle){20, 20, GetScreenWidth() - 40, GetScreenHeight() - 40}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
+}
+
+void ShowCredits(int screenWidth, int screenHeight, Texture2D textureCredits, Button backButton)
+{
+    int textureWidthcredits = textureCredits.width;
+    int textureHeightcredits = textureCredits.height;
+    int posXcredits = (screenWidth - textureWidthcredits) / 2;
+    int posYcredits = (screenHeight - textureHeightcredits) / 4;
+    DrawTexture(textureCredits, posXcredits, posYcredits, WHITE);
+    DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
+    if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
+    {
+
+        DrawButton(backButton, 3, BLUE, 5, BLACK);
+    }
+}
+
+void ShowHowToPlay(int screenWidth, int screenHeight, Texture2D textureHowToPlay, Button backButton)
+{
+    int textureWidthHowToPlay = textureHowToPlay.width;
+    int textureHeightHowToPlay = textureHowToPlay.height;
+    int posXHowToPlay = (screenWidth - textureWidthHowToPlay) / 2;
+    int posYHowToPlay = (screenHeight - textureHeightHowToPlay) / 4;
+    DrawTexture(textureHowToPlay, posXHowToPlay, posYHowToPlay, WHITE);
+    DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
+    if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
+    {
+
+        DrawButton(backButton, 3, BLUE, 5, BLACK);
+    }
+}
+
+void ShowExit(int screenWidth, int screenHeight, Texture2D textureExit)
+{
+    int textureWidthExit = textureExit.width;
+    int textureHeightExit = textureExit.height;
+    int posXExit = (screenWidth - textureWidthExit) / 2;
+    int posYExit = (screenHeight - textureHeightExit) / 2;
+    DrawTexture(textureExit, posXExit, posYExit, WHITE);
+}
+
+void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegundos)
+{
+    DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
+    DrawFPS(screenWidth / 10, screenHeight / 15);
+}
+
+void ShowMenu(int screenWidth, int screenHeight, Texture2D texture, Texture2D anaR, Rectangle frameRecAna, Vector2 positionAna, Texture2D quinhasR, Rectangle frameRecQuinhas, Vector2 positionQuinhas, Button startButton, Button howToPLayButton, Button creditsButton, Button exitButton)
+{
+    // Nome do jogo
+    int textureWidth = texture.width;
+    int textureHeight = texture.height;
+    int posX = (screenWidth - textureWidth) / 2;
+    int posY = (screenHeight - textureHeight) / 8;
+    DrawTexture(texture, posX, posY, WHITE);
+    // Ana Laura e Quinhas na entrada
+    DrawTextureRec(anaR, frameRecAna, positionAna, WHITE);
+    DrawTextureRec(quinhasR, frameRecQuinhas, positionQuinhas, WHITE);
+    // Desenha botoes
+    DrawButton(startButton, 3, SKYBLUE, 5, BLACK);
+    DrawButton(howToPLayButton, 3, SKYBLUE, 5, BLACK);
+    DrawButton(creditsButton, 3, SKYBLUE, 5, BLACK);
+    DrawButton(exitButton, 3, SKYBLUE, 5, BLACK);
+    if (CheckCollisionPointRec(GetMousePosition(), startButton.rect))
+    {
+        DrawButton(startButton, 3, BLUE, 5, BLACK);
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect))
+    {
+        DrawButton(howToPLayButton, 3, BLUE, 5, BLACK);
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), creditsButton.rect))
+    {
+        DrawButton(creditsButton, 3, BLUE, 5, BLACK);
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), exitButton.rect))
+    {
+        DrawButton(exitButton, 3, BLUE, 5, BLACK);
+    }
 }
 
 #endif
