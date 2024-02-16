@@ -63,12 +63,19 @@ int main()
 
     // Animacao de Quinhas Menu
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
+    Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
+    Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
+    Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");;
     int textureQx = quinhasR.width;
     int textureQy = quinhasR.height;
-    float posXq = (screenWidth - textureQx) * 15 / 5;
+    float posXq = (screenWidth - textureQx) * 4 / 5;
     float posYq = (screenHeight - textureQy) * 4 / 5;
     Vector2 positionQuinhas = {posXq, posYq};
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasR.width / 4, (float)quinhasR.height};
+    int currentFrame = 0;
+    int framesCounter = 0;
+    int framesSpeed = 8;
+    float tempodeframe = 0;
 
     // Coisas do temporizador
     int segundospassados = 0;
@@ -78,7 +85,10 @@ int main()
 
     // Analaura andando(depois trocar para quinhas quando seu movimento for resolvido)
     Vector2 anamovimento = {0, 0};
-    int checagem = 0;
+    int checagemAna = 0;
+
+    Vector2 quinhasmovimento = {0, 0};
+    int checagemQuinhas = 0;
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -98,7 +108,7 @@ int main()
         // Posicao original de Ana(depois trocar para quinhas)
         if (gameState != STATE_PLAY)
         {
-            checagem = 0;
+            checagemAna = 0;
             anamovimento.x = 0;
             anamovimento.y = 830;
         }
@@ -163,25 +173,25 @@ int main()
             }
             temposegundos = GetTime() - tempominutos * 60 - segundospassados;
 
-            // checar o valor da checagem
+            // checar o valor da checagemAna
             if (IsKeyReleased(KEY_D))
             {
-                checagem = 0;
+                checagemAna = 0;
             }
             if (IsKeyReleased(KEY_W))
             {
-                checagem = 1;
+                checagemAna = 1;
             }
             if (IsKeyReleased(KEY_A))
             {
-                checagem = 2;
+                checagemAna = 2;
             }
             if (IsKeyReleased(KEY_S))
             {
-                checagem = 3;
+                checagemAna = 3;
             }
-            // caso o boneco pare de se mexer, a checagem e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa
-            if (checagem == 0)
+            // caso o boneco pare de se mexer, a checagemAna e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa
+            if (checagemAna == 0)
             {
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
@@ -189,7 +199,7 @@ int main()
                     frameRecAna.x = 0;
                 } // Para deixar o boneco no frame em que esta parado
             }
-            if (checagem == 1)
+            if (checagemAna == 1)
             {
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_W))
@@ -198,7 +208,7 @@ int main()
                     frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
                 }
             }
-            if (checagem == 2)
+            if (checagemAna == 2)
             {
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_A))
@@ -207,7 +217,7 @@ int main()
                     frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
                 }
             }
-            if (checagem == 3)
+            if (checagemAna == 3)
             {
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_S))
@@ -219,7 +229,7 @@ int main()
             // direita ana
             if (IsKeyDown(KEY_D))
             {
-                checagem = 0;
+                checagemAna = 0;
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
                 anamovimento.x = anamovimento.x + 2;
                 framesCounter++;
@@ -240,7 +250,7 @@ int main()
             // cima ana
             if (IsKeyDown(KEY_W))
             {
-                checagem = 1;
+                checagemAna = 1;
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y - 2;
                 framesCounter++;
@@ -261,7 +271,7 @@ int main()
             // esquerda ana
             if (IsKeyDown(KEY_A))
             {
-                checagem = 2;
+                checagemAna = 2;
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
                 anamovimento.x = anamovimento.x - 2;
                 framesCounter++;
@@ -282,7 +292,7 @@ int main()
             // baixo ana
             if (IsKeyDown(KEY_S))
             {
-                checagem = 3;
+                checagemAna = 3;
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y + 2;
                 framesCounter++;
