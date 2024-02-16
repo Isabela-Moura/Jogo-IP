@@ -221,7 +221,7 @@ int main()
             {
                 checagem = 0;
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
-                anamovimento.x = anamovimento.x + 4;
+                anamovimento.x = anamovimento.x + 2;
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
@@ -242,7 +242,7 @@ int main()
             {
                 checagem = 1;
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
-                anamovimento.y = anamovimento.y - 4;
+                anamovimento.y = anamovimento.y - 2;
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
@@ -263,7 +263,7 @@ int main()
             {
                 checagem = 2;
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
-                anamovimento.x = anamovimento.x - 4;
+                anamovimento.x = anamovimento.x - 2;
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
@@ -284,7 +284,7 @@ int main()
             {
                 checagem = 3;
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
-                anamovimento.y = anamovimento.y + 4;
+                anamovimento.y = anamovimento.y + 2;
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
