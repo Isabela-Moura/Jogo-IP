@@ -59,6 +59,7 @@ int main()
     int currentFrame = 0;
     int framesCounter = 0;
     int framesSpeed = 8;
+    float tempodeframe = 0;
 
     // Animacao de Quinhas Menu
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
@@ -185,7 +186,6 @@ int main()
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
                 {
-                    currentFrame = 0;
                     frameRecAna.x = 0;
                 } // Para deixar o boneco no frame em que esta parado
             }
@@ -225,7 +225,11 @@ int main()
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
-                    currentFrame++;
+            tempodeframe += GetFrameTime();
+            if(tempodeframe >= 0.2){
+            tempodeframe = 0;
+            currentFrame++;
+            }
                     if (currentFrame > 3)
                     {
                         frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
@@ -242,7 +246,11 @@ int main()
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
-                    currentFrame++;
+             tempodeframe += GetFrameTime();
+            if(tempodeframe >= 0.2){
+            tempodeframe = 0;
+            currentFrame++;
+            }
                     if (currentFrame > 3)
                     {
                         frameRecAna.x = (float)currentFrame * (float)anaU.width / 4;
@@ -259,7 +267,11 @@ int main()
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
-                    currentFrame++;
+            tempodeframe += GetFrameTime();
+            if(tempodeframe >= 0.2){
+            tempodeframe = 0;
+            currentFrame++;
+            }
                     if (currentFrame > 3)
                     {
                         frameRecAna.x = (float)currentFrame * (float)anaL.width / 4;
@@ -276,7 +288,11 @@ int main()
                 framesCounter++;
                 if (framesCounter >= (60 / framesSpeed))
                 {
-                    currentFrame++;
+            tempodeframe += GetFrameTime();
+            if(tempodeframe >= 0.2){
+            tempodeframe = 0;
+            currentFrame++;
+            }
                     if (currentFrame > 3)
                     {
                         frameRecAna.x = (float)currentFrame * (float)anaD.width / 4;
