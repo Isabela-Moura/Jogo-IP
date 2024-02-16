@@ -77,7 +77,7 @@ int main()
     int confirmador = 0;
 
     // Analaura andando(depois trocar para quinhas quando seu movimento for resolvido)
-    Vector2 anamovimento = {0, 500};
+    Vector2 anamovimento = {6000, 6000};
     int checagem = 0;
 
     // Status do jogo
