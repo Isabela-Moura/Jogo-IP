@@ -180,7 +180,7 @@ void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegu
     DrawFPS(screenWidth / 10, screenHeight / 15);
 }
 
-void ShowMenu(int screenWidth, int screenHeight, Texture2D texture, Texture2D anaR, Rectangle frameRecAna, Vector2 positionAna, Texture2D quinhasR, Rectangle frameRecQuinhas, Vector2 positionQuinhas, Button startButton, Button howToPLayButton, Button creditsButton, Button exitButton)
+void ShowMenu(int screenWidth, int screenHeight, Texture2D texture, Texture2D anaMenu, Rectangle frameRecAna, Vector2 positionAna, Texture2D quinhasMenu, Rectangle frameRecQuinhas, Vector2 positionQuinhas, Button startButton, Button howToPLayButton, Button creditsButton, Button exitButton)
 {
     // Nome do jogo
     int textureWidth = texture.width;
@@ -189,8 +189,8 @@ void ShowMenu(int screenWidth, int screenHeight, Texture2D texture, Texture2D an
     int posY = (screenHeight - textureHeight) / 8;
     DrawTexture(texture, posX, posY, WHITE);
     // Ana Laura e Quinhas na entrada
-    DrawTextureRec(anaR, frameRecAna, positionAna, WHITE);
-    DrawTextureRec(quinhasR, frameRecQuinhas, positionQuinhas, WHITE);
+    DrawTextureRec(anaMenu, frameRecAna, positionAna, WHITE);
+    DrawTextureRec(quinhasMenu, frameRecQuinhas, positionQuinhas, WHITE);
     // Desenha botoes
     DrawButton(startButton, 3, SKYBLUE, 5, BLACK);
     DrawButton(howToPLayButton, 3, SKYBLUE, 5, BLACK);
