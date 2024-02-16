@@ -77,7 +77,7 @@ int main()
     int confirmador = 0;
 
     // Analaura andando(depois trocar para quinhas quando seu movimento for resolvido)
-    Vector2 anamovimento = {0, 500};
+    Vector2 anamovimento = {0, 0};
     int checagem = 0;
 
     // Status do jogo
@@ -100,7 +100,7 @@ int main()
         {
             checagem = 0;
             anamovimento.x = 0;
-            anamovimento.y = 500;
+            anamovimento.y = 830;
         }
         // Frames das animacões
         if (gameState == STATE_MENU)
