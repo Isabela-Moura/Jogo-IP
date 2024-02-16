@@ -112,7 +112,7 @@ int main()
             anamovimento.x = 0;
             anamovimento.y = 830;
             checagemQuinhas = 0;
-            quinhasmovimento.x = 0;
+            quinhasmovimento.x = 65;
             quinhasmovimento.y = 830;
         }
         // Frames das animacões
@@ -208,7 +208,7 @@ int main()
             }
             if (checagemQuinhas == 0)
             {
-                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
                 {
                     frameRecQuinhas.x = 0;
@@ -225,7 +225,7 @@ int main()
             }
             if (checagemQuinhas == 1)
             {
-                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
                 {
                     currentFrameQuinhas = 2;
@@ -243,7 +243,7 @@ int main()
             }
             if (checagemQuinhas == 2)
             {
-                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
                 {
                     currentFrameQuinhas = 3;
@@ -261,7 +261,7 @@ int main()
             }
             if (checagemQuinhas == 3)
             {
-                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
                 {
                     currentFrameQuinhas = 3;
