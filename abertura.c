@@ -51,8 +51,8 @@ int main()
     int textureAy = anaMenu.height;
     float posXa = (screenWidth - textureAx) * 4 / 5;
     float posYa = (screenHeight - textureAy) * 4 / 5;
-    Vector2 positionAna = {posXa, posYa};
-    Rectangle frameRecAna = {0.0f, 0.0f, (float)anaMenu.width / 4, (float)anaMenu.height};
+    Vector2 positionAnaMenu = {posXa, posYa};
+    Rectangle frameRecAnaMenu = {0.0f, 0.0f, (float)anaMenu.width / 4, (float)anaMenu.height};
     int currentFrame = 0;
     int framesCounter = 0;
     int framesSpeed = 8;
@@ -62,25 +62,30 @@ int main()
     int textureQy = quinhasMenu.height;
     float posXq = (screenWidth - textureQx) * 15 / 5;
     float posYq = (screenHeight - textureQy) * 4 / 5;
-    Vector2 positionQuinhas = {posXq, posYq};
-    Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasMenu.width / 4, (float)quinhasMenu.height};
+    Vector2 positionQuinhasMenu = {posXq, posYq};
+    Rectangle frameRecQuinhasMenu = {0.0f, 0.0f, (float)quinhasMenu.width / 4, (float)quinhasMenu.height};
 
-    // movimentacao
+    // movimentacao ana
     Texture2D anaR = LoadTexture("assets/analaura.direita.png");
     Texture2D anaU = LoadTexture("assets/analaura.cima.png");
     Texture2D anaL = LoadTexture("assets/analaura.esquerda.png");
     Texture2D anaD = LoadTexture("assets/analaura.frente.png");
+    Rectangle frameRecAna = {0.0f, 0.0f, (float)anaD.width / 4, (float)anaD.height};
+    Vector2 anamovimento = {0, 0};
+    int checagemAna = 0;
     int currentFrameAna = 0;
     int framesCounterAna = 0;
     int framesSpeedAna = 8;
     float tempodeframeAna = 0;
 
-    // Animacao de Quinhas Menu
+    // movimentacao quinhas
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
     Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
     Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
     Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");
-    ;
+    Vector2 quinhasmovimento = {0, 0};
+    int checagemQuinhas = 0;
+    Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasD.width / 4, (float)quinhasD.height};
     int currentFrameQuinhas = 0;
     int framesCounterQuinhas = 0;
     int framesSpeedQuinhas = 8;
@@ -92,12 +97,8 @@ int main()
     int temposegundos = 0;
     int confirmador = 0;
 
-    // Analaura andando(depois trocar para quinhas quando seu movimento for resolvido)
-    Vector2 anamovimento = {0, 0};
-    int checagemAna = 0;
+    
 
-    Vector2 quinhasmovimento = {0, 0};
-    int checagemQuinhas = 0;
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -150,7 +151,7 @@ int main()
                 currentFrame++;
                 if (currentFrame > 3)
                 {
-                    frameRecAna.x = (float)currentFrame * (float)anaMenu.width / 4;
+                    frameRecAnaMenu.x = (float)currentFrame * (float)anaMenu.width / 4;
                     frameRecQuinhas.x = (float)currentFrame * (float)quinhasMenu.width / 4;
                 }
             }
@@ -488,7 +489,7 @@ int main()
         {
         case STATE_MENU:
             // Menu
-            ShowMenu(screenWidth, screenHeight, texture, anaMenu, frameRecAna, positionAna, quinhasMenu, frameRecQuinhas, positionQuinhas, startButton, howToPLayButton, creditsButton, exitButton);
+            ShowMenu(screenWidth, screenHeight, texture, anaMenu, frameRecAnaMenu, positionAnaMenu, quinhasMenu, frameRecQuinhasMenu, positionQuinhasMenu, startButton, howToPLayButton, creditsButton, exitButton);
             break;
         case STATE_STORY:
             ShowStory(story);
