@@ -56,10 +56,10 @@ int main()
     float posYa = (screenHeight - textureAy) * 4 / 5;
     Vector2 positionAna = {posXa, posYa};
     Rectangle frameRecAna = {0.0f, 0.0f, (float)anaR.width / 4, (float)anaR.height};
-    int currentFrame = 0;
-    int framesCounter = 0;
-    int framesSpeed = 8;
-    float tempodeframe = 0;
+    int currentFrameAna = 0;
+    int framesCounterAna = 0;
+    int framesSpeedAna = 8;
+    float tempodeframeAna = 0;
 
     // Animacao de Quinhas Menu
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
@@ -72,10 +72,10 @@ int main()
     float posYq = (screenHeight - textureQy) * 4 / 5;
     Vector2 positionQuinhas = {posXq, posYq};
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasR.width / 4, (float)quinhasR.height};
-    int currentFrame = 0;
-    int framesCounter = 0;
-    int framesSpeed = 8;
-    float tempodeframe = 0;
+    int currentFrameQuinhas = 0;
+    int framesCounterQuinhas = 0;
+    int framesSpeedQuinhas = 8;
+    float tempodeframeQuinhas = 0;
 
     // Coisas do temporizador
     int segundospassados = 0;
@@ -111,19 +111,22 @@ int main()
             checagemAna = 0;
             anamovimento.x = 0;
             anamovimento.y = 830;
+            checagemQuinhas = 0;
+            quinhasmovimento.x = 0;
+            quinhasmovimento.y = 830;
         }
         // Frames das animacões
         if (gameState == STATE_MENU)
         {
-            framesCounter++;
-            if (framesCounter >= (60 / framesSpeed))
+            framesCounterAna++;
+            if (framesCounterAna >= (60 / framesSpeedAna))
             {
-                framesCounter = 0;
-                currentFrame++;
-                if (currentFrame > 3)
+                framesCounterAna = 0;
+                currentFrameAna++;
+                if (currentFrameAna > 3)
                 {
-                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
-                    frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                 }
             }
         }
@@ -177,18 +180,22 @@ int main()
             if (IsKeyReleased(KEY_D))
             {
                 checagemAna = 0;
+                checagemQuinhas = 0;
             }
             if (IsKeyReleased(KEY_W))
             {
-                checagemAna = 1;
+                checagemAna = 1;                
+                checagemQuinhas = 1;
             }
             if (IsKeyReleased(KEY_A))
             {
                 checagemAna = 2;
+                checagemQuinhas = 2;
             }
             if (IsKeyReleased(KEY_S))
             {
                 checagemAna = 3;
+                checagemQuinhas = 3;
             }
             // caso o boneco pare de se mexer, a checagemAna e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa
             if (checagemAna == 0)
@@ -199,118 +206,230 @@ int main()
                     frameRecAna.x = 0;
                 } // Para deixar o boneco no frame em que esta parado
             }
+            if (checagemQuinhas == 0)
+            {
+                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_D))
+                {
+                    frameRecQuinhas.x = 0;
+                } // Para deixar o boneco no frame em que esta parado
+            }
             if (checagemAna == 1)
             {
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_W))
                 {
-                    currentFrame = 2;
-                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                    currentFrameAna = 2;
+                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                 }
+            }
+            if (checagemQuinhas == 1)
+            {
+                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_D))
+                {
+                    currentFrameQuinhas = 2;
+                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                } // Para deixar o boneco no frame em que esta parado
             }
             if (checagemAna == 2)
             {
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_A))
                 {
-                    currentFrame = 3;
-                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                    currentFrameAna = 3;
+                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                 }
+            }
+            if (checagemQuinhas == 2)
+            {
+                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_D))
+                {
+                    currentFrameQuinhas = 3;
+                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                } // Para deixar o boneco no frame em que esta parado
             }
             if (checagemAna == 3)
             {
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_S))
                 {
-                    currentFrame = 3;
-                    frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
+                    currentFrameAna = 3;
+                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                 }
             }
-            // direita ana
-            if (IsKeyDown(KEY_D))
+            if (checagemQuinhas == 3)
             {
+                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                if (IsKeyReleased(KEY_D))
+                {
+                    currentFrameQuinhas = 3;
+                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                } // Para deixar o boneco no frame em que esta parado
+            }
+            
+            if (IsKeyDown(KEY_D)) // direita ana e quinhas
+            {
+                // direita ana
                 checagemAna = 0;
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
                 anamovimento.x = anamovimento.x + 2;
-                framesCounter++;
-                if (framesCounter >= (60 / framesSpeed))
+                framesCounterAna++;
+                if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-            tempodeframe += GetFrameTime();
-            if(tempodeframe >= 0.2){
-            tempodeframe = 0;
-            currentFrame++;
+            tempodeframeAna += GetFrameTime();
+            if(tempodeframeAna >= 0.2){
+            tempodeframeAna = 0;
+            currentFrameAna++;
             }
-                    if (currentFrame > 3)
+                    if (currentFrameAna > 3)
                     {
-                        frameRecAna.x = (float)currentFrame * (float)anaR.width / 4;
-                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                        frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                    }
+                }
+                // direita quinhas
+                checagemQuinhas = 0;
+                DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
+                quinhasmovimento.x = quinhasmovimento.x + 2;
+                framesCounterQuinhas++;
+                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
+                {
+            tempodeframeQuinhas += GetFrameTime();
+            if(tempodeframeQuinhas >= 0.2){
+            tempodeframeQuinhas = 0;
+            currentFrameQuinhas++;
+            }
+                    if (currentFrameQuinhas > 3)
+                    {
+                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
                     }
                 }
             }
-            // cima ana
+            // cima ana e quinhas
             if (IsKeyDown(KEY_W))
             {
+                // cima ana
                 checagemAna = 1;
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y - 2;
-                framesCounter++;
-                if (framesCounter >= (60 / framesSpeed))
+                framesCounterAna++;
+                if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-             tempodeframe += GetFrameTime();
-            if(tempodeframe >= 0.2){
-            tempodeframe = 0;
-            currentFrame++;
+             tempodeframeAna += GetFrameTime();
+            if(tempodeframeAna >= 0.2){
+            tempodeframeAna = 0;
+            currentFrameAna++;
             }
-                    if (currentFrame > 3)
+                    if (currentFrameAna > 3)
                     {
-                        frameRecAna.x = (float)currentFrame * (float)anaU.width / 4;
-                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                        frameRecAna.x = (float)currentFrameAna * (float)anaU.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                    }
+                }
+                // cima quinhas
+                checagemQuinhas = 1;
+                DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
+                quinhasmovimento.y = quinhasmovimento.y - 2;
+                framesCounterQuinhas++;
+                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
+                {
+            tempodeframeQuinhas += GetFrameTime();
+            if(tempodeframeQuinhas >= 0.2){
+            tempodeframeQuinhas = 0;
+            currentFrameQuinhas++;
+            }
+                    if (currentFrameQuinhas > 3)
+                    {
+                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
                     }
                 }
             }
-            // esquerda ana
+            
+            // esquerda ana e quinhas
             if (IsKeyDown(KEY_A))
             {
+                // esquerda ana
                 checagemAna = 2;
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
                 anamovimento.x = anamovimento.x - 2;
-                framesCounter++;
-                if (framesCounter >= (60 / framesSpeed))
+                framesCounterAna++;
+                if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-            tempodeframe += GetFrameTime();
-            if(tempodeframe >= 0.2){
-            tempodeframe = 0;
-            currentFrame++;
+            tempodeframeAna += GetFrameTime();
+            if(tempodeframeAna >= 0.2){
+            tempodeframeAna = 0;
+            currentFrameAna++;
             }
-                    if (currentFrame > 3)
+                    if (currentFrameAna > 3)
                     {
-                        frameRecAna.x = (float)currentFrame * (float)anaL.width / 4;
-                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                        frameRecAna.x = (float)currentFrameAna * (float)anaL.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                     }
                 }
+                // esquerda quinhas
+                checagemQuinhas = 2;
+                DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
+                quinhasmovimento.x = quinhasmovimento.x - 2;
+                framesCounterQuinhas++;
+                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
+                {
+            tempodeframeQuinhas += GetFrameTime();
+            if(tempodeframeQuinhas >= 0.2){
+            tempodeframeQuinhas = 0;
+            currentFrameQuinhas++;
             }
-            // baixo ana
+                    if (currentFrameQuinhas > 3)
+                    {
+                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
+                    }
+                }
+
+            }
+            // baixo ana e quinhas
             if (IsKeyDown(KEY_S))
             {
+                //baixo ana
                 checagemAna = 3;
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y + 2;
-                framesCounter++;
-                if (framesCounter >= (60 / framesSpeed))
+                framesCounterAna++;
+                if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-            tempodeframe += GetFrameTime();
-            if(tempodeframe >= 0.2){
-            tempodeframe = 0;
-            currentFrame++;
+            tempodeframeAna += GetFrameTime();
+            if(tempodeframeAna >= 0.2){
+            tempodeframeAna = 0;
+            currentFrameAna++;
             }
-                    if (currentFrame > 3)
+                    if (currentFrameAna > 3)
                     {
-                        frameRecAna.x = (float)currentFrame * (float)anaD.width / 4;
-                        frameRecQuinhas.x = (float)currentFrame * (float)quinhasR.width / 4;
+                        frameRecAna.x = (float)currentFrameAna * (float)anaD.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                    }
+                }
+                // baixo quinhas
+                checagemQuinhas = 3;
+                DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
+                quinhasmovimento.y = quinhasmovimento.y + 2;
+                framesCounterQuinhas++;
+                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
+                {
+            tempodeframeQuinhas += GetFrameTime();
+            if(tempodeframeQuinhas >= 0.2){
+            tempodeframeQuinhas = 0;
+            currentFrameQuinhas++;
+            }
+                    if (currentFrameQuinhas > 3)
+                    {
+                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
+                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
                     }
                 }
             }
-
             break;
         case STATE_HOW_TO_PLAY:
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -327,7 +446,7 @@ int main()
         case STATE_EXIT:
             // Sai do jogo
             break;
-        }
+    }
 
         // Desenho
         BeginDrawing();
@@ -369,6 +488,7 @@ int main()
             // Sai do jogo
             break;
         }
+
         EndDrawing();
     }
     // Encerramento
