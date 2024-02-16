@@ -46,16 +46,31 @@ int main()
     Button backButton = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "VOLTAR"};
 
     // Animacao de Ana Laura Menu
+    Texture2D anaMenu = LoadTexture("assets/analaura.menu.png");
+    int textureAx = anaMenu.width;
+    int textureAy = anaMenu.height;
+    float posXa = (screenWidth - textureAx) * 4 / 5;
+    float posYa = (screenHeight - textureAy) * 4 / 5;
+    Vector2 positionAna = {posXa, posYa};
+    Rectangle frameRecAna = {0.0f, 0.0f, (float)anaMenu.width / 4, (float)anaMenu.height};
+    int currentFrame = 0;
+    int framesCounter = 0;
+    int framesSpeed = 8;
+    // Animacao de Quinhas Menu
+    Texture2D quinhasMenu = LoadTexture("assets/quinhas.menu.png");
+    int textureQx = quinhasMenu.width;
+    int textureQy = quinhasMenu.height;
+    float posXq = (screenWidth - textureQx) * 15 / 5;
+    float posYq = (screenHeight - textureQy) * 4 / 5;
+    Vector2 positionQuinhas = {posXq, posYq};
+    Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasMenu.width / 4, (float)quinhasMenu.height};
+
+    // movimentacao
     Texture2D anaR = LoadTexture("assets/analaura.direita.png");
     Texture2D anaU = LoadTexture("assets/analaura.cima.png");
     Texture2D anaL = LoadTexture("assets/analaura.esquerda.png");
     Texture2D anaD = LoadTexture("assets/analaura.frente.png");
-    int textureAx = anaR.width;
-    int textureAy = anaR.height;
-    float posXa = (screenWidth - textureAx) * 4 / 5;
-    float posYa = (screenHeight - textureAy) * 4 / 5;
-    Vector2 positionAna = {posXa, posYa};
-    Rectangle frameRecAna = {0.0f, 0.0f, (float)anaR.width / 4, (float)anaR.height};
+    ;
     int currentFrameAna = 0;
     int framesCounterAna = 0;
     int framesSpeedAna = 8;
@@ -65,13 +80,7 @@ int main()
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
     Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
     Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
-    Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");;
-    int textureQx = quinhasR.width;
-    int textureQy = quinhasR.height;
-    float posXq = (screenWidth - textureQx) * 4 / 5;
-    float posYq = (screenHeight - textureQy) * 4 / 5;
-    Vector2 positionQuinhas = {posXq, posYq};
-    Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasR.width / 4, (float)quinhasR.height};
+    Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");
     int currentFrameQuinhas = 0;
     int framesCounterQuinhas = 0;
     int framesSpeedQuinhas = 8;
@@ -116,7 +125,7 @@ int main()
             quinhasmovimento.y = 830;
         }
         // Frames das animacões
-        if (gameState == STATE_MENU)
+        if (gameState == STATE_PLAY)
         {
             framesCounterAna++;
             if (framesCounterAna >= (60 / framesSpeedAna))
@@ -127,6 +136,22 @@ int main()
                 {
                     frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
+                }
+            }
+        }
+
+        // Frames das animacões do Menu
+        if (gameState == STATE_MENU)
+        {
+            framesCounter++;
+            if (framesCounter >= (60 / framesSpeed))
+            {
+                framesCounter = 0;
+                currentFrame++;
+                if (currentFrame > 3)
+                {
+                    frameRecAna.x = (float)currentFrame * (float)anaMenu.width / 4;
+                    frameRecQuinhas.x = (float)currentFrame * (float)quinhasMenu.width / 4;
                 }
             }
         }
@@ -184,7 +209,7 @@ int main()
             }
             if (IsKeyReleased(KEY_W))
             {
-                checagemAna = 1;                
+                checagemAna = 1;
                 checagemQuinhas = 1;
             }
             if (IsKeyReleased(KEY_A))
@@ -268,7 +293,7 @@ int main()
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                 } // Para deixar o boneco no frame em que esta parado
             }
-            
+
             if (IsKeyDown(KEY_D)) // direita ana e quinhas
             {
                 // direita ana
@@ -278,11 +303,12 @@ int main()
                 framesCounterAna++;
                 if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-            tempodeframeAna += GetFrameTime();
-            if(tempodeframeAna >= 0.2){
-            tempodeframeAna = 0;
-            currentFrameAna++;
-            }
+                    tempodeframeAna += GetFrameTime();
+                    if (tempodeframeAna >= 0.2)
+                    {
+                        tempodeframeAna = 0;
+                        currentFrameAna++;
+                    }
                     if (currentFrameAna > 3)
                     {
                         frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
@@ -296,11 +322,12 @@ int main()
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
-            tempodeframeQuinhas += GetFrameTime();
-            if(tempodeframeQuinhas >= 0.2){
-            tempodeframeQuinhas = 0;
-            currentFrameQuinhas++;
-            }
+                    tempodeframeQuinhas += GetFrameTime();
+                    if (tempodeframeQuinhas >= 0.2)
+                    {
+                        tempodeframeQuinhas = 0;
+                        currentFrameQuinhas++;
+                    }
                     if (currentFrameQuinhas > 3)
                     {
                         frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
@@ -318,11 +345,12 @@ int main()
                 framesCounterAna++;
                 if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-             tempodeframeAna += GetFrameTime();
-            if(tempodeframeAna >= 0.2){
-            tempodeframeAna = 0;
-            currentFrameAna++;
-            }
+                    tempodeframeAna += GetFrameTime();
+                    if (tempodeframeAna >= 0.2)
+                    {
+                        tempodeframeAna = 0;
+                        currentFrameAna++;
+                    }
                     if (currentFrameAna > 3)
                     {
                         frameRecAna.x = (float)currentFrameAna * (float)anaU.width / 4;
@@ -336,11 +364,12 @@ int main()
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
-            tempodeframeQuinhas += GetFrameTime();
-            if(tempodeframeQuinhas >= 0.2){
-            tempodeframeQuinhas = 0;
-            currentFrameQuinhas++;
-            }
+                    tempodeframeQuinhas += GetFrameTime();
+                    if (tempodeframeQuinhas >= 0.2)
+                    {
+                        tempodeframeQuinhas = 0;
+                        currentFrameQuinhas++;
+                    }
                     if (currentFrameQuinhas > 3)
                     {
                         frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
@@ -348,7 +377,7 @@ int main()
                     }
                 }
             }
-            
+
             // esquerda ana e quinhas
             if (IsKeyDown(KEY_A))
             {
@@ -359,11 +388,12 @@ int main()
                 framesCounterAna++;
                 if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-            tempodeframeAna += GetFrameTime();
-            if(tempodeframeAna >= 0.2){
-            tempodeframeAna = 0;
-            currentFrameAna++;
-            }
+                    tempodeframeAna += GetFrameTime();
+                    if (tempodeframeAna >= 0.2)
+                    {
+                        tempodeframeAna = 0;
+                        currentFrameAna++;
+                    }
                     if (currentFrameAna > 3)
                     {
                         frameRecAna.x = (float)currentFrameAna * (float)anaL.width / 4;
@@ -377,34 +407,35 @@ int main()
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
-            tempodeframeQuinhas += GetFrameTime();
-            if(tempodeframeQuinhas >= 0.2){
-            tempodeframeQuinhas = 0;
-            currentFrameQuinhas++;
-            }
+                    tempodeframeQuinhas += GetFrameTime();
+                    if (tempodeframeQuinhas >= 0.2)
+                    {
+                        tempodeframeQuinhas = 0;
+                        currentFrameQuinhas++;
+                    }
                     if (currentFrameQuinhas > 3)
                     {
                         frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
                         frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
                     }
                 }
-
             }
             // baixo ana e quinhas
             if (IsKeyDown(KEY_S))
             {
-                //baixo ana
+                // baixo ana
                 checagemAna = 3;
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y + 2;
                 framesCounterAna++;
                 if (framesCounterAna >= (60 / framesSpeedAna))
                 {
-            tempodeframeAna += GetFrameTime();
-            if(tempodeframeAna >= 0.2){
-            tempodeframeAna = 0;
-            currentFrameAna++;
-            }
+                    tempodeframeAna += GetFrameTime();
+                    if (tempodeframeAna >= 0.2)
+                    {
+                        tempodeframeAna = 0;
+                        currentFrameAna++;
+                    }
                     if (currentFrameAna > 3)
                     {
                         frameRecAna.x = (float)currentFrameAna * (float)anaD.width / 4;
@@ -418,11 +449,12 @@ int main()
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
-            tempodeframeQuinhas += GetFrameTime();
-            if(tempodeframeQuinhas >= 0.2){
-            tempodeframeQuinhas = 0;
-            currentFrameQuinhas++;
-            }
+                    tempodeframeQuinhas += GetFrameTime();
+                    if (tempodeframeQuinhas >= 0.2)
+                    {
+                        tempodeframeQuinhas = 0;
+                        currentFrameQuinhas++;
+                    }
                     if (currentFrameQuinhas > 3)
                     {
                         frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
@@ -446,7 +478,7 @@ int main()
         case STATE_EXIT:
             // Sai do jogo
             break;
-    }
+        }
 
         // Desenho
         BeginDrawing();
@@ -456,7 +488,7 @@ int main()
         {
         case STATE_MENU:
             // Menu
-            ShowMenu(screenWidth, screenHeight, texture, anaR, frameRecAna, positionAna, quinhasR, frameRecQuinhas, positionQuinhas, startButton, howToPLayButton, creditsButton, exitButton);
+            ShowMenu(screenWidth, screenHeight, texture, anaMenu, frameRecAna, positionAna, quinhasMenu, frameRecQuinhas, positionQuinhas, startButton, howToPLayButton, creditsButton, exitButton);
             break;
         case STATE_STORY:
             ShowStory(story);
