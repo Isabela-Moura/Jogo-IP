@@ -207,7 +207,7 @@ int main()
             DrawPoster(textureP, 1500, 200, 0.1f); // ok
             DrawPoster(textureP, 1350, 565, 0.1f); // ok
 
-int radius = 20; // Ajuste o raio conforme necessário
+int radius = 30; 
 if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){150, 750}, 0) && !pontuacaoRegistrada[0]) {
         pontuacaoPlacar++;
         pontuacaoRegistrada[0] = true;
