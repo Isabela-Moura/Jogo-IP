@@ -4,6 +4,7 @@
 #include "main.h"
 #include "menu.h"
 #include "raylib.h"
+#define NUM_POSTERS 12
 
 int main()
 {
@@ -101,6 +102,7 @@ int main()
 
     // Placar
     int pontuacaoPlacar = 0;
+    bool pontuacaoRegistrada[NUM_POSTERS] = {false};
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -191,7 +193,7 @@ int main()
             }
             break;
         case STATE_PLAY:
-            DrawMaze();                            // DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
+            DrawMaze(); // DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
             DrawPoster(textureP, 150, 750, 0.1f);  // ok
             DrawPoster(textureP, 350, 900, 0.1f);  // ok
             DrawPoster(textureP, 800, 750, 0.1f);  // ok
@@ -204,6 +206,66 @@ int main()
             DrawPoster(textureP, 720, 200, 0.1f);  // ok
             DrawPoster(textureP, 1500, 200, 0.1f); // ok
             DrawPoster(textureP, 1350, 565, 0.1f); // ok
+
+int radius = 20; // Ajuste o raio conforme necessário
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){150, 750}, 0) && !pontuacaoRegistrada[0]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[0] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){350, 900}, 0) && !pontuacaoRegistrada[1]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[1] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){800, 750}, 0) && !pontuacaoRegistrada[2]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[2] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){1150, 850}, 0) && !pontuacaoRegistrada[3]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[3] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){1695, 875}, 0) && !pontuacaoRegistrada[4]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[4] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){250, 450}, 0) && !pontuacaoRegistrada[5]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[5] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){500, 600}, 0) && !pontuacaoRegistrada[6]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[6] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){700, 420}, 0) && !pontuacaoRegistrada[7]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[7] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){750, 310}, 0) && !pontuacaoRegistrada[8]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[8] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){720, 200}, 0)&& !pontuacaoRegistrada[9]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[9] = true;
+}
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){1500, 200}, 0)&& !pontuacaoRegistrada[10]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[10] = true;
+}
+
+if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y},radius, (Vector2){1350, 565}, 0) && !pontuacaoRegistrada[11]) {
+        pontuacaoPlacar++;
+        pontuacaoRegistrada[11] = true;
+}
             // Temporizador e FPS
             if (temposegundos % 60 == 0 && temposegundos != 0 && confirmador == 0)
             {
