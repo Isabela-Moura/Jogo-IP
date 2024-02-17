@@ -28,6 +28,7 @@ int main()
     Texture2D textureHowToPlay = LoadTexture("assets/comojogar.png");
     Texture2D textureCredits = LoadTexture("assets/creditos.png");
     Texture2D story = LoadTexture("assets/historia.png");
+    Texture2D textureP = LoadTexture("assets/posterIP.png");
 
     // Botoes do menu
     int screenHeight = GetScreenHeight();
@@ -97,8 +98,8 @@ int main()
     int temposegundos = 0;
     int confirmador = 0;
 
-    
-
+//Placar
+int pontuacaoPlacar = 0;
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -190,6 +191,18 @@ int main()
             break;
         case STATE_PLAY:
             DrawMaze(); // DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
+            DrawPoster(textureP, 150, 750, 0.1f); //ok
+            DrawPoster(textureP, 350, 900, 0.1f); //ok
+            DrawPoster(textureP, 800, 750, 0.1f); //ok
+            DrawPoster(textureP, 1150, 850, 0.1f); //ok
+            DrawPoster(textureP, 1695, 875, 0.1f); //ok
+            DrawPoster(textureP, 250, 450, 0.1f); //ok
+            DrawPoster(textureP, 500, 600, 0.1f); //ok
+            DrawPoster(textureP, 700, 420, 0.1f); //ok
+            DrawPoster(textureP, 750, 310, 0.1f); //ok
+            DrawPoster(textureP, 720, 200, 0.1f); //ok
+            DrawPoster(textureP, 1500, 200, 0.1f); //ok
+            DrawPoster(textureP, 1350, 565, 0.1f); //ok
             // Temporizador e FPS
             if (temposegundos % 60 == 0 && temposegundos != 0 && confirmador == 0)
             {
@@ -497,7 +510,7 @@ int main()
             break;
         case STATE_PLAY:
             // Jogo
-            ShowPlay(screenWidth, screenHeight, tempominutos, temposegundos);
+            ShowPlay(screenWidth, screenHeight, tempominutos, temposegundos, pontuacaoPlacar);
             // Botao de voltar temporario
             DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
@@ -540,6 +553,7 @@ int main()
     UnloadTexture(texture);
     UnloadTexture(textureHowToPlay);
     UnloadTexture(textureCredits);
+    UnloadTexture(textureP);
     UnloadTexture(story);
     // Fechando
     CloseWindow();

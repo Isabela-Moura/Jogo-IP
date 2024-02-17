@@ -174,10 +174,15 @@ void ShowExit(int screenWidth, int screenHeight, Texture2D textureExit)
     DrawTexture(textureExit, posXExit, posYExit, WHITE);
 }
 
-void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegundos)
+void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegundos, int pontuacaoPlacar)
 {
     DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
     DrawFPS(screenWidth / 10, screenHeight / 15);
+    DrawText(TextFormat("SCORE: %d", pontuacaoPlacar), screenWidth / 2, screenHeight / 15, 30, WHITE);
+}
+
+void DrawPoster(Texture2D textureP, int posX, int posY, float scale) {
+    DrawTextureEx(textureP, (Vector2){posX, posY}, 0.1f, scale, WHITE);
 }
 
 void ShowMenu(int screenWidth, int screenHeight, Texture2D texture, Texture2D anaMenu, Rectangle frameRecAna, Vector2 positionAna, Texture2D quinhasMenu, Rectangle frameRecQuinhas, Vector2 positionQuinhas, Button startButton, Button howToPLayButton, Button creditsButton, Button exitButton)
