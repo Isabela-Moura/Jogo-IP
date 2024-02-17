@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "abertura.h"
+#include "main.h"
+#include "menu.h"
 #include "raylib.h"
 
 int main()
@@ -98,8 +99,8 @@ int main()
     int temposegundos = 0;
     int confirmador = 0;
 
-//Placar
-int pontuacaoPlacar = 0;
+    // Placar
+    int pontuacaoPlacar = 0;
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -153,7 +154,7 @@ int pontuacaoPlacar = 0;
                 if (currentFrame > 3)
                 {
                     frameRecAnaMenu.x = (float)currentFrame * (float)anaMenu.width / 4;
-                    frameRecQuinhas.x = (float)currentFrame * (float)quinhasMenu.width / 4;
+                    frameRecQuinhasMenu.x = (float)currentFrame * (float)quinhasMenu.width / 4;
                 }
             }
         }
@@ -190,19 +191,19 @@ int pontuacaoPlacar = 0;
             }
             break;
         case STATE_PLAY:
-            DrawMaze(); // DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
-            DrawPoster(textureP, 150, 750, 0.1f); //ok
-            DrawPoster(textureP, 350, 900, 0.1f); //ok
-            DrawPoster(textureP, 800, 750, 0.1f); //ok
-            DrawPoster(textureP, 1150, 850, 0.1f); //ok
-            DrawPoster(textureP, 1695, 875, 0.1f); //ok
-            DrawPoster(textureP, 250, 450, 0.1f); //ok
-            DrawPoster(textureP, 500, 600, 0.1f); //ok
-            DrawPoster(textureP, 700, 420, 0.1f); //ok
-            DrawPoster(textureP, 750, 310, 0.1f); //ok
-            DrawPoster(textureP, 720, 200, 0.1f); //ok
-            DrawPoster(textureP, 1500, 200, 0.1f); //ok
-            DrawPoster(textureP, 1350, 565, 0.1f); //ok
+            DrawMaze();                            // DrawMaze movido para aqui para que analaura(futuramente quinhas) seja desenhada depois do labirinto para melhor visualizacao. Cellsize alterado de 25 para 34
+            DrawPoster(textureP, 150, 750, 0.1f);  // ok
+            DrawPoster(textureP, 350, 900, 0.1f);  // ok
+            DrawPoster(textureP, 800, 750, 0.1f);  // ok
+            DrawPoster(textureP, 1150, 850, 0.1f); // ok
+            DrawPoster(textureP, 1695, 875, 0.1f); // ok
+            DrawPoster(textureP, 250, 450, 0.1f);  // ok
+            DrawPoster(textureP, 500, 600, 0.1f);  // ok
+            DrawPoster(textureP, 700, 420, 0.1f);  // ok
+            DrawPoster(textureP, 750, 310, 0.1f);  // ok
+            DrawPoster(textureP, 720, 200, 0.1f);  // ok
+            DrawPoster(textureP, 1500, 200, 0.1f); // ok
+            DrawPoster(textureP, 1350, 565, 0.1f); // ok
             // Temporizador e FPS
             if (temposegundos % 60 == 0 && temposegundos != 0 && confirmador == 0)
             {
