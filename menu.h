@@ -21,6 +21,8 @@ typedef struct
     const char *text;
 } Button;
 
+void DrawBorders(int borderWidth1, int borderWidth2, int borderWidth3, Color color1, Color color2, Color color3);
+void DrawBase();
 void DrawButton(Button button, int borderWidth1, Color borderColor1, int borderWidth2, Color borderColor2);
 void ShowMenu(int screenWidth, int screenHeight, Texture2D texture, Texture2D anaMenu, Rectangle frameRecAna, Vector2 positionAna, Texture2D quinhasMenu, Rectangle frameRecQuinhas, Vector2 positionQuinhas, Button startButton, Button howToPLayButton, Button creditsButton, Button exitButton);
 void ShowStory(Texture2D texture);

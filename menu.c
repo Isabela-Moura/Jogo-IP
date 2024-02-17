@@ -1,6 +1,36 @@
 #include "menu.h"
 #include "raylib.h"
 
+void DrawBorders(int borderWidth1, int borderWidth2, int borderWidth3, Color color1, Color color2, Color color3)
+{
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
+
+    DrawRectangle(0, 0, screenWidth, borderWidth1, color1);
+    DrawRectangle(0, screenHeight - borderWidth1, screenWidth, borderWidth1, color1);
+
+    DrawRectangle(borderWidth1, borderWidth1, screenWidth - 2 * borderWidth1, borderWidth2, color2);
+    DrawRectangle(borderWidth1, screenHeight - borderWidth1 - borderWidth2, screenWidth - 2 * borderWidth1, borderWidth2, color2);
+
+    DrawRectangle(borderWidth1 + borderWidth2, borderWidth1 + borderWidth2, screenWidth - 2 * borderWidth1 - 2 * borderWidth2, borderWidth3, color3);
+    DrawRectangle(borderWidth1 + borderWidth2, screenHeight - borderWidth1 - borderWidth2 - borderWidth3, screenWidth - 2 * borderWidth1 - 2 * borderWidth2, borderWidth3, color3);
+
+    DrawRectangle(0, 0, borderWidth1, screenHeight, color1);
+    DrawRectangle(screenWidth - borderWidth1, 0, borderWidth1, screenHeight, color1);
+
+    DrawRectangle(borderWidth1, borderWidth1, borderWidth2, screenHeight - 2 * borderWidth1, color2);
+    DrawRectangle(screenWidth - borderWidth1 - borderWidth2, borderWidth1, borderWidth2, screenHeight - 2 * borderWidth1, color2);
+
+    DrawRectangle(borderWidth1 + borderWidth2, borderWidth1 + borderWidth2, borderWidth3, screenHeight - 2 * borderWidth1 - 2 * borderWidth2, color3);
+    DrawRectangle(screenWidth - borderWidth1 - borderWidth2 - borderWidth3, borderWidth1 + borderWidth2, borderWidth3, screenHeight - 2 * borderWidth1 - 2 * borderWidth2, color3);
+}
+
+void DrawBase()
+{
+    ClearBackground(BLACK);
+    DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
+}
+
 void DrawButton(Button button, int borderWidth1, Color borderColor1, int borderWidth2, Color borderColor2)
 {
     Color buttonColor = button.color;
