@@ -5,6 +5,16 @@
 #include "menu.h"
 #include "raylib.h"
 
+//struct para controlar velocidades
+ typedef struct {
+
+     int direita;
+     int esquerda;
+     int baixo;
+     int cima;
+
+} Velocidade; 
+
 int main()
 {
     // Inicializacao
@@ -85,13 +95,14 @@ int main()
     Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
     Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
     Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");
-    Vector2 quinhasmovimento = {0, 0};
+    Vector2 quinhasmovimento = {200, 1100};
     int checagemQuinhas = 0;
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasD.width / 4, (float)quinhasD.height};
     int currentFrameQuinhas = 0;
     int framesCounterQuinhas = 0;
     int framesSpeedQuinhas = 8;
     float tempodeframeQuinhas = 0;
+    Velocidade velocidadequinhas = {2,2,2,2};
 
     // Coisas do temporizador
     int segundospassados = 0;
@@ -339,33 +350,34 @@ int main()
             // checar o valor da checagemAna
             if (IsKeyReleased(KEY_D))
             {
-                checagemAna = 0;
+              //  checagemAna = 0;
                 checagemQuinhas = 0;
             }
             if (IsKeyReleased(KEY_W))
             {
-                checagemAna = 1;
+               // checagemAna = 1;
                 checagemQuinhas = 1;
             }
             if (IsKeyReleased(KEY_A))
             {
-                checagemAna = 2;
+               // checagemAna = 2;
                 checagemQuinhas = 2;
             }
             if (IsKeyReleased(KEY_S))
             {
-                checagemAna = 3;
+              //  checagemAna = 3;
                 checagemQuinhas = 3;
             }
             // caso o boneco pare de se mexer, a checagemAna e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa
-            if (checagemAna == 0)
+        /*    if (checagemAna == 0)
             {
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_D))
                 {
                     frameRecAna.x = 0;
                 } // Para deixar o boneco no frame em que esta parado
-            }
+                
+            } */
             if (checagemQuinhas == 0)
             {
                 DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -374,7 +386,7 @@ int main()
                     frameRecQuinhas.x = 0;
                 } // Para deixar o boneco no frame em que esta parado
             }
-            if (checagemAna == 1)
+           /* if (checagemAna == 1)
             {
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_W))
@@ -382,7 +394,7 @@ int main()
                     currentFrameAna = 2;
                     frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                 }
-            }
+            } */
             if (checagemQuinhas == 1)
             {
                 DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -392,7 +404,7 @@ int main()
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                 } // Para deixar o boneco no frame em que esta parado
             }
-            if (checagemAna == 2)
+         /*   if (checagemAna == 2)
             {
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_A))
@@ -400,7 +412,7 @@ int main()
                     currentFrameAna = 3;
                     frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                 }
-            }
+            } */
             if (checagemQuinhas == 2)
             {
                 DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -410,7 +422,7 @@ int main()
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                 } // Para deixar o boneco no frame em que esta parado
             }
-            if (checagemAna == 3)
+         /*   if (checagemAna == 3)
             {
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 if (IsKeyReleased(KEY_S))
@@ -418,7 +430,7 @@ int main()
                     currentFrameAna = 3;
                     frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                 }
-            }
+            } */
             if (checagemQuinhas == 3)
             {
                 DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -431,7 +443,7 @@ int main()
 
             if (IsKeyDown(KEY_D)) // direita ana e quinhas
             {
-                // direita ana
+                /* direita ana
                 checagemAna = 0;
                 DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
                 anamovimento.x = anamovimento.x + 2;
@@ -449,11 +461,11 @@ int main()
                         frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                         frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                     }
-                }
+                } */
                 // direita quinhas
                 checagemQuinhas = 0;
                 DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.x = quinhasmovimento.x + 2;
+                quinhasmovimento.x = quinhasmovimento.x + velocidadequinhas.direita;
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
@@ -473,7 +485,7 @@ int main()
             // cima ana e quinhas
             if (IsKeyDown(KEY_W))
             {
-                // cima ana
+                /* cima ana
                 checagemAna = 1;
                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y - 2;
@@ -491,11 +503,11 @@ int main()
                         frameRecAna.x = (float)currentFrameAna * (float)anaU.width / 4;
                         frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                     }
-                }
+                } */
                 // cima quinhas
                 checagemQuinhas = 1;
                 DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.y = quinhasmovimento.y - 2;
+                quinhasmovimento.y = quinhasmovimento.y - velocidadequinhas.cima;
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
@@ -516,7 +528,7 @@ int main()
             // esquerda ana e quinhas
             if (IsKeyDown(KEY_A))
             {
-                // esquerda ana
+                /* esquerda ana
                 checagemAna = 2;
                 DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
                 anamovimento.x = anamovimento.x - 2;
@@ -534,11 +546,11 @@ int main()
                         frameRecAna.x = (float)currentFrameAna * (float)anaL.width / 4;
                         frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                     }
-                }
+                } */
                 // esquerda quinhas
                 checagemQuinhas = 2;
                 DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.x = quinhasmovimento.x - 2;
+                quinhasmovimento.x = quinhasmovimento.x - velocidadequinhas.esquerda;
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
@@ -558,7 +570,7 @@ int main()
             // baixo ana e quinhas
             if (IsKeyDown(KEY_S))
             {
-                // baixo ana
+                /* baixo ana
                 checagemAna = 3;
                 DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
                 anamovimento.y = anamovimento.y + 2;
@@ -576,11 +588,11 @@ int main()
                         frameRecAna.x = (float)currentFrameAna * (float)anaD.width / 4;
                         frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                     }
-                }
+                } */
                 // baixo quinhas
                 checagemQuinhas = 3;
                 DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.y = quinhasmovimento.y + 2;
+                quinhasmovimento.y = quinhasmovimento.y + velocidadequinhas.baixo;
                 framesCounterQuinhas++;
                 if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
                 {
@@ -597,6 +609,42 @@ int main()
                     }
                 }
             }
+             //Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
+             DrawRectangle(77, 136, 35, 850, GREEN);
+             Rectangle retangulo1 = {77, 136, 35, 850};
+             DrawRectangle(1705, 136, 72, 34, GREEN);
+             Rectangle retangulo2 = {1705,136,72,34};
+             DrawRectangle(1744, 136, 34, 850, GREEN);
+             Rectangle retangulo3 = {1744, 136, 34, 850};
+             DrawRectangle(213, 952, 1562, 34, GREEN);
+             Rectangle retangulo4 = {213, 952, 1562, 34};
+             DrawRectangle(111,952,35,34,GREEN);
+             Rectangle retangulo5 = {111,952,35,34};
+             DrawRectangle(111,136, 1530, 34, GREEN);
+             Rectangle retangulo6 = {111,136, 1530, 34};
+             //retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
+             Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width/4, quinhasD.height};
+             Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width/4, quinhasU.height};
+             Rectangle retanguloquinhasD = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width/4, quinhasR.height};
+             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width/4, quinhasR.height};
+             //colisoes
+            if( CheckCollisionRecs(retanguloquinhasD2, retangulo1) || CheckCollisionRecs(retanguloquinhasD, retangulo3)){velocidadequinhas.direita = 0;}
+            else{velocidadequinhas.direita = 2;}
+           if(CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6)){velocidadequinhas.cima = 0;}
+            else{velocidadequinhas.cima = 2;}
+            if(CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB,retangulo5)){velocidadequinhas.baixo = 0;}
+            else{velocidadequinhas.baixo = 2;}
+            // variaveis que estao sendo usados na medida
+             int ala = quinhasmovimento.x; 
+             int ala2 = quinhasmovimento.y;
+            DrawText(TextFormat("Posicao X: %d, Posicao Y: %d", ala, ala2), 900, 100, 32, WHITE);
+           //Invoca uma regua vermelha atras de quinhas para melhor medimento
+          if(IsKeyDown(KEY_X)){
+              int platina = 1;
+              if(platina == 1)
+           DrawRectangle(quinhasmovimento.x,quinhasmovimento.y,5,1900,RED);
+          }
+
             break;
         case STATE_HOW_TO_PLAY:
             // Para voltar para o menu
