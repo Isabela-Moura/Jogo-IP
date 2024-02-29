@@ -12,7 +12,7 @@ typedef struct
 {
     int x;
     int y;
-    bool isVisible;
+    int isVisible;
 } Poster;
 
 void DrawMaze();
