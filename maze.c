@@ -47,7 +47,7 @@ void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegu
 {
     DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
     DrawFPS(screenWidth / 10, screenHeight / 15);
-    DrawText(TextFormat("SCORE: %d", pontuacaoPlacar), screenWidth / 2, screenHeight / 15, 30, WHITE);
+    DrawText(TextFormat("SCORE: %d/12", pontuacaoPlacar), screenWidth / 2, screenHeight / 15, 30, WHITE);
 }
 
 void DrawPoster(Texture2D textureP, Poster poster, float scale)

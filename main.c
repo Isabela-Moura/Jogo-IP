@@ -112,21 +112,21 @@ int main()
 
     // Placar
     int pontuacaoPlacar = 0;
-    bool pontuacaoRegistrada[NUM_POSTERS] = {false};
+    int pontuacaoRegistrada[NUM_POSTERS] = {0};
 
     // Posteres
-    Poster poster1 = {150, 750, true};
-    Poster poster2 = {350, 900, true};
-    Poster poster3 = {800, 750, true};
-    Poster poster4 = {1150, 850, true};
-    Poster poster5 = {1695, 875, true};
-    Poster poster6 = {250, 450, true};
-    Poster poster7 = {500, 600, true};
-    Poster poster8 = {700, 420, true};
-    Poster poster9 = {750, 310, true};
-    Poster poster10 = {720, 200, true};
-    Poster poster11 = {1500, 200, true};
-    Poster poster12 = {1350, 565, true};
+    Poster poster1 = {150, 750, 1};
+    Poster poster2 = {350, 900, 1};
+    Poster poster3 = {800, 750, 1};
+    Poster poster4 = {1150, 850, 1};
+    Poster poster5 = {1695, 875, 1};
+    Poster poster6 = {250, 450, 1};
+    Poster poster7 = {500, 600, 1};
+    Poster poster8 = {700, 420, 1};
+    Poster poster9 = {750, 310, 1};
+    Poster poster10 = {720, 200, 1};
+    Poster poster11 = {1500, 200, 1};
+    Poster poster12 = {1350, 565, 1};
 
     // Status do jogo
     GameState gameState = STATE_MENU;
@@ -239,31 +239,31 @@ int main()
             {
 
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[0] = true;
-                poster1.isVisible = false;
+                pontuacaoRegistrada[0] = 1;
+                poster1.isVisible = 0;
                 drawwallvertical(4, 15, 16); // 1 coluna e 2 linhas
             }
 
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){350, 900}, 0) && !pontuacaoRegistrada[1])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[1] = true;
-                poster2.isVisible = false;
+                pontuacaoRegistrada[1] = 1;
+                poster2.isVisible = 0;
                 drawwallhorizontal(14, 8, 9); // 1 linhas e 2 coluna
             }
 
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){800, 750}, 0) && !pontuacaoRegistrada[2])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[2] = true;
-                poster3.isVisible = false;
+                pontuacaoRegistrada[2] = 1;
+                poster3.isVisible = 0;
             }
 
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){1150, 850}, 0) && !pontuacaoRegistrada[3])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[3] = true;
-                poster4.isVisible = false;
+                pontuacaoRegistrada[3] = 1;
+                poster4.isVisible = 0;
 
                 drawwallvertical(37, 1, 2); // 1 coluna e 2 linhas
             }
@@ -271,8 +271,8 @@ int main()
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){1695, 875}, 0) && !pontuacaoRegistrada[4])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[4] = true;
-                poster5.isVisible = false;
+                pontuacaoRegistrada[4] = 1;
+                poster5.isVisible = 0;
 
                 drawwallhorizontal(7, 43, 44); // 1 linhas e 2 coluna
             }
@@ -280,8 +280,8 @@ int main()
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){250, 450}, 0) && !pontuacaoRegistrada[5])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[5] = true;
-                poster6.isVisible = false;
+                pontuacaoRegistrada[5] = 1;
+                poster6.isVisible = 0;
 
                 drawwallvertical(4, 1, 2); // 1 coluna e 2 linhas
             }
@@ -289,24 +289,24 @@ int main()
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){500, 600}, 0) && !pontuacaoRegistrada[6])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[6] = true;
-                poster7.isVisible = false;
+                pontuacaoRegistrada[6] = 1;
+                poster7.isVisible = 0;
                 drawwallhorizontal(13, 22, 23); // 1 linhas e 2 coluna
             }
 
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){700, 420}, 0) && !pontuacaoRegistrada[7])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[7] = true;
-                poster8.isVisible = false;
+                pontuacaoRegistrada[7] = 1;
+                poster8.isVisible = 0;
                 drawwallhorizontal(11, 5, 6); // 1 linhas e 2 coluna
             }
 
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){750, 310}, 0) && !pontuacaoRegistrada[8])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[8] = true;
-                poster9.isVisible = false;
+                pontuacaoRegistrada[8] = 1;
+                poster9.isVisible = 0;
 
                 drawwallvertical(21, 1, 2); // 1 coluna e 2 linhas
             }
@@ -314,15 +314,15 @@ int main()
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){720, 200}, 0) && !pontuacaoRegistrada[9])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[9] = true;
-                poster10.isVisible = false;
+                pontuacaoRegistrada[9] = 1;
+                poster10.isVisible = 0;
                 drawwallvertical(20, 11, 12); // 1 coluna e 2 linhas
             }
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){1500, 200}, 0) && !pontuacaoRegistrada[10])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[10] = true;
-                poster11.isVisible = false;
+                pontuacaoRegistrada[10] = 1;
+                poster11.isVisible = 0;
 
                 drawwallvertical(20, 11, 12); // 1 coluna e 2 linhas
             }
@@ -330,8 +330,8 @@ int main()
             if (CheckCollisionCircles((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius, (Vector2){1350, 565}, 0) && !pontuacaoRegistrada[11])
             {
                 pontuacaoPlacar++;
-                pontuacaoRegistrada[11] = true;
-                poster12.isVisible = false;
+                pontuacaoRegistrada[11] = 1;
+                poster12.isVisible = 0;
                 drawwallhorizontal(0, 46, 47); // 1 linhas e 2 coluna
             }
 

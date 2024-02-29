@@ -20,14 +20,6 @@ void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegu
 void DrawPoster(Texture2D textureP, Poster poster, float scale);
 void drawwallvertical(int coluna, int linha1, int linha2);
 void drawwallhorizontal(int linha, int coluna1, int coluna2);
-/*void DrawPoster(Texture2D textureP, int posX, int posY, float scale)
-{
-    DrawTextureEx(textureP, (Vector2){posX, posY}, 0.1f, scale, WHITE);
-}
-void DrawPoster(Texture2D textureP, Poster poster, float scale) {
-    if (poster.isVisible) {
-        DrawTextureEx(textureP, (Vector2){poster.x, poster.y}, 0.1f, scale, WHITE);
-    }
-}*/
+
 
 #endif
