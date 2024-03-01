@@ -722,6 +722,33 @@ int main()
                 DrawButton(backButton, 3, BLUE, 5, BLACK);
                 if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
                 {
+                    pontuacaoPlacar = 0; //Reiniciar o placar
+                    //Resetar a pontuação de cada poster e a visibilidade de cada um
+                    pontuacaoRegistrada[0] = 0;
+                    poster1.isVisible = 1;
+                    pontuacaoRegistrada[1] = 0;
+                    poster2.isVisible = 1;
+                    pontuacaoRegistrada[2] = 0;
+                    poster3.isVisible = 1;
+                    pontuacaoRegistrada[3] = 0;
+                    poster4.isVisible = 1;
+                    pontuacaoRegistrada[4] = 0;
+                    poster5.isVisible = 1;
+                    pontuacaoRegistrada[5] = 0;
+                    poster6.isVisible = 1;
+                    pontuacaoRegistrada[6] = 0;
+                    poster7.isVisible = 1;
+                    pontuacaoRegistrada[7] = 0;
+                    poster8.isVisible = 1;
+                    pontuacaoRegistrada[8] = 0;
+                    poster9.isVisible = 1;
+                    pontuacaoRegistrada[9] = 0;
+                    poster10.isVisible = 1;
+                    pontuacaoRegistrada[10] = 0;
+                    poster11.isVisible = 1;
+                    pontuacaoRegistrada[11] = 0;
+                    poster12.isVisible = 1;
+
                     gameState = STATE_MENU;
                 }
             }
