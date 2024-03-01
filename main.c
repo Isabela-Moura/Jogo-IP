@@ -20,6 +20,10 @@ int main()
     // Inicializacao
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(0, 0, "Abertura do jogo");
+
+
+    
+
     if (!IsWindowFullscreen())
     {
         ToggleFullscreen();
@@ -27,7 +31,7 @@ int main()
 
     // Musica
     InitAudioDevice();
-    Music music = LoadMusicStream("assets/mini1111.wav");
+    Music music = LoadMusicStream("assets/music.mp3");
     music.looping = false;
     PlayMusicStream(music);
 
@@ -35,7 +39,8 @@ int main()
     Font font = LoadFont("resources/fonts/pixantiqua.png");
 
     // Imagem
-    Texture2D texture = LoadTexture("assets/nomeJogo.png");
+     Texture2D background = LoadTexture("assets/fundo-menu.png");
+    Texture2D texture = LoadTexture("assets/meJogo.png");//alteracao do nome para tirar o nome do jogo da tela
     Texture2D textureHowToPlay = LoadTexture("assets/comojogar.png");
     Texture2D textureCredits = LoadTexture("assets/creditos.png");
     Texture2D story = LoadTexture("assets/historia.png");
@@ -61,8 +66,8 @@ int main()
     Texture2D anaMenu = LoadTexture("assets/analaura.menu.png");
     int textureAx = anaMenu.width;
     int textureAy = anaMenu.height;
-    float posXa = (screenWidth - textureAx) * 4 / 5;
-    float posYa = (screenHeight - textureAy) * 4 / 5;
+    float posXa = (screenWidth - textureAx) * -1; //alteracao do valor para tirar quinhas da tela
+    float posYa = (screenHeight - textureAy) * -1; //alteracao do valor para tirar quibhas da tela
     Vector2 positionAnaMenu = {posXa, posYa};
     Rectangle frameRecAnaMenu = {0.0f, 0.0f, (float)anaMenu.width / 4, (float)anaMenu.height};
     int currentFrame = 0;
@@ -72,8 +77,8 @@ int main()
     Texture2D quinhasMenu = LoadTexture("assets/quinhas.menu.png");
     int textureQx = quinhasMenu.width;
     int textureQy = quinhasMenu.height;
-    float posXq = (screenWidth - textureQx) * 15 / 5;
-    float posYq = (screenHeight - textureQy) * 4 / 5;
+    float posXq = (screenWidth - textureQx) *-1; //alteracao do valor para tirar analaura da tela
+    float posYq = (screenHeight - textureQy) * -10;//alteracao do valor para tirar analaura da tela
     Vector2 positionQuinhasMenu = {posXq, posYq};
     Rectangle frameRecQuinhasMenu = {0.0f, 0.0f, (float)quinhasMenu.width / 4, (float)quinhasMenu.height};
 
@@ -701,6 +706,8 @@ int main()
         // Desenho
         BeginDrawing();
         DrawBase();
+        
+        DrawTexture(background, 0, 0, WHITE);
 
         switch (gameState)
         {
@@ -786,6 +793,8 @@ int main()
     UnloadTexture(textureCredits);
     UnloadTexture(textureP);
     UnloadTexture(story);
+    UnloadTexture(background);
+
     // Fechando
     CloseWindow();
     return 0;
