@@ -634,6 +634,18 @@ int main()
              Rectangle retangulo9B = {246,850,268,32};
              Rectangle retangulo9E = {246,852,270,30};
              Rectangle retangulo9C = {246,852,268,32};
+             DrawRectangle(316,714,103,34,GREEN);
+             Rectangle retangulo10C = {318,716,98,32};
+             Rectangle retangulo10B = {318,714,98,32};
+             Rectangle retangulo10D = {316,716,2,30};
+             DrawRectangle(418,414,34,366,GREEN);
+             Rectangle retangulo11D = {418,416,30,364};
+             Rectangle retangulo11C = {420,418,28,362};
+             Rectangle retangulo11B = {420,414,28,1};
+             Rectangle retangulo11E = {422,416,30,362};
+             DrawRectangle(450,476,306,34,GREEN);
+             Rectangle retangulo12B = {452,476,300,32};
+             Rectangle retangulo12C = {452,478,300,32};
              //retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
              Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width/4, quinhasD.height};
              Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width/4, quinhasU.height};
@@ -641,16 +653,19 @@ int main()
              Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width/4, quinhasR.height};
              Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width/4, quinhasL.height};
              //colisoes
-            if(CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2,retangulo8D)){velocidadequinhas.direita = 0;}
+            if(CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2,retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D)
+            || CheckCollisionRecs(retanguloquinhasD, retangulo11D)){velocidadequinhas.direita = 0;}
             else{velocidadequinhas.direita = 2;}
            if(CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC,retangulo7C)
-           || CheckCollisionRecs(retanguloquinhasC,retangulo9C)){velocidadequinhas.cima = 0;}
+           || CheckCollisionRecs(retanguloquinhasC,retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C)
+           || CheckCollisionRecs(retanguloquinhasC,retangulo12C)){velocidadequinhas.cima = 0;}
             else{velocidadequinhas.cima = 2;}
             if(CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB,retangulo5) || CheckCollisionRecs(retanguloquinhasB,retangulo8C) 
-            || CheckCollisionRecs(retanguloquinhasB,retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B)){velocidadequinhas.baixo = 0;}
+            || CheckCollisionRecs(retanguloquinhasB,retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB,retangulo10B)
+            || CheckCollisionRecs(retanguloquinhasB,retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B)){velocidadequinhas.baixo = 0;}
             else{velocidadequinhas.baixo = 2;}
             if(CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE,retangulo9E)
-            || CheckCollisionRecs(retanguloquinhasE, retangulo7E)){velocidadequinhas.esquerda = 0;}
+            || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE,retangulo11E)){velocidadequinhas.esquerda = 0;}
             else{velocidadequinhas.esquerda = 2;}
             // variaveis que estao sendo usados na medida
              int ala = quinhasmovimento.x; 
