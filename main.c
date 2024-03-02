@@ -21,6 +21,7 @@ int main()
     // Inicializacao
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(0, 0, "Abertura do jogo");
+
     if (!IsWindowFullscreen())
     {
         ToggleFullscreen();
@@ -28,7 +29,7 @@ int main()
 
     // Musica
     InitAudioDevice();
-    Music music = LoadMusicStream("assets/mini1111.wav");
+    Music music = LoadMusicStream("assets/music.mp3");
     music.looping = false;
     PlayMusicStream(music);
 
@@ -36,7 +37,8 @@ int main()
     Font font = LoadFont("resources/fonts/pixantiqua.png");
 
     // Imagem
-    Texture2D texture = LoadTexture("assets/nomeJogo.png");
+    Texture2D background = LoadTexture("assets/fundo-menu.png");
+    Texture2D texture = LoadTexture("assets/meJogo.png"); // alteracao do nome para tirar o nome do jogo da tela
     Texture2D textureHowToPlay = LoadTexture("assets/comojogar.png");
     Texture2D textureCredits = LoadTexture("assets/creditos.png");
     Texture2D story = LoadTexture("assets/historia.png");
@@ -68,8 +70,8 @@ int main()
     Texture2D anaMenu = LoadTexture("assets/analaura.menu.png");
     int textureAx = anaMenu.width;
     int textureAy = anaMenu.height;
-    float posXa = (screenWidth - textureAx) * 4 / 5;
-    float posYa = (screenHeight - textureAy) * 4 / 5;
+    float posXa = (screenWidth - textureAx) * -1;  // alteracao do valor para tirar quinhas da tela
+    float posYa = (screenHeight - textureAy) * -1; // alteracao do valor para tirar quibhas da tela
     Vector2 positionAnaMenu = {posXa, posYa};
     Rectangle frameRecAnaMenu = {0.0f, 0.0f, (float)anaMenu.width / 4, (float)anaMenu.height};
     int currentFrame = 0;
@@ -79,8 +81,8 @@ int main()
     Texture2D quinhasMenu = LoadTexture("assets/quinhas.menu.png");
     int textureQx = quinhasMenu.width;
     int textureQy = quinhasMenu.height;
-    float posXq = (screenWidth - textureQx) * 15 / 5;
-    float posYq = (screenHeight - textureQy) * 4 / 5;
+    float posXq = (screenWidth - textureQx) * -1;   // alteracao do valor para tirar analaura da tela
+    float posYq = (screenHeight - textureQy) * -10; // alteracao do valor para tirar analaura da tela
     Vector2 positionQuinhasMenu = {posXq, posYq};
     Rectangle frameRecQuinhasMenu = {0.0f, 0.0f, (float)quinhasMenu.width / 4, (float)quinhasMenu.height};
 
@@ -641,6 +643,34 @@ int main()
             Rectangle retangulo9B = {246, 850, 268, 32};
             Rectangle retangulo9E = {246, 852, 270, 30};
             Rectangle retangulo9C = {246, 852, 268, 32};
+            DrawRectangle(316, 714, 103, 34, GREEN);
+            Rectangle retangulo10C = {318, 716, 98, 32};
+            Rectangle retangulo10B = {318, 714, 98, 32};
+            Rectangle retangulo10D = {316, 716, 2, 30};
+            DrawRectangle(418, 414, 34, 366, GREEN);
+            Rectangle retangulo11D = {418, 416, 30, 364};
+            Rectangle retangulo11C = {420, 418, 28, 362};
+            Rectangle retangulo11B = {420, 414, 28, 1};
+            Rectangle retangulo11E = {422, 416, 30, 362};
+            DrawRectangle(450, 476, 306, 34, GREEN);
+            Rectangle retangulo12B = {452, 476, 300, 32};
+            Rectangle retangulo12C = {452, 478, 300, 32};
+            DrawRectangle(316, 374, 34, 238, GREEN);
+            Rectangle retangulo13E = {318, 376, 32, 234};
+            Rectangle retangulo13D = {316, 376, 32, 234};
+            Rectangle retangulo13B = {318, 374, 30, 1};
+            DrawRectangle(180, 374, 136, 34, GREEN);
+            Rectangle retangulo14B = {182, 374, 132, 1};
+            Rectangle retangulo14C = {182, 376, 132, 32};
+            Rectangle retangulo14D = {180, 376, 132, 30};
+            DrawRectangle(180, 406, 34, 137, GREEN);
+            Rectangle retangulo15D = {180, 408, 32, 132};
+            Rectangle retangulo15E = {182, 408, 32, 132};
+            Rectangle retangulo15C = {182, 408, 30, 134};
+            DrawRectangle(212, 510, 34, 34, GREEN);
+            Rectangle retangulo16C = {214, 512, 30, 32};
+            Rectangle retangulo16E = {214, 512, 32, 30};
+            Rectangle retangulo16B = {214, 510, 30, 1};
             // retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
             Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width / 4, quinhasD.height};
             Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width / 4, quinhasU.height};
@@ -648,7 +678,7 @@ int main()
             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
             Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width / 4, quinhasL.height};
             // colisoes
-            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D))
+            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D))
             {
                 velocidadequinhas.direita = 0;
             }
@@ -656,7 +686,7 @@ int main()
             {
                 velocidadequinhas.direita = 2;
             }
-            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C))
+            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C) || CheckCollisionRecs(retanguloquinhasC, retangulo12C) || CheckCollisionRecs(retanguloquinhasC, retangulo14C) || CheckCollisionRecs(retanguloquinhasC, retangulo15C) || CheckCollisionRecs(retanguloquinhasC, retangulo16C))
             {
                 velocidadequinhas.cima = 0;
             }
@@ -664,7 +694,7 @@ int main()
             {
                 velocidadequinhas.cima = 2;
             }
-            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B))
+            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB, retangulo10B) || CheckCollisionRecs(retanguloquinhasB, retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B) || CheckCollisionRecs(retanguloquinhasB, retangulo13B) || CheckCollisionRecs(retanguloquinhasB, retangulo14B) || CheckCollisionRecs(retanguloquinhasB, retangulo16B))
             {
                 velocidadequinhas.baixo = 0;
             }
@@ -672,7 +702,7 @@ int main()
             {
                 velocidadequinhas.baixo = 2;
             }
-            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E))
+            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE, retangulo11E) || CheckCollisionRecs(retanguloquinhasE, retangulo13E) || CheckCollisionRecs(retanguloquinhasE, retangulo15E) || CheckCollisionRecs(retanguloquinhasE, retangulo16E))
             {
                 velocidadequinhas.esquerda = 0;
             }
@@ -743,6 +773,10 @@ int main()
         // Desenho
         BeginDrawing();
         DrawBase();
+        if (gameState == STATE_MENU)
+        {
+            DrawTexture(background, 0, 0, WHITE);
+        }
 
         switch (gameState)
         {
@@ -764,6 +798,33 @@ int main()
                 DrawButton(backButton, 3, BLUE, 5, BLACK);
                 if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
                 {
+                    pontuacaoPlacar = 0; // Reiniciar o placar
+                    // Resetar a pontuação de cada poster e a visibilidade de cada um
+                    pontuacaoRegistrada[0] = 0;
+                    poster1.isVisible = 1;
+                    pontuacaoRegistrada[1] = 0;
+                    poster2.isVisible = 1;
+                    pontuacaoRegistrada[2] = 0;
+                    poster3.isVisible = 1;
+                    pontuacaoRegistrada[3] = 0;
+                    poster4.isVisible = 1;
+                    pontuacaoRegistrada[4] = 0;
+                    poster5.isVisible = 1;
+                    pontuacaoRegistrada[5] = 0;
+                    poster6.isVisible = 1;
+                    pontuacaoRegistrada[6] = 0;
+                    poster7.isVisible = 1;
+                    pontuacaoRegistrada[7] = 0;
+                    poster8.isVisible = 1;
+                    pontuacaoRegistrada[8] = 0;
+                    poster9.isVisible = 1;
+                    pontuacaoRegistrada[9] = 0;
+                    poster10.isVisible = 1;
+                    pontuacaoRegistrada[10] = 0;
+                    poster11.isVisible = 1;
+                    pontuacaoRegistrada[11] = 0;
+                    poster12.isVisible = 1;
+
                     gameState = STATE_MENU;
                 }
             }
@@ -809,6 +870,8 @@ int main()
     UnloadTexture(textureCredits);
     UnloadTexture(textureP);
     UnloadTexture(story);
+    UnloadTexture(background);
+
     // Fechando
     CloseWindow();
     return 0;
