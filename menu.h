@@ -10,7 +10,9 @@ typedef enum
     STATE_PLAY,
     STATE_STORY,
     STATE_HOW_TO_PLAY,
-    STATE_EXIT
+    STATE_EXIT,
+    STATE_WIN,
+    STATE_LOSE
 } GameState;
 
 typedef struct
