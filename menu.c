@@ -127,3 +127,41 @@ void ShowCredits(int screenWidth, int screenHeight, Texture2D textureCredits, Bu
         DrawButton(backButton, 3, BLUE, 5, BLACK);
     }
 }
+
+/*void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button backButtonWin, Button exitButtonWin)
+{
+    int textureWidthWin = textureWin.width;
+    int textureHeightWin = textureWin.height;
+    int posXWin = (screenWidth - textureWidthWin) / 2;
+    int posYWin = (screenHeight - textureHeightWin) / 4;
+    DrawTexture(textureWin, posXWin, posYWin, WHITE);
+    DrawButton(backButtonWin, 3, SKYBLUE, 5, BLACK);
+    DrawButton(exitButtonWin, 3, SKYBLUE, 5, BLACK);
+    if (CheckCollisionPointRec(GetMousePosition(), backButtonWin.rect))
+    {
+        DrawButton(backButtonWin, 3, BLUE, 5, BLACK);
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), exitButtonWin.rect))
+    {
+        DrawButton(exitButtonWin, 3, BLUE, 5, BLACK);
+    }
+}
+
+void ShowLose(int screenWidth, int screenHeight, Texture2D textureLose, Button backButtonLose, Button exitButtonLose)
+{
+    int textureWidthLose = textureLose.width;
+    int textureHeightLose = textureLose.height;
+    int posXLose = (screenWidth - textureWidthLose) / 2;
+    int posYLose = (screenHeight - textureHeightLose) / 4;
+    DrawTexture(textureLose, posXLose, posYLose, WHITE);
+    DrawButton(backButtonLose, 3, SKYBLUE, 5, BLACK);
+    DrawButton(exitButtonLose, 3, SKYBLUE, 5, BLACK);
+    if (CheckCollisionPointRec(GetMousePosition(), backButtonLose.rect))
+    {
+        DrawButton(backButtonLose, 3, BLUE, 5, BLACK);
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), exitButtonLose.rect))
+    {
+        DrawButton(exitButtonLose, 3, BLUE, 5, BLACK);
+    }
+}*/

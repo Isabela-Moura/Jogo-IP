@@ -5,15 +5,16 @@
 #include "menu.h"
 #include "raylib.h"
 
-//struct para controlar velocidades
- typedef struct {
+// struct para controlar velocidades
+typedef struct
+{
 
-     int direita;
-     int esquerda;
-     int baixo;
-     int cima;
+    int direita;
+    int esquerda;
+    int baixo;
+    int cima;
 
-} Velocidade; 
+} Velocidade;
 
 int main()
 {
@@ -40,6 +41,8 @@ int main()
     Texture2D textureCredits = LoadTexture("assets/creditos.png");
     Texture2D story = LoadTexture("assets/historia.png");
     Texture2D textureP = LoadTexture("assets/posterIP.png");
+    Texture2D textureWin = LoadTexture("assets/win.png");
+    Texture2D textureLose = LoadTexture("assets/gameover.png");
 
     // Botoes do menu
     int screenHeight = GetScreenHeight();
@@ -56,6 +59,10 @@ int main()
     Button creditsButton = {(Rectangle){posXbutton, posYbuttonC, 200, 50}, colorButton, BLUE, "CRÉDITOS"};
     Button exitButton = {(Rectangle){posXbutton, posYbuttonE, 200, 50}, colorButton, BLUE, "SAIR"};
     Button backButton = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "VOLTAR"};
+    Button backButtonWin = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "GANHAR DE NOVO"};
+    Button exitButtonWin = {(Rectangle){posXbutton, posYbuttonE, 200, 50}, colorButton, BLUE, "SAIR DO JOGO"};
+    Button backButtonLose = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "TENTAR DE NOVO"};
+    Button exitButtonLose = {(Rectangle){posXbutton, posYbuttonE, 200, 50}, colorButton, BLUE, "SAIR DO JOGO"};
 
     // Animacao de Ana Laura Menu
     Texture2D anaMenu = LoadTexture("assets/analaura.menu.png");
@@ -102,7 +109,7 @@ int main()
     int framesCounterQuinhas = 0;
     int framesSpeedQuinhas = 8;
     float tempodeframeQuinhas = 0;
-    Velocidade velocidadequinhas = {2,2,2,2};
+    Velocidade velocidadequinhas = {2, 2, 2, 2};
 
     // Coisas do temporizador
     int segundospassados = 0;
@@ -350,34 +357,34 @@ int main()
             // checar o valor da checagemAna
             if (IsKeyReleased(KEY_D))
             {
-              //  checagemAna = 0;
+                //  checagemAna = 0;
                 checagemQuinhas = 0;
             }
             if (IsKeyReleased(KEY_W))
             {
-               // checagemAna = 1;
+                // checagemAna = 1;
                 checagemQuinhas = 1;
             }
             if (IsKeyReleased(KEY_A))
             {
-               // checagemAna = 2;
+                // checagemAna = 2;
                 checagemQuinhas = 2;
             }
             if (IsKeyReleased(KEY_S))
             {
-              //  checagemAna = 3;
+                //  checagemAna = 3;
                 checagemQuinhas = 3;
             }
             // caso o boneco pare de se mexer, a checagemAna e utilizada para checar qual foi o ultimo frame que o boneco estava para parar com a animacao certa
-        /*    if (checagemAna == 0)
-            {
-                DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
-                if (IsKeyReleased(KEY_D))
+            /*    if (checagemAna == 0)
                 {
-                    frameRecAna.x = 0;
-                } // Para deixar o boneco no frame em que esta parado
-                
-            } */
+                    DrawTextureRec(anaR, frameRecAna, anamovimento, WHITE);
+                    if (IsKeyReleased(KEY_D))
+                    {
+                        frameRecAna.x = 0;
+                    } // Para deixar o boneco no frame em que esta parado
+
+                } */
             if (checagemQuinhas == 0)
             {
                 DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -386,15 +393,15 @@ int main()
                     frameRecQuinhas.x = 0;
                 } // Para deixar o boneco no frame em que esta parado
             }
-           /* if (checagemAna == 1)
-            {
-                DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
-                if (IsKeyReleased(KEY_W))
-                {
-                    currentFrameAna = 2;
-                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
-                }
-            } */
+            /* if (checagemAna == 1)
+             {
+                 DrawTextureRec(anaU, frameRecAna, anamovimento, WHITE);
+                 if (IsKeyReleased(KEY_W))
+                 {
+                     currentFrameAna = 2;
+                     frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                 }
+             } */
             if (checagemQuinhas == 1)
             {
                 DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -404,15 +411,15 @@ int main()
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                 } // Para deixar o boneco no frame em que esta parado
             }
-         /*   if (checagemAna == 2)
-            {
-                DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
-                if (IsKeyReleased(KEY_A))
-                {
-                    currentFrameAna = 3;
-                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
-                }
-            } */
+            /*   if (checagemAna == 2)
+               {
+                   DrawTextureRec(anaL, frameRecAna, anamovimento, WHITE);
+                   if (IsKeyReleased(KEY_A))
+                   {
+                       currentFrameAna = 3;
+                       frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                   }
+               } */
             if (checagemQuinhas == 2)
             {
                 DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -422,15 +429,15 @@ int main()
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
                 } // Para deixar o boneco no frame em que esta parado
             }
-         /*   if (checagemAna == 3)
-            {
-                DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
-                if (IsKeyReleased(KEY_S))
-                {
-                    currentFrameAna = 3;
-                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
-                }
-            } */
+            /*   if (checagemAna == 3)
+               {
+                   DrawTextureRec(anaD, frameRecAna, anamovimento, WHITE);
+                   if (IsKeyReleased(KEY_S))
+                   {
+                       currentFrameAna = 3;
+                       frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                   }
+               } */
             if (checagemQuinhas == 3)
             {
                 DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
@@ -609,59 +616,81 @@ int main()
                     }
                 }
             }
-             //Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
-             DrawRectangle(77, 136, 35, 850, GREEN);
-             Rectangle retangulo1 = {77, 136, 35, 850};
-             DrawRectangle(1705, 136, 72, 34, GREEN);
-             Rectangle retangulo2 = {1708,136,72,34};
-             DrawRectangle(1744, 136, 34, 850, GREEN);
-             Rectangle retangulo3 = {1744, 136, 34, 850};
-             DrawRectangle(215, 952, 1562, 34, GREEN);
-             Rectangle retangulo4 = {215, 952, 1562, 34};
-             DrawRectangle(111,952,35,34,GREEN);
-             Rectangle retangulo5 = {111,952,35,34};
-             DrawRectangle(111,136, 1530, 34, GREEN);
-             Rectangle retangulo6 = {111,136, 1526, 34};
-             DrawRectangle(110,612, 239, 34, GREEN);
-             Rectangle retangulo7C = {110,614, 236, 32};
-             Rectangle retangulo7E = {110,614,238,30};
-             Rectangle retangulo7B = {110,612,236,32};
-             DrawRectangle(214,714,34,238,GREEN);
-             Rectangle retangulo8D = {214,716,32,236};
-             Rectangle retangulo8C = {216,714,30,1};
-             Rectangle retangulo8E = {216,716,32,234};
-             DrawRectangle(246,850,274,34,GREEN);
-             Rectangle retangulo9B = {246,850,268,32};
-             Rectangle retangulo9E = {246,852,270,30};
-             Rectangle retangulo9C = {246,852,268,32};
-             //retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
-             Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width/4, quinhasD.height};
-             Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width/4, quinhasU.height};
-             Rectangle retanguloquinhasD = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width/4, quinhasR.height};
-             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width/4, quinhasR.height};
-             Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width/4, quinhasL.height};
-             //colisoes
-            if(CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2,retangulo8D)){velocidadequinhas.direita = 0;}
-            else{velocidadequinhas.direita = 2;}
-           if(CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC,retangulo7C)
-           || CheckCollisionRecs(retanguloquinhasC,retangulo9C)){velocidadequinhas.cima = 0;}
-            else{velocidadequinhas.cima = 2;}
-            if(CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB,retangulo5) || CheckCollisionRecs(retanguloquinhasB,retangulo8C) 
-            || CheckCollisionRecs(retanguloquinhasB,retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B)){velocidadequinhas.baixo = 0;}
-            else{velocidadequinhas.baixo = 2;}
-            if(CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE,retangulo9E)
-            || CheckCollisionRecs(retanguloquinhasE, retangulo7E)){velocidadequinhas.esquerda = 0;}
-            else{velocidadequinhas.esquerda = 2;}
+            // Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
+            DrawRectangle(77, 136, 35, 850, GREEN);
+            Rectangle retangulo1 = {77, 136, 35, 850};
+            DrawRectangle(1705, 136, 72, 34, GREEN);
+            Rectangle retangulo2 = {1708, 136, 72, 34};
+            DrawRectangle(1744, 136, 34, 850, GREEN);
+            Rectangle retangulo3 = {1744, 136, 34, 850};
+            DrawRectangle(215, 952, 1562, 34, GREEN);
+            Rectangle retangulo4 = {215, 952, 1562, 34};
+            DrawRectangle(111, 952, 35, 34, GREEN);
+            Rectangle retangulo5 = {111, 952, 35, 34};
+            DrawRectangle(111, 136, 1530, 34, GREEN);
+            Rectangle retangulo6 = {111, 136, 1526, 34};
+            DrawRectangle(110, 612, 239, 34, GREEN);
+            Rectangle retangulo7C = {110, 614, 236, 32};
+            Rectangle retangulo7E = {110, 614, 238, 30};
+            Rectangle retangulo7B = {110, 612, 236, 32};
+            DrawRectangle(214, 714, 34, 238, GREEN);
+            Rectangle retangulo8D = {214, 716, 32, 236};
+            Rectangle retangulo8C = {216, 714, 30, 1};
+            Rectangle retangulo8E = {216, 716, 32, 234};
+            DrawRectangle(246, 850, 274, 34, GREEN);
+            Rectangle retangulo9B = {246, 850, 268, 32};
+            Rectangle retangulo9E = {246, 852, 270, 30};
+            Rectangle retangulo9C = {246, 852, 268, 32};
+            // retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
+            Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width / 4, quinhasD.height};
+            Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width / 4, quinhasU.height};
+            Rectangle retanguloquinhasD = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
+            Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
+            Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width / 4, quinhasL.height};
+            // colisoes
+            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D))
+            {
+                velocidadequinhas.direita = 0;
+            }
+            else
+            {
+                velocidadequinhas.direita = 2;
+            }
+            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C))
+            {
+                velocidadequinhas.cima = 0;
+            }
+            else
+            {
+                velocidadequinhas.cima = 2;
+            }
+            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B))
+            {
+                velocidadequinhas.baixo = 0;
+            }
+            else
+            {
+                velocidadequinhas.baixo = 2;
+            }
+            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E))
+            {
+                velocidadequinhas.esquerda = 0;
+            }
+            else
+            {
+                velocidadequinhas.esquerda = 2;
+            }
             // variaveis que estao sendo usados na medida
-             int ala = quinhasmovimento.x; 
-             int ala2 = quinhasmovimento.y;
+            int ala = quinhasmovimento.x;
+            int ala2 = quinhasmovimento.y;
             DrawText(TextFormat("Posicao X: %d, Posicao Y: %d", ala, ala2), 900, 100, 32, WHITE);
-           //Invoca uma regua vermelha atras de quinhas para melhor medimento
-          if(IsKeyDown(KEY_X)){
-              int platina = 1;
-              if(platina == 1)
-           DrawRectangle(quinhasmovimento.x,quinhasmovimento.y,5,1900,RED);
-          }
+            // Invoca uma regua vermelha atras de quinhas para melhor medimento
+            if (IsKeyDown(KEY_X))
+            {
+                int platina = 1;
+                if (platina == 1)
+                    DrawRectangle(quinhasmovimento.x, quinhasmovimento.y, 5, 1900, RED);
+            }
 
             break;
         case STATE_HOW_TO_PLAY:
@@ -680,6 +709,34 @@ int main()
             break;
         case STATE_EXIT:
             // Sai do jogo
+            break;
+        case STATE_WIN:
+            // Vitoria
+            // Para voltar para o menu
+            if (CheckCollisionPointRec(GetMousePosition(), backButtonWin.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                gameState = STATE_MENU;
+            }
+            // Para sair do jogo
+            if (CheckCollisionPointRec(GetMousePosition(), exitButtonWin.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                // Sai do jogo
+                gameState = STATE_EXIT;
+            }
+            break;
+        case STATE_LOSE:
+            // Derrota
+            // Para voltar para o menu
+            if (CheckCollisionPointRec(GetMousePosition(), backButtonLose.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                gameState = STATE_MENU;
+            }
+            // Para sair do jogo
+            if (CheckCollisionPointRec(GetMousePosition(), exitButtonLose.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                // Sai do jogo
+                gameState = STATE_EXIT;
+            }
             break;
         }
 
@@ -721,6 +778,14 @@ int main()
             break;
         case STATE_EXIT:
             // Sai do jogo
+            break;
+        case STATE_WIN:
+            // Vitoria
+            /*ShowWin(screenWidth, screenHeight, texture, exitButtonWin);*/
+            break;
+        case STATE_LOSE:
+            // Derrota
+            /*ShowLose(screenWidth, screenHeight, texture, backButtonLose, exitButtonLose);*/
             break;
         }
 
