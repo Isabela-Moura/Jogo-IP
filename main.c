@@ -640,9 +640,9 @@ int main()
             Rectangle retangulo8C = {216, 714, 30, 1};
             Rectangle retangulo8E = {216, 716, 32, 234};
             DrawRectangle(246, 850, 274, 34, GREEN);
-            Rectangle retangulo9B = {246, 850, 268, 32};
-            Rectangle retangulo9E = {246, 852, 270, 30};
-            Rectangle retangulo9C = {246, 852, 268, 32};
+            Rectangle retangulo9B = {246, 850, 266, 1};
+            Rectangle retangulo9E = {246, 854, 270, 26};
+            Rectangle retangulo9C = {246, 854, 266, 28};
             DrawRectangle(316, 714, 103, 34, GREEN);
             Rectangle retangulo10C = {318, 716, 98, 32};
             Rectangle retangulo10B = {318, 714, 98, 32};
@@ -668,9 +668,47 @@ int main()
             Rectangle retangulo15E = {182, 408, 32, 132};
             Rectangle retangulo15C = {182, 408, 30, 134};
             DrawRectangle(212, 510, 34, 34, GREEN);
-            Rectangle retangulo16C = {214, 512, 30, 32};
+            Rectangle retangulo16C = {214, 512, 27, 32};
             Rectangle retangulo16E = {214, 512, 32, 30};
             Rectangle retangulo16B = {214, 510, 30, 1};
+            DrawRectangle(213,238,238,34,GREEN);
+            Rectangle retangulo17C = {216,242,232,30};
+            Rectangle retangulo17E = {216,242,235,26};
+            Rectangle retangulo17D = {213,241,1,26};
+            Rectangle retangulo17B = {216,238,232,1};
+            DrawRectangle(418,272,135,34,GREEN);
+            Rectangle retangulo18C = {421,275,129,31};
+            Rectangle retangulo18D = {418,275,1,28};
+            Rectangle retangulo18B = {421,272,129,1};
+            Rectangle retangulo18E = {421,275,132,28};
+            DrawRectangle(520,305,34,102,GREEN);
+            Rectangle retangulo19D = {520,308,1,96};
+            Rectangle retangulo19C = {523,308,28,99};
+            Rectangle retangulo19E = {523,308,31,96};
+            Rectangle retangulo19B = {523,305,28,1};
+            DrawRectangle(555,374,236,34,GREEN);
+            Rectangle retangulo20D = {555,377,1,28};
+            Rectangle retangulo20E = {558,377,233,28};
+            Rectangle retangulo20C = {558,377,230,31};
+            Rectangle retangulo20B = {558,374,230,1};
+            DrawRectangle(621,170,34,136,GREEN);
+            Rectangle retangulo21D = {621,173,1,130};
+            Rectangle retangulo21E = {624,173,31,130};
+            Rectangle retangulo21C = {624,173,28,133};
+            Rectangle retangulo21B = {624,170,28,1};
+            DrawRectangle(656,272,169,34,GREEN);
+            Rectangle retangulo22D = {656,275,1,28};
+            Rectangle retangulo22E = {659,275,166,28};
+            Rectangle retangulo22C = {659,275,163,31};
+            Rectangle retangulo22B = {659,272,163,1};
+            DrawRectangle(792,236,34,36,GREEN);
+            Rectangle retangulo23D = {792,239,1,30};
+            Rectangle retangulo23E = {795,239,31,30};
+            Rectangle retangulo23B = {795,236,28,1};
+            DrawRectangle(757,408,34,100,GREEN);
+            Rectangle retangulo24D = {757,411,1,94};
+            Rectangle retangulo24E = {760,411,31,94};
+            Rectangle retangulo24C = {760,411,28,97};
             // retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
             Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width / 4, quinhasD.height};
             Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width / 4, quinhasU.height};
@@ -678,7 +716,9 @@ int main()
             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
             Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width / 4, quinhasL.height};
             // colisoes
-            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D))
+            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D)
+             || CheckCollisionRecs(retanguloquinhasD, retangulo17D) || CheckCollisionRecs(retanguloquinhasD,retangulo18D) || CheckCollisionRecs(retanguloquinhasD,retangulo19D) || CheckCollisionRecs(retanguloquinhasD,retangulo20D) || CheckCollisionRecs(retanguloquinhasD,retangulo21D) || CheckCollisionRecs(retanguloquinhasD,retangulo22D) || CheckCollisionRecs(retanguloquinhasD,retangulo23D)
+             || CheckCollisionRecs(retanguloquinhasD, retangulo24D))
             {
                 velocidadequinhas.direita = 0;
             }
@@ -686,7 +726,8 @@ int main()
             {
                 velocidadequinhas.direita = 3;
             }
-            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C) || CheckCollisionRecs(retanguloquinhasC, retangulo12C) || CheckCollisionRecs(retanguloquinhasC, retangulo14C) || CheckCollisionRecs(retanguloquinhasC, retangulo15C) || CheckCollisionRecs(retanguloquinhasC, retangulo16C))
+            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C) || CheckCollisionRecs(retanguloquinhasC, retangulo12C) || CheckCollisionRecs(retanguloquinhasC, retangulo14C) || CheckCollisionRecs(retanguloquinhasC, retangulo15C) || CheckCollisionRecs(retanguloquinhasC, retangulo16C)
+            || CheckCollisionRecs(retanguloquinhasC, retangulo17C) || CheckCollisionRecs(retanguloquinhasC, retangulo18C) || CheckCollisionRecs(retanguloquinhasC,retangulo19C) || CheckCollisionRecs(retanguloquinhasC, retangulo20C) || CheckCollisionRecs(retanguloquinhasC,retangulo21C) || CheckCollisionRecs(retanguloquinhasC,retangulo22C) || CheckCollisionRecs(retanguloquinhasC,retangulo24C))
             {
                 velocidadequinhas.cima = 0;
             }
@@ -694,7 +735,8 @@ int main()
             {
                 velocidadequinhas.cima = 3;
             }
-            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB, retangulo10B) || CheckCollisionRecs(retanguloquinhasB, retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B) || CheckCollisionRecs(retanguloquinhasB, retangulo13B) || CheckCollisionRecs(retanguloquinhasB, retangulo14B) || CheckCollisionRecs(retanguloquinhasB, retangulo16B))
+            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB, retangulo10B) || CheckCollisionRecs(retanguloquinhasB, retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B) || CheckCollisionRecs(retanguloquinhasB, retangulo13B) || CheckCollisionRecs(retanguloquinhasB, retangulo14B) || CheckCollisionRecs(retanguloquinhasB, retangulo16B)
+            || CheckCollisionRecs(retanguloquinhasB,retangulo17B) || CheckCollisionRecs(retanguloquinhasB,retangulo18B) || CheckCollisionRecs(retanguloquinhasB,retangulo19B) || CheckCollisionRecs(retanguloquinhasB,retangulo20B) || CheckCollisionRecs(retanguloquinhasB, retangulo21B) || CheckCollisionRecs(retanguloquinhasB,retangulo22B) || CheckCollisionRecs(retanguloquinhasB, retangulo23B))
             {
                 velocidadequinhas.baixo = 0;
             }
@@ -702,7 +744,8 @@ int main()
             {
                 velocidadequinhas.baixo = 3;
             }
-            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE, retangulo11E) || CheckCollisionRecs(retanguloquinhasE, retangulo13E) || CheckCollisionRecs(retanguloquinhasE, retangulo15E) || CheckCollisionRecs(retanguloquinhasE, retangulo16E))
+            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE, retangulo11E) || CheckCollisionRecs(retanguloquinhasE, retangulo13E) || CheckCollisionRecs(retanguloquinhasE, retangulo15E) || CheckCollisionRecs(retanguloquinhasE, retangulo16E)
+            || CheckCollisionRecs(retanguloquinhasE,retangulo17E) || CheckCollisionRecs(retanguloquinhasE, retangulo18E) || CheckCollisionRecs(retanguloquinhasE,retangulo19E) || CheckCollisionRecs(retanguloquinhasE,retangulo20E) || CheckCollisionRecs(retanguloquinhasE,retangulo21E) || CheckCollisionRecs(retanguloquinhasE,retangulo22E) || CheckCollisionRecs(retanguloquinhasE,retangulo23E) || CheckCollisionRecs(retanguloquinhasE,retangulo24E))
             {
                 velocidadequinhas.esquerda = 0;
             }
