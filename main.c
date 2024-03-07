@@ -768,6 +768,32 @@ int main()
             DrawRectangle(996,476,136,34,GREEN);
             Rectangle retangulo40C = {999,479,130,31};
             Rectangle retangulo40B = {999,476,130,1};
+            DrawRectangle(1131,341,34,168,GREEN);
+            Rectangle retangulo41E = {1134,344,31,162};
+            Rectangle retangulo41D = {1131,344,1,162};
+            Rectangle retangulo41C = {1134,344,28,165};
+            Rectangle retangulo41B = {1134,341,28,1};
+            DrawRectangle(1165,340,205,34,GREEN);
+            Rectangle retangulo42B = {1168,340,199,1};
+            Rectangle retangulo42C = {1168,343,199,31};
+            Rectangle retangulo42E = {1168,343,202,28};
+            DrawRectangle(1336,239,34,102,GREEN);
+            Rectangle retangulo43D = {1336,242,1,96};
+            Rectangle retangulo43E = {1339,242,31,96};
+            Rectangle retangulo43B = {1339,239,28,1};
+            Rectangle retangulo43C = {1339,242,28,99};
+            DrawRectangle(1404,680,34,272,GREEN);
+            Rectangle retangulo44B = {1407,680,28,1};
+            Rectangle retangulo44D = {1404,683,1,266};
+            Rectangle retangulo44E = {1407,683,31,266};
+            DrawRectangle(1131,680,273,34,GREEN);
+            Rectangle retangulo45B = {1134,680,267,1};
+            Rectangle retangulo45C = {1134,683,267,31};
+            DrawRectangle(1098,578,34,136,GREEN);
+            Rectangle retangulo46D = {1098,581,1,130};
+            Rectangle retangulo46E = {1101,581,31,130};
+            Rectangle retangulo46C = {1101,581,28,133};
+            Rectangle retangulo46B = {1101,578,28,1};
             // retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
             Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width / 4, quinhasD.height};
             Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width / 4, quinhasU.height};
@@ -778,7 +804,8 @@ int main()
             if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D)
              || CheckCollisionRecs(retanguloquinhasD, retangulo17D) || CheckCollisionRecs(retanguloquinhasD,retangulo18D) || CheckCollisionRecs(retanguloquinhasD,retangulo19D) || CheckCollisionRecs(retanguloquinhasD,retangulo20D) || CheckCollisionRecs(retanguloquinhasD,retangulo21D) || CheckCollisionRecs(retanguloquinhasD,retangulo22D) || CheckCollisionRecs(retanguloquinhasD,retangulo23D)
              || CheckCollisionRecs(retanguloquinhasD, retangulo24D) || CheckCollisionRecs(retanguloquinhasD, retangulo26D) || CheckCollisionRecs(retanguloquinhasD, retangulo28D) || CheckCollisionRecs(retanguloquinhasD, retangulo29D) || CheckCollisionRecs(retanguloquinhasD,retangulo31D) || CheckCollisionRecs(retanguloquinhasD,retangulo32D) || CheckCollisionRecs(retanguloquinhasD,retangulo33D)
-             || CheckCollisionRecs(retanguloquinhasD,retangulo34D) || CheckCollisionRecs(retanguloquinhasD,retangulo36D) || CheckCollisionRecs(retanguloquinhasD,retangulo38D) || CheckCollisionRecs(retanguloquinhasD,retangulo39D))
+             || CheckCollisionRecs(retanguloquinhasD,retangulo34D) || CheckCollisionRecs(retanguloquinhasD,retangulo36D) || CheckCollisionRecs(retanguloquinhasD,retangulo38D) || CheckCollisionRecs(retanguloquinhasD,retangulo39D) || CheckCollisionRecs(retanguloquinhasD,retangulo41D) || CheckCollisionRecs(retanguloquinhasD,retangulo43D) || CheckCollisionRecs(retanguloquinhasD,retangulo44D) 
+             || CheckCollisionRecs(retanguloquinhasD,retangulo46D))
             {
                 velocidadequinhas.direita = 0;
             }
@@ -788,7 +815,8 @@ int main()
             }
             if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C) || CheckCollisionRecs(retanguloquinhasC, retangulo12C) || CheckCollisionRecs(retanguloquinhasC, retangulo14C) || CheckCollisionRecs(retanguloquinhasC, retangulo15C) || CheckCollisionRecs(retanguloquinhasC, retangulo16C)
             || CheckCollisionRecs(retanguloquinhasC, retangulo17C) || CheckCollisionRecs(retanguloquinhasC, retangulo18C) || CheckCollisionRecs(retanguloquinhasC,retangulo19C) || CheckCollisionRecs(retanguloquinhasC, retangulo20C) || CheckCollisionRecs(retanguloquinhasC,retangulo21C) || CheckCollisionRecs(retanguloquinhasC,retangulo22C) || CheckCollisionRecs(retanguloquinhasC,retangulo24C) || CheckCollisionRecs(retanguloquinhasC,retangulo25C) || CheckCollisionRecs(retanguloquinhasC,retangulo27C) || CheckCollisionRecs(retanguloquinhasC,retangulo28C) 
-            || CheckCollisionRecs(retanguloquinhasC,retangulo29C) || CheckCollisionRecs(retanguloquinhasC,retangulo30C) || CheckCollisionRecs(retanguloquinhasC,retangulo31C) || CheckCollisionRecs(retanguloquinhasC,retangulo32C) || CheckCollisionRecs(retanguloquinhasC,retangulo33C) || CheckCollisionRecs(retanguloquinhasC,retangulo34C) || CheckCollisionRecs(retanguloquinhasC,retangulo35C) || CheckCollisionRecs(retanguloquinhasC,retangulo37C) || CheckCollisionRecs(retanguloquinhasC,retangulo38C) || CheckCollisionRecs(retanguloquinhasC,retangulo40C))
+            || CheckCollisionRecs(retanguloquinhasC,retangulo29C) || CheckCollisionRecs(retanguloquinhasC,retangulo30C) || CheckCollisionRecs(retanguloquinhasC,retangulo31C) || CheckCollisionRecs(retanguloquinhasC,retangulo32C) || CheckCollisionRecs(retanguloquinhasC,retangulo33C) || CheckCollisionRecs(retanguloquinhasC,retangulo34C) || CheckCollisionRecs(retanguloquinhasC,retangulo35C) || CheckCollisionRecs(retanguloquinhasC,retangulo37C) || CheckCollisionRecs(retanguloquinhasC,retangulo38C) || CheckCollisionRecs(retanguloquinhasC,retangulo40C)
+            || CheckCollisionRecs(retanguloquinhasC,retangulo41C) || CheckCollisionRecs(retanguloquinhasC,retangulo42C) || CheckCollisionRecs(retanguloquinhasC,retangulo43C) || CheckCollisionRecs(retanguloquinhasC,retangulo45C) || CheckCollisionRecs(retanguloquinhasC,retangulo46C))
             {
                 velocidadequinhas.cima = 0;
             }
@@ -798,7 +826,7 @@ int main()
             }
             if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB, retangulo10B) || CheckCollisionRecs(retanguloquinhasB, retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B) || CheckCollisionRecs(retanguloquinhasB, retangulo13B) || CheckCollisionRecs(retanguloquinhasB, retangulo14B) || CheckCollisionRecs(retanguloquinhasB, retangulo16B)
             || CheckCollisionRecs(retanguloquinhasB,retangulo17B) || CheckCollisionRecs(retanguloquinhasB,retangulo18B) || CheckCollisionRecs(retanguloquinhasB,retangulo19B) || CheckCollisionRecs(retanguloquinhasB,retangulo20B) || CheckCollisionRecs(retanguloquinhasB, retangulo21B) || CheckCollisionRecs(retanguloquinhasB,retangulo22B) || CheckCollisionRecs(retanguloquinhasB, retangulo23B) || CheckCollisionRecs(retanguloquinhasB, retangulo25B) || CheckCollisionRecs(retanguloquinhasB, retangulo26B) || CheckCollisionRecs(retanguloquinhasB, retangulo27B) || CheckCollisionRecs(retanguloquinhasB, retangulo29B)
-            || CheckCollisionRecs(retanguloquinhasB, retangulo31B) || CheckCollisionRecs(retanguloquinhasB, retangulo33B) || CheckCollisionRecs(retanguloquinhasB, retangulo35B) || CheckCollisionRecs(retanguloquinhasB, retangulo37B) || CheckCollisionRecs(retanguloquinhasB, retangulo40B))
+            || CheckCollisionRecs(retanguloquinhasB, retangulo31B) || CheckCollisionRecs(retanguloquinhasB, retangulo33B) || CheckCollisionRecs(retanguloquinhasB, retangulo35B) || CheckCollisionRecs(retanguloquinhasB, retangulo37B) || CheckCollisionRecs(retanguloquinhasB, retangulo40B) || CheckCollisionRecs(retanguloquinhasB, retangulo41B) || CheckCollisionRecs(retanguloquinhasB, retangulo42B) || CheckCollisionRecs(retanguloquinhasB, retangulo43B) || CheckCollisionRecs(retanguloquinhasB, retangulo44B) || CheckCollisionRecs(retanguloquinhasB, retangulo45B) || CheckCollisionRecs(retanguloquinhasB, retangulo46B))
             {
                 velocidadequinhas.baixo = 0;
             }
@@ -809,7 +837,7 @@ int main()
             if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE, retangulo11E) || CheckCollisionRecs(retanguloquinhasE, retangulo13E) || CheckCollisionRecs(retanguloquinhasE, retangulo15E) || CheckCollisionRecs(retanguloquinhasE, retangulo16E)
             || CheckCollisionRecs(retanguloquinhasE,retangulo17E) || CheckCollisionRecs(retanguloquinhasE, retangulo18E) || CheckCollisionRecs(retanguloquinhasE,retangulo19E) || CheckCollisionRecs(retanguloquinhasE,retangulo20E) || CheckCollisionRecs(retanguloquinhasE,retangulo21E) || CheckCollisionRecs(retanguloquinhasE,retangulo22E) || CheckCollisionRecs(retanguloquinhasE,retangulo23E) || CheckCollisionRecs(retanguloquinhasE,retangulo24E)
             || CheckCollisionRecs(retanguloquinhasE,retangulo26E) || CheckCollisionRecs(retanguloquinhasE,retangulo27E) || CheckCollisionRecs(retanguloquinhasE,retangulo28E) || CheckCollisionRecs(retanguloquinhasE,retangulo30E) || CheckCollisionRecs(retanguloquinhasE,retangulo32E) || CheckCollisionRecs(retanguloquinhasE,retangulo34E) || CheckCollisionRecs(retanguloquinhasE,retangulo35E) || CheckCollisionRecs(retanguloquinhasE,retangulo36E) 
-            || CheckCollisionRecs(retanguloquinhasE,retangulo37E) || CheckCollisionRecs(retanguloquinhasE,retangulo38E) || CheckCollisionRecs(retanguloquinhasE,retangulo39E))
+            || CheckCollisionRecs(retanguloquinhasE,retangulo37E) || CheckCollisionRecs(retanguloquinhasE,retangulo38E) || CheckCollisionRecs(retanguloquinhasE,retangulo39E) || CheckCollisionRecs(retanguloquinhasE,retangulo41E)  || CheckCollisionRecs(retanguloquinhasE,retangulo42E) || CheckCollisionRecs(retanguloquinhasE,retangulo43E) || CheckCollisionRecs(retanguloquinhasE,retangulo44E) || CheckCollisionRecs(retanguloquinhasE,retangulo46E))
             {
                 velocidadequinhas.esquerda = 0;
             }
