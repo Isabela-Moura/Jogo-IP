@@ -38,7 +38,6 @@ int main()
 
     // Imagem
     Texture2D background = LoadTexture("assets/fundo-menu.png");
-    Texture2D texture = LoadTexture("assets/meJogo.png"); // alteracao do nome para tirar o nome do jogo da tela
     Texture2D textureHowToPlay = LoadTexture("assets/comojogar.png");
     Texture2D textureCredits = LoadTexture("assets/creditos.png");
     Texture2D story = LoadTexture("assets/historia.png");
@@ -49,42 +48,23 @@ int main()
     // Botoes do menu
     int screenHeight = GetScreenHeight();
     int screenWidth = GetScreenWidth();
-    int posXbutton = (screenWidth - 200) / 2;
-    int posYbuttonS = (screenHeight - 200) * 2 / 3;
-    int posYbuttonH = posYbuttonS + 75;
-    int posYbuttonC = posYbuttonH + 75;
-    int posYbuttonE = posYbuttonC + 75;
-    int posYbuttonB = posYbuttonC + 75;
-    Color colorButton = SKYBLUE;
-    Button startButton = {(Rectangle){posXbutton, posYbuttonS, 200, 50}, colorButton, BLUE, "COMEÇAR"};
-    Button howToPLayButton = {(Rectangle){posXbutton, posYbuttonH, 200, 50}, colorButton, BLUE, "COMO JOGAR"};
-    Button creditsButton = {(Rectangle){posXbutton, posYbuttonC, 200, 50}, colorButton, BLUE, "CRÉDITOS"};
-    Button exitButton = {(Rectangle){posXbutton, posYbuttonE, 200, 50}, colorButton, BLUE, "SAIR"};
-    Button backButton = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "VOLTAR"};
-    Button backButtonWin = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "GANHAR DE NOVO"};
-    Button exitButtonWin = {(Rectangle){posXbutton, posYbuttonE, 200, 50}, colorButton, BLUE, "SAIR DO JOGO"};
-    Button backButtonLose = {(Rectangle){posXbutton, posYbuttonB, 200, 50}, colorButton, BLUE, "TENTAR DE NOVO"};
-    Button exitButtonLose = {(Rectangle){posXbutton, posYbuttonE, 200, 50}, colorButton, BLUE, "SAIR DO JOGO"};
-
-    // Animacao de Ana Laura Menu
-    Texture2D anaMenu = LoadTexture("assets/analaura.menu.png");
-    int textureAx = anaMenu.width;
-    int textureAy = anaMenu.height;
-    float posXa = (screenWidth - textureAx) * -1;  // alteracao do valor para tirar quinhas da tela
-    float posYa = (screenHeight - textureAy) * -1; // alteracao do valor para tirar quibhas da tela
-    Vector2 positionAnaMenu = {posXa, posYa};
-    Rectangle frameRecAnaMenu = {0.0f, 0.0f, (float)anaMenu.width / 4, (float)anaMenu.height};
-    int currentFrame = 0;
-    int framesCounter = 0;
-    int framesSpeed = 8;
-    // Animacao de Quinhas Menu
-    Texture2D quinhasMenu = LoadTexture("assets/quinhas.menu.png");
-    int textureQx = quinhasMenu.width;
-    int textureQy = quinhasMenu.height;
-    float posXq = (screenWidth - textureQx) * -1;   // alteracao do valor para tirar analaura da tela
-    float posYq = (screenHeight - textureQy) * -10; // alteracao do valor para tirar analaura da tela
-    Vector2 positionQuinhasMenu = {posXq, posYq};
-    Rectangle frameRecQuinhasMenu = {0.0f, 0.0f, (float)quinhasMenu.width / 4, (float)quinhasMenu.height};
+    int posXbutton = (screenWidth - 400) * 2 / 5;
+    int posYbuttonS = (screenHeight - 400) * 3 / 5;
+    int posYbuttonH = posYbuttonS + 150;
+    int posYbuttonC = posYbuttonH + 150;
+    int posYbuttonE = posYbuttonC + 150;
+    int posXbuttonB = (screenWidth - 400) / 2;
+    int posYbuttonB = posYbuttonC + 150;
+    Color colorButton = RED;
+    Button startButton = {(Rectangle){posXbutton, posYbuttonS, 400, 100}, colorButton, MAROON, "COMEÇAR"};
+    Button howToPLayButton = {(Rectangle){posXbutton, posYbuttonH, 400, 100}, colorButton, MAROON, "COMO JOGAR"};
+    Button creditsButton = {(Rectangle){posXbutton, posYbuttonC, 400, 100}, colorButton, MAROON, "CRÉDITOS"};
+    Button exitButton = {(Rectangle){posXbutton, posYbuttonE, 400, 100}, colorButton, MAROON, "SAIR"};
+    Button backButton = {(Rectangle){posXbuttonB, posYbuttonB, 400, 100}, colorButton, MAROON, "VOLTAR"};
+    Button backButtonWin = {(Rectangle){posXbutton, posYbuttonB, 400, 100}, colorButton, MAROON, "GANHAR DE NOVO"};
+    Button exitButtonWin = {(Rectangle){posXbutton, posYbuttonE, 400, 100}, colorButton, MAROON, "SAIR DO JOGO"};
+    Button backButtonLose = {(Rectangle){posXbutton, posYbuttonB, 400, 100}, colorButton, MAROON, "TENTAR DE NOVO"};
+    Button exitButtonLose = {(Rectangle){posXbutton, posYbuttonE, 400, 100}, colorButton, MAROON, "SAIR DO JOGO"};
 
     // movimentacao ana
     Texture2D anaR = LoadTexture("assets/analaura.direita.png");
@@ -174,22 +154,6 @@ int main()
                 {
                     frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
                     frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
-                }
-            }
-        }
-
-        // Frames das animacões do Menu
-        if (gameState == STATE_MENU)
-        {
-            framesCounter++;
-            if (framesCounter >= (60 / framesSpeed))
-            {
-                framesCounter = 0;
-                currentFrame++;
-                if (currentFrame > 3)
-                {
-                    frameRecAnaMenu.x = (float)currentFrame * (float)anaMenu.width / 4;
-                    frameRecQuinhasMenu.x = (float)currentFrame * (float)quinhasMenu.width / 4;
                 }
             }
         }
@@ -671,149 +635,149 @@ int main()
             Rectangle retangulo16C = {214, 512, 27, 32};
             Rectangle retangulo16E = {214, 512, 32, 29};
             Rectangle retangulo16B = {214, 510, 30, 1};
-            DrawRectangle(213,238,238,34,GREEN);
-            Rectangle retangulo17C = {216,242,232,30};
-            Rectangle retangulo17E = {216,242,235,26};
-            Rectangle retangulo17D = {213,241,1,26};
-            Rectangle retangulo17B = {216,238,232,1};
-            DrawRectangle(418,272,135,34,GREEN);
-            Rectangle retangulo18C = {421,275,129,31};
-            Rectangle retangulo18D = {418,275,1,28};
-            Rectangle retangulo18B = {421,272,129,1};
-            Rectangle retangulo18E = {421,275,132,28};
-            DrawRectangle(520,305,34,102,GREEN);
-            Rectangle retangulo19D = {520,308,1,96};
-            Rectangle retangulo19C = {523,308,28,99};
-            Rectangle retangulo19E = {523,308,31,96};
-            Rectangle retangulo19B = {523,305,28,1};
-            DrawRectangle(555,374,236,34,GREEN);
-            Rectangle retangulo20D = {555,377,1,28};
-            Rectangle retangulo20E = {558,377,233,28};
-            Rectangle retangulo20C = {558,377,230,31};
-            Rectangle retangulo20B = {558,374,230,1};
-            DrawRectangle(621,170,34,136,GREEN);
-            Rectangle retangulo21D = {621,173,1,130};
-            Rectangle retangulo21E = {624,173,31,130};
-            Rectangle retangulo21C = {624,173,28,133};
-            Rectangle retangulo21B = {624,170,28,1};
-            DrawRectangle(656,272,169,34,GREEN);
-            Rectangle retangulo22D = {656,275,1,28};
-            Rectangle retangulo22E = {659,275,166,28};
-            Rectangle retangulo22C = {659,275,163,31};
-            Rectangle retangulo22B = {659,272,163,1};
-            DrawRectangle(792,236,34,36,GREEN);
-            Rectangle retangulo23D = {792,239,1,30};
-            Rectangle retangulo23E = {795,239,31,30};
-            Rectangle retangulo23B = {795,236,28,1};
-            DrawRectangle(757,408,34,100,GREEN);
-            Rectangle retangulo24D = {757,411,1,94};
-            Rectangle retangulo24E = {760,411,31,94};
-            Rectangle retangulo24C = {760,411,28,97};
-            DrawRectangle(450,680,136,34,GREEN);
-            Rectangle retangulo25B = {453,680,130,1};
-            Rectangle retangulo25C = {453,684,130,30};
-            DrawRectangle(588,578,34,373,GREEN);
-            Rectangle retangulo26B = {591,578,28,1};
-            Rectangle retangulo26D = {588,581,1,367};
-            Rectangle retangulo26E = {591,581,31,367};
-            DrawRectangle(621,578,204,34,GREEN);
-            Rectangle retangulo27C = {624,581,198,31};
-            Rectangle retangulo27E = {624,581,201,28};
-            Rectangle retangulo27B = {624,578,198,1};
-            DrawRectangle(1200,167,34,105,GREEN);
-            Rectangle retangulo28E = {1203,170,31,99};
-            Rectangle retangulo28D = {1200,170,1,99};
-            Rectangle retangulo28C = {1203,170,28,102};
-            DrawRectangle(1029,238,170,34,GREEN);
-            Rectangle retangulo29C = {1032,241,164,31};
-            Rectangle retangulo29D = {1029,241,1,28};
-            Rectangle retangulo29B = {1032,238,164,1};
-            DrawRectangle(1029,272,34,66,GREEN);
-            Rectangle retangulo30E = {1032,275,31,60};
-            Rectangle retangulo30C = {1032,275,28,63};
-            DrawRectangle(894,305,135,34,GREEN);
-            Rectangle retangulo31D = {894,308,1,28};
-            Rectangle retangulo31B = {897,305,129,1};
-            Rectangle retangulo31C = {897,308,129,31};
-            DrawRectangle(894,339,34,375,GREEN);
-            Rectangle retangulo32D = {894,342,1,369};
-            Rectangle retangulo32E = {897,342,31,369};
-            Rectangle retangulo32C = {897,342,28,372};
-            DrawRectangle(690,680,204,34,GREEN);
-            Rectangle retangulo33D = {690,683,1,28};
-            Rectangle retangulo33B = {693,680,198,1};
-            Rectangle retangulo33C = {693,683,198,31};
-            DrawRectangle(690,714,34,170,GREEN);
-            Rectangle retangulo34D = {690,717,1,164};
-            Rectangle retangulo34E = {693,717,31,164};
-            Rectangle retangulo34C = {693,717,28,167};
-            DrawRectangle(724,850,237,34,GREEN);
-            Rectangle retangulo35B = {727,850,231,1};
-            Rectangle retangulo35C = {727,853,231,31};
-            Rectangle retangulo35E = {727,853,234,28};
-            DrawRectangle(927,781,34,71,GREEN);
-            Rectangle retangulo36E = {930,784,31,65};
-            Rectangle retangulo36D = {927,784,1,65};
-            DrawRectangle(927,781,409,34,GREEN);
-            Rectangle retangulo37E = {930,784,406,28};
-            Rectangle retangulo37C = {930,784,400,31};
-            Rectangle retangulo37B = {930,781,400,1};
-            DrawRectangle(1301,815,34,69,GREEN);
-            Rectangle retangulo38D = {1301,818,1,63};
-            Rectangle retangulo38E = {1304,818,31,63};
-            Rectangle retangulo38C = {1304,818,28,66};
-            DrawRectangle(996,476,34,305,GREEN);
-            Rectangle retangulo39D = {996,479,1,299};
-            Rectangle retangulo39E = {999,479,31,299};
-            DrawRectangle(996,476,136,34,GREEN);
-            Rectangle retangulo40C = {999,479,130,31};
-            Rectangle retangulo40B = {999,476,130,1};
-            DrawRectangle(1131,341,34,168,GREEN);
-            Rectangle retangulo41E = {1134,344,31,162};
-            Rectangle retangulo41D = {1131,344,1,162};
-            Rectangle retangulo41C = {1134,344,28,165};
-            Rectangle retangulo41B = {1134,341,28,1};
-            DrawRectangle(1165,340,205,34,GREEN);
-            Rectangle retangulo42B = {1168,340,199,1};
-            Rectangle retangulo42C = {1168,343,199,31};
-            Rectangle retangulo42E = {1168,343,202,28};
-            DrawRectangle(1336,239,34,102,GREEN);
-            Rectangle retangulo43D = {1336,242,1,96};
-            Rectangle retangulo43E = {1339,242,31,96};
-            Rectangle retangulo43B = {1339,239,28,1};
-            Rectangle retangulo43C = {1339,242,28,99};
-            DrawRectangle(1404,680,34,272,GREEN);
-            Rectangle retangulo44B = {1407,680,28,1};
-            Rectangle retangulo44D = {1404,683,1,266};
-            Rectangle retangulo44E = {1407,683,31,266};
-            DrawRectangle(1131,680,273,34,GREEN);
-            Rectangle retangulo45B = {1134,680,267,1};
-            Rectangle retangulo45C = {1134,683,267,31};
-            DrawRectangle(1098,578,34,136,GREEN);
-            Rectangle retangulo46D = {1098,581,1,130};
-            Rectangle retangulo46E = {1101,581,31,130};
-            Rectangle retangulo46C = {1101,581,28,133};
-            Rectangle retangulo46B = {1101,578,28,1};
-            DrawRectangle(1131,578,135,34,GREEN);
-            Rectangle retangulo47E = {1134,581,132,28};
-            Rectangle retangulo47B = {1134,578,129,1};
-            Rectangle retangulo47C = {1134,581,129,31};
-            DrawRectangle(1233,476,34,102,GREEN);
-            Rectangle retangulo48D = {1233,479,1,96};
-            Rectangle retangulo48E = {1236,479,31,96};
-            Rectangle retangulo48B = {1236,476,28,1};
-            DrawRectangle(1267,476,272,34,GREEN);
-            Rectangle retangulo49B = {1270,476,266,1};
-            Rectangle retangulo49C = {1270,479,266,31};
-            DrawRectangle(1505,476,34,408,GREEN);
-            Rectangle retangulo50D = {1505,479,1,402};
-            Rectangle retangulo50E = {1508,479,31,402};
-            Rectangle retangulo50B = {1508,476,28,1};
-            Rectangle retangulo50C = {1508,479,28,405};
-            DrawRectangle(1539,850,34,34,GREEN);
-            Rectangle retangulo51B = {1542,850,28,1};
-            Rectangle retangulo51C = {1542,853,28,31};
-            Rectangle retangulo51E = {1542,853,31,28};
+            DrawRectangle(213, 238, 238, 34, GREEN);
+            Rectangle retangulo17C = {216, 242, 232, 30};
+            Rectangle retangulo17E = {216, 242, 235, 26};
+            Rectangle retangulo17D = {213, 241, 1, 26};
+            Rectangle retangulo17B = {216, 238, 232, 1};
+            DrawRectangle(418, 272, 135, 34, GREEN);
+            Rectangle retangulo18C = {421, 275, 129, 31};
+            Rectangle retangulo18D = {418, 275, 1, 28};
+            Rectangle retangulo18B = {421, 272, 129, 1};
+            Rectangle retangulo18E = {421, 275, 132, 28};
+            DrawRectangle(520, 305, 34, 102, GREEN);
+            Rectangle retangulo19D = {520, 308, 1, 96};
+            Rectangle retangulo19C = {523, 308, 28, 99};
+            Rectangle retangulo19E = {523, 308, 31, 96};
+            Rectangle retangulo19B = {523, 305, 28, 1};
+            DrawRectangle(555, 374, 236, 34, GREEN);
+            Rectangle retangulo20D = {555, 377, 1, 28};
+            Rectangle retangulo20E = {558, 377, 233, 28};
+            Rectangle retangulo20C = {558, 377, 230, 31};
+            Rectangle retangulo20B = {558, 374, 230, 1};
+            DrawRectangle(621, 170, 34, 136, GREEN);
+            Rectangle retangulo21D = {621, 173, 1, 130};
+            Rectangle retangulo21E = {624, 173, 31, 130};
+            Rectangle retangulo21C = {624, 173, 28, 133};
+            Rectangle retangulo21B = {624, 170, 28, 1};
+            DrawRectangle(656, 272, 169, 34, GREEN);
+            Rectangle retangulo22D = {656, 275, 1, 28};
+            Rectangle retangulo22E = {659, 275, 166, 28};
+            Rectangle retangulo22C = {659, 275, 163, 31};
+            Rectangle retangulo22B = {659, 272, 163, 1};
+            DrawRectangle(792, 236, 34, 36, GREEN);
+            Rectangle retangulo23D = {792, 239, 1, 30};
+            Rectangle retangulo23E = {795, 239, 31, 30};
+            Rectangle retangulo23B = {795, 236, 28, 1};
+            DrawRectangle(757, 408, 34, 100, GREEN);
+            Rectangle retangulo24D = {757, 411, 1, 94};
+            Rectangle retangulo24E = {760, 411, 31, 94};
+            Rectangle retangulo24C = {760, 411, 28, 97};
+            DrawRectangle(450, 680, 136, 34, GREEN);
+            Rectangle retangulo25B = {453, 680, 130, 1};
+            Rectangle retangulo25C = {453, 684, 130, 30};
+            DrawRectangle(588, 578, 34, 373, GREEN);
+            Rectangle retangulo26B = {591, 578, 28, 1};
+            Rectangle retangulo26D = {588, 581, 1, 367};
+            Rectangle retangulo26E = {591, 581, 31, 367};
+            DrawRectangle(621, 578, 204, 34, GREEN);
+            Rectangle retangulo27C = {624, 581, 198, 31};
+            Rectangle retangulo27E = {624, 581, 201, 28};
+            Rectangle retangulo27B = {624, 578, 198, 1};
+            DrawRectangle(1200, 167, 34, 105, GREEN);
+            Rectangle retangulo28E = {1203, 170, 31, 99};
+            Rectangle retangulo28D = {1200, 170, 1, 99};
+            Rectangle retangulo28C = {1203, 170, 28, 102};
+            DrawRectangle(1029, 238, 170, 34, GREEN);
+            Rectangle retangulo29C = {1032, 241, 164, 31};
+            Rectangle retangulo29D = {1029, 241, 1, 28};
+            Rectangle retangulo29B = {1032, 238, 164, 1};
+            DrawRectangle(1029, 272, 34, 66, GREEN);
+            Rectangle retangulo30E = {1032, 275, 31, 60};
+            Rectangle retangulo30C = {1032, 275, 28, 63};
+            DrawRectangle(894, 305, 135, 34, GREEN);
+            Rectangle retangulo31D = {894, 308, 1, 28};
+            Rectangle retangulo31B = {897, 305, 129, 1};
+            Rectangle retangulo31C = {897, 308, 129, 31};
+            DrawRectangle(894, 339, 34, 375, GREEN);
+            Rectangle retangulo32D = {894, 342, 1, 369};
+            Rectangle retangulo32E = {897, 342, 31, 369};
+            Rectangle retangulo32C = {897, 342, 28, 372};
+            DrawRectangle(690, 680, 204, 34, GREEN);
+            Rectangle retangulo33D = {690, 683, 1, 28};
+            Rectangle retangulo33B = {693, 680, 198, 1};
+            Rectangle retangulo33C = {693, 683, 198, 31};
+            DrawRectangle(690, 714, 34, 170, GREEN);
+            Rectangle retangulo34D = {690, 717, 1, 164};
+            Rectangle retangulo34E = {693, 717, 31, 164};
+            Rectangle retangulo34C = {693, 717, 28, 167};
+            DrawRectangle(724, 850, 237, 34, GREEN);
+            Rectangle retangulo35B = {727, 850, 231, 1};
+            Rectangle retangulo35C = {727, 853, 231, 31};
+            Rectangle retangulo35E = {727, 853, 234, 28};
+            DrawRectangle(927, 781, 34, 71, GREEN);
+            Rectangle retangulo36E = {930, 784, 31, 65};
+            Rectangle retangulo36D = {927, 784, 1, 65};
+            DrawRectangle(927, 781, 409, 34, GREEN);
+            Rectangle retangulo37E = {930, 784, 406, 28};
+            Rectangle retangulo37C = {930, 784, 400, 31};
+            Rectangle retangulo37B = {930, 781, 400, 1};
+            DrawRectangle(1301, 815, 34, 69, GREEN);
+            Rectangle retangulo38D = {1301, 818, 1, 63};
+            Rectangle retangulo38E = {1304, 818, 31, 63};
+            Rectangle retangulo38C = {1304, 818, 28, 66};
+            DrawRectangle(996, 476, 34, 305, GREEN);
+            Rectangle retangulo39D = {996, 479, 1, 299};
+            Rectangle retangulo39E = {999, 479, 31, 299};
+            DrawRectangle(996, 476, 136, 34, GREEN);
+            Rectangle retangulo40C = {999, 479, 130, 31};
+            Rectangle retangulo40B = {999, 476, 130, 1};
+            DrawRectangle(1131, 341, 34, 168, GREEN);
+            Rectangle retangulo41E = {1134, 344, 31, 162};
+            Rectangle retangulo41D = {1131, 344, 1, 162};
+            Rectangle retangulo41C = {1134, 344, 28, 165};
+            Rectangle retangulo41B = {1134, 341, 28, 1};
+            DrawRectangle(1165, 340, 205, 34, GREEN);
+            Rectangle retangulo42B = {1168, 340, 199, 1};
+            Rectangle retangulo42C = {1168, 343, 199, 31};
+            Rectangle retangulo42E = {1168, 343, 202, 28};
+            DrawRectangle(1336, 239, 34, 102, GREEN);
+            Rectangle retangulo43D = {1336, 242, 1, 96};
+            Rectangle retangulo43E = {1339, 242, 31, 96};
+            Rectangle retangulo43B = {1339, 239, 28, 1};
+            Rectangle retangulo43C = {1339, 242, 28, 99};
+            DrawRectangle(1404, 680, 34, 272, GREEN);
+            Rectangle retangulo44B = {1407, 680, 28, 1};
+            Rectangle retangulo44D = {1404, 683, 1, 266};
+            Rectangle retangulo44E = {1407, 683, 31, 266};
+            DrawRectangle(1131, 680, 273, 34, GREEN);
+            Rectangle retangulo45B = {1134, 680, 267, 1};
+            Rectangle retangulo45C = {1134, 683, 267, 31};
+            DrawRectangle(1098, 578, 34, 136, GREEN);
+            Rectangle retangulo46D = {1098, 581, 1, 130};
+            Rectangle retangulo46E = {1101, 581, 31, 130};
+            Rectangle retangulo46C = {1101, 581, 28, 133};
+            Rectangle retangulo46B = {1101, 578, 28, 1};
+            DrawRectangle(1131, 578, 135, 34, GREEN);
+            Rectangle retangulo47E = {1134, 581, 132, 28};
+            Rectangle retangulo47B = {1134, 578, 129, 1};
+            Rectangle retangulo47C = {1134, 581, 129, 31};
+            DrawRectangle(1233, 476, 34, 102, GREEN);
+            Rectangle retangulo48D = {1233, 479, 1, 96};
+            Rectangle retangulo48E = {1236, 479, 31, 96};
+            Rectangle retangulo48B = {1236, 476, 28, 1};
+            DrawRectangle(1267, 476, 272, 34, GREEN);
+            Rectangle retangulo49B = {1270, 476, 266, 1};
+            Rectangle retangulo49C = {1270, 479, 266, 31};
+            DrawRectangle(1505, 476, 34, 408, GREEN);
+            Rectangle retangulo50D = {1505, 479, 1, 402};
+            Rectangle retangulo50E = {1508, 479, 31, 402};
+            Rectangle retangulo50B = {1508, 476, 28, 1};
+            Rectangle retangulo50C = {1508, 479, 28, 405};
+            DrawRectangle(1539, 850, 34, 34, GREEN);
+            Rectangle retangulo51B = {1542, 850, 28, 1};
+            Rectangle retangulo51C = {1542, 853, 28, 31};
+            Rectangle retangulo51E = {1542, 853, 31, 28};
             // retangulos para saber a width e height de quinhas na hora da colisao, um pra cada direcao
             Rectangle retanguloquinhasB = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasD.width / 4, quinhasD.height};
             Rectangle retanguloquinhasC = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasU.width / 4, quinhasU.height};
@@ -821,11 +785,7 @@ int main()
             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
             Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width / 4, quinhasL.height};
             // colisoes
-            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D)
-             || CheckCollisionRecs(retanguloquinhasD, retangulo17D) || CheckCollisionRecs(retanguloquinhasD,retangulo18D) || CheckCollisionRecs(retanguloquinhasD,retangulo19D) || CheckCollisionRecs(retanguloquinhasD,retangulo20D) || CheckCollisionRecs(retanguloquinhasD,retangulo21D) || CheckCollisionRecs(retanguloquinhasD,retangulo22D) || CheckCollisionRecs(retanguloquinhasD,retangulo23D)
-             || CheckCollisionRecs(retanguloquinhasD, retangulo24D) || CheckCollisionRecs(retanguloquinhasD, retangulo26D) || CheckCollisionRecs(retanguloquinhasD, retangulo28D) || CheckCollisionRecs(retanguloquinhasD, retangulo29D) || CheckCollisionRecs(retanguloquinhasD,retangulo31D) || CheckCollisionRecs(retanguloquinhasD,retangulo32D) || CheckCollisionRecs(retanguloquinhasD,retangulo33D)
-             || CheckCollisionRecs(retanguloquinhasD,retangulo34D) || CheckCollisionRecs(retanguloquinhasD,retangulo36D) || CheckCollisionRecs(retanguloquinhasD,retangulo38D) || CheckCollisionRecs(retanguloquinhasD,retangulo39D) || CheckCollisionRecs(retanguloquinhasD,retangulo41D) || CheckCollisionRecs(retanguloquinhasD,retangulo43D) || CheckCollisionRecs(retanguloquinhasD,retangulo44D) 
-             || CheckCollisionRecs(retanguloquinhasD,retangulo46D) || CheckCollisionRecs(retanguloquinhasD,retangulo48D) || CheckCollisionRecs(retanguloquinhasD,retangulo50D))
+            if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D) || CheckCollisionRecs(retanguloquinhasD, retangulo17D) || CheckCollisionRecs(retanguloquinhasD, retangulo18D) || CheckCollisionRecs(retanguloquinhasD, retangulo19D) || CheckCollisionRecs(retanguloquinhasD, retangulo20D) || CheckCollisionRecs(retanguloquinhasD, retangulo21D) || CheckCollisionRecs(retanguloquinhasD, retangulo22D) || CheckCollisionRecs(retanguloquinhasD, retangulo23D) || CheckCollisionRecs(retanguloquinhasD, retangulo24D) || CheckCollisionRecs(retanguloquinhasD, retangulo26D) || CheckCollisionRecs(retanguloquinhasD, retangulo28D) || CheckCollisionRecs(retanguloquinhasD, retangulo29D) || CheckCollisionRecs(retanguloquinhasD, retangulo31D) || CheckCollisionRecs(retanguloquinhasD, retangulo32D) || CheckCollisionRecs(retanguloquinhasD, retangulo33D) || CheckCollisionRecs(retanguloquinhasD, retangulo34D) || CheckCollisionRecs(retanguloquinhasD, retangulo36D) || CheckCollisionRecs(retanguloquinhasD, retangulo38D) || CheckCollisionRecs(retanguloquinhasD, retangulo39D) || CheckCollisionRecs(retanguloquinhasD, retangulo41D) || CheckCollisionRecs(retanguloquinhasD, retangulo43D) || CheckCollisionRecs(retanguloquinhasD, retangulo44D) || CheckCollisionRecs(retanguloquinhasD, retangulo46D) || CheckCollisionRecs(retanguloquinhasD, retangulo48D) || CheckCollisionRecs(retanguloquinhasD, retangulo50D))
             {
                 velocidadequinhas.direita = 0;
             }
@@ -833,10 +793,7 @@ int main()
             {
                 velocidadequinhas.direita = 3;
             }
-            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C) || CheckCollisionRecs(retanguloquinhasC, retangulo12C) || CheckCollisionRecs(retanguloquinhasC, retangulo14C) || CheckCollisionRecs(retanguloquinhasC, retangulo15C) || CheckCollisionRecs(retanguloquinhasC, retangulo16C)
-            || CheckCollisionRecs(retanguloquinhasC, retangulo17C) || CheckCollisionRecs(retanguloquinhasC, retangulo18C) || CheckCollisionRecs(retanguloquinhasC,retangulo19C) || CheckCollisionRecs(retanguloquinhasC, retangulo20C) || CheckCollisionRecs(retanguloquinhasC,retangulo21C) || CheckCollisionRecs(retanguloquinhasC,retangulo22C) || CheckCollisionRecs(retanguloquinhasC,retangulo24C) || CheckCollisionRecs(retanguloquinhasC,retangulo25C) || CheckCollisionRecs(retanguloquinhasC,retangulo27C) || CheckCollisionRecs(retanguloquinhasC,retangulo28C) 
-            || CheckCollisionRecs(retanguloquinhasC,retangulo29C) || CheckCollisionRecs(retanguloquinhasC,retangulo30C) || CheckCollisionRecs(retanguloquinhasC,retangulo31C) || CheckCollisionRecs(retanguloquinhasC,retangulo32C) || CheckCollisionRecs(retanguloquinhasC,retangulo33C) || CheckCollisionRecs(retanguloquinhasC,retangulo34C) || CheckCollisionRecs(retanguloquinhasC,retangulo35C) || CheckCollisionRecs(retanguloquinhasC,retangulo37C) || CheckCollisionRecs(retanguloquinhasC,retangulo38C) || CheckCollisionRecs(retanguloquinhasC,retangulo40C)
-            || CheckCollisionRecs(retanguloquinhasC,retangulo41C) || CheckCollisionRecs(retanguloquinhasC,retangulo42C) || CheckCollisionRecs(retanguloquinhasC,retangulo43C) || CheckCollisionRecs(retanguloquinhasC,retangulo45C) || CheckCollisionRecs(retanguloquinhasC,retangulo46C) || CheckCollisionRecs(retanguloquinhasC,retangulo47C) || CheckCollisionRecs(retanguloquinhasC,retangulo49C) || CheckCollisionRecs(retanguloquinhasC,retangulo50C) || CheckCollisionRecs(retanguloquinhasC,retangulo51C))
+            if (CheckCollisionRecs(retanguloquinhasC, retangulo2) || CheckCollisionRecs(retanguloquinhasC, retangulo6) || CheckCollisionRecs(retanguloquinhasC, retangulo7C) || CheckCollisionRecs(retanguloquinhasC, retangulo9C) || CheckCollisionRecs(retanguloquinhasC, retangulo10C) || CheckCollisionRecs(retanguloquinhasC, retangulo11C) || CheckCollisionRecs(retanguloquinhasC, retangulo12C) || CheckCollisionRecs(retanguloquinhasC, retangulo14C) || CheckCollisionRecs(retanguloquinhasC, retangulo15C) || CheckCollisionRecs(retanguloquinhasC, retangulo16C) || CheckCollisionRecs(retanguloquinhasC, retangulo17C) || CheckCollisionRecs(retanguloquinhasC, retangulo18C) || CheckCollisionRecs(retanguloquinhasC, retangulo19C) || CheckCollisionRecs(retanguloquinhasC, retangulo20C) || CheckCollisionRecs(retanguloquinhasC, retangulo21C) || CheckCollisionRecs(retanguloquinhasC, retangulo22C) || CheckCollisionRecs(retanguloquinhasC, retangulo24C) || CheckCollisionRecs(retanguloquinhasC, retangulo25C) || CheckCollisionRecs(retanguloquinhasC, retangulo27C) || CheckCollisionRecs(retanguloquinhasC, retangulo28C) || CheckCollisionRecs(retanguloquinhasC, retangulo29C) || CheckCollisionRecs(retanguloquinhasC, retangulo30C) || CheckCollisionRecs(retanguloquinhasC, retangulo31C) || CheckCollisionRecs(retanguloquinhasC, retangulo32C) || CheckCollisionRecs(retanguloquinhasC, retangulo33C) || CheckCollisionRecs(retanguloquinhasC, retangulo34C) || CheckCollisionRecs(retanguloquinhasC, retangulo35C) || CheckCollisionRecs(retanguloquinhasC, retangulo37C) || CheckCollisionRecs(retanguloquinhasC, retangulo38C) || CheckCollisionRecs(retanguloquinhasC, retangulo40C) || CheckCollisionRecs(retanguloquinhasC, retangulo41C) || CheckCollisionRecs(retanguloquinhasC, retangulo42C) || CheckCollisionRecs(retanguloquinhasC, retangulo43C) || CheckCollisionRecs(retanguloquinhasC, retangulo45C) || CheckCollisionRecs(retanguloquinhasC, retangulo46C) || CheckCollisionRecs(retanguloquinhasC, retangulo47C) || CheckCollisionRecs(retanguloquinhasC, retangulo49C) || CheckCollisionRecs(retanguloquinhasC, retangulo50C) || CheckCollisionRecs(retanguloquinhasC, retangulo51C))
             {
                 velocidadequinhas.cima = 0;
             }
@@ -844,10 +801,7 @@ int main()
             {
                 velocidadequinhas.cima = 3;
             }
-            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB, retangulo10B) || CheckCollisionRecs(retanguloquinhasB, retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B) || CheckCollisionRecs(retanguloquinhasB, retangulo13B) || CheckCollisionRecs(retanguloquinhasB, retangulo14B) || CheckCollisionRecs(retanguloquinhasB, retangulo16B)
-            || CheckCollisionRecs(retanguloquinhasB,retangulo17B) || CheckCollisionRecs(retanguloquinhasB,retangulo18B) || CheckCollisionRecs(retanguloquinhasB,retangulo19B) || CheckCollisionRecs(retanguloquinhasB,retangulo20B) || CheckCollisionRecs(retanguloquinhasB, retangulo21B) || CheckCollisionRecs(retanguloquinhasB,retangulo22B) || CheckCollisionRecs(retanguloquinhasB, retangulo23B) || CheckCollisionRecs(retanguloquinhasB, retangulo25B) || CheckCollisionRecs(retanguloquinhasB, retangulo26B) || CheckCollisionRecs(retanguloquinhasB, retangulo27B) || CheckCollisionRecs(retanguloquinhasB, retangulo29B)
-            || CheckCollisionRecs(retanguloquinhasB, retangulo31B) || CheckCollisionRecs(retanguloquinhasB, retangulo33B) || CheckCollisionRecs(retanguloquinhasB, retangulo35B) || CheckCollisionRecs(retanguloquinhasB, retangulo37B) || CheckCollisionRecs(retanguloquinhasB, retangulo40B) || CheckCollisionRecs(retanguloquinhasB, retangulo41B) || CheckCollisionRecs(retanguloquinhasB, retangulo42B) || CheckCollisionRecs(retanguloquinhasB, retangulo43B) || CheckCollisionRecs(retanguloquinhasB, retangulo44B) || CheckCollisionRecs(retanguloquinhasB, retangulo45B) || CheckCollisionRecs(retanguloquinhasB, retangulo46B)
-            || CheckCollisionRecs(retanguloquinhasB, retangulo47B) || CheckCollisionRecs(retanguloquinhasB, retangulo48B) || CheckCollisionRecs(retanguloquinhasB, retangulo49B) || CheckCollisionRecs(retanguloquinhasB, retangulo50B) || CheckCollisionRecs(retanguloquinhasB, retangulo51B))
+            if (CheckCollisionRecs(retanguloquinhasB, retangulo4) || CheckCollisionRecs(retanguloquinhasB, retangulo5) || CheckCollisionRecs(retanguloquinhasB, retangulo8C) || CheckCollisionRecs(retanguloquinhasB, retangulo9B) || CheckCollisionRecs(retanguloquinhasB, retangulo7B) || CheckCollisionRecs(retanguloquinhasB, retangulo10B) || CheckCollisionRecs(retanguloquinhasB, retangulo11B) || CheckCollisionRecs(retanguloquinhasB, retangulo12B) || CheckCollisionRecs(retanguloquinhasB, retangulo13B) || CheckCollisionRecs(retanguloquinhasB, retangulo14B) || CheckCollisionRecs(retanguloquinhasB, retangulo16B) || CheckCollisionRecs(retanguloquinhasB, retangulo17B) || CheckCollisionRecs(retanguloquinhasB, retangulo18B) || CheckCollisionRecs(retanguloquinhasB, retangulo19B) || CheckCollisionRecs(retanguloquinhasB, retangulo20B) || CheckCollisionRecs(retanguloquinhasB, retangulo21B) || CheckCollisionRecs(retanguloquinhasB, retangulo22B) || CheckCollisionRecs(retanguloquinhasB, retangulo23B) || CheckCollisionRecs(retanguloquinhasB, retangulo25B) || CheckCollisionRecs(retanguloquinhasB, retangulo26B) || CheckCollisionRecs(retanguloquinhasB, retangulo27B) || CheckCollisionRecs(retanguloquinhasB, retangulo29B) || CheckCollisionRecs(retanguloquinhasB, retangulo31B) || CheckCollisionRecs(retanguloquinhasB, retangulo33B) || CheckCollisionRecs(retanguloquinhasB, retangulo35B) || CheckCollisionRecs(retanguloquinhasB, retangulo37B) || CheckCollisionRecs(retanguloquinhasB, retangulo40B) || CheckCollisionRecs(retanguloquinhasB, retangulo41B) || CheckCollisionRecs(retanguloquinhasB, retangulo42B) || CheckCollisionRecs(retanguloquinhasB, retangulo43B) || CheckCollisionRecs(retanguloquinhasB, retangulo44B) || CheckCollisionRecs(retanguloquinhasB, retangulo45B) || CheckCollisionRecs(retanguloquinhasB, retangulo46B) || CheckCollisionRecs(retanguloquinhasB, retangulo47B) || CheckCollisionRecs(retanguloquinhasB, retangulo48B) || CheckCollisionRecs(retanguloquinhasB, retangulo49B) || CheckCollisionRecs(retanguloquinhasB, retangulo50B) || CheckCollisionRecs(retanguloquinhasB, retangulo51B))
             {
                 velocidadequinhas.baixo = 0;
             }
@@ -855,11 +809,7 @@ int main()
             {
                 velocidadequinhas.baixo = 3;
             }
-            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE, retangulo11E) || CheckCollisionRecs(retanguloquinhasE, retangulo13E) || CheckCollisionRecs(retanguloquinhasE, retangulo15E) || CheckCollisionRecs(retanguloquinhasE, retangulo16E)
-            || CheckCollisionRecs(retanguloquinhasE,retangulo17E) || CheckCollisionRecs(retanguloquinhasE, retangulo18E) || CheckCollisionRecs(retanguloquinhasE,retangulo19E) || CheckCollisionRecs(retanguloquinhasE,retangulo20E) || CheckCollisionRecs(retanguloquinhasE,retangulo21E) || CheckCollisionRecs(retanguloquinhasE,retangulo22E) || CheckCollisionRecs(retanguloquinhasE,retangulo23E) || CheckCollisionRecs(retanguloquinhasE,retangulo24E)
-            || CheckCollisionRecs(retanguloquinhasE,retangulo26E) || CheckCollisionRecs(retanguloquinhasE,retangulo27E) || CheckCollisionRecs(retanguloquinhasE,retangulo28E) || CheckCollisionRecs(retanguloquinhasE,retangulo30E) || CheckCollisionRecs(retanguloquinhasE,retangulo32E) || CheckCollisionRecs(retanguloquinhasE,retangulo34E) || CheckCollisionRecs(retanguloquinhasE,retangulo35E) || CheckCollisionRecs(retanguloquinhasE,retangulo36E) 
-            || CheckCollisionRecs(retanguloquinhasE,retangulo37E) || CheckCollisionRecs(retanguloquinhasE,retangulo38E) || CheckCollisionRecs(retanguloquinhasE,retangulo39E) || CheckCollisionRecs(retanguloquinhasE,retangulo41E)  || CheckCollisionRecs(retanguloquinhasE,retangulo42E) || CheckCollisionRecs(retanguloquinhasE,retangulo43E) || CheckCollisionRecs(retanguloquinhasE,retangulo44E) || CheckCollisionRecs(retanguloquinhasE,retangulo46E)
-            || CheckCollisionRecs(retanguloquinhasE,retangulo47E) || CheckCollisionRecs(retanguloquinhasE,retangulo48E) || CheckCollisionRecs(retanguloquinhasE,retangulo50E) || CheckCollisionRecs(retanguloquinhasE,retangulo51E))
+            if (CheckCollisionRecs(retanguloquinhasE, retangulo1) || CheckCollisionRecs(retanguloquinhasE, retangulo8E) || CheckCollisionRecs(retanguloquinhasE, retangulo9E) || CheckCollisionRecs(retanguloquinhasE, retangulo7E) || CheckCollisionRecs(retanguloquinhasE, retangulo11E) || CheckCollisionRecs(retanguloquinhasE, retangulo13E) || CheckCollisionRecs(retanguloquinhasE, retangulo15E) || CheckCollisionRecs(retanguloquinhasE, retangulo16E) || CheckCollisionRecs(retanguloquinhasE, retangulo17E) || CheckCollisionRecs(retanguloquinhasE, retangulo18E) || CheckCollisionRecs(retanguloquinhasE, retangulo19E) || CheckCollisionRecs(retanguloquinhasE, retangulo20E) || CheckCollisionRecs(retanguloquinhasE, retangulo21E) || CheckCollisionRecs(retanguloquinhasE, retangulo22E) || CheckCollisionRecs(retanguloquinhasE, retangulo23E) || CheckCollisionRecs(retanguloquinhasE, retangulo24E) || CheckCollisionRecs(retanguloquinhasE, retangulo26E) || CheckCollisionRecs(retanguloquinhasE, retangulo27E) || CheckCollisionRecs(retanguloquinhasE, retangulo28E) || CheckCollisionRecs(retanguloquinhasE, retangulo30E) || CheckCollisionRecs(retanguloquinhasE, retangulo32E) || CheckCollisionRecs(retanguloquinhasE, retangulo34E) || CheckCollisionRecs(retanguloquinhasE, retangulo35E) || CheckCollisionRecs(retanguloquinhasE, retangulo36E) || CheckCollisionRecs(retanguloquinhasE, retangulo37E) || CheckCollisionRecs(retanguloquinhasE, retangulo38E) || CheckCollisionRecs(retanguloquinhasE, retangulo39E) || CheckCollisionRecs(retanguloquinhasE, retangulo41E) || CheckCollisionRecs(retanguloquinhasE, retangulo42E) || CheckCollisionRecs(retanguloquinhasE, retangulo43E) || CheckCollisionRecs(retanguloquinhasE, retangulo44E) || CheckCollisionRecs(retanguloquinhasE, retangulo46E) || CheckCollisionRecs(retanguloquinhasE, retangulo47E) || CheckCollisionRecs(retanguloquinhasE, retangulo48E) || CheckCollisionRecs(retanguloquinhasE, retangulo50E) || CheckCollisionRecs(retanguloquinhasE, retangulo51E))
             {
                 velocidadequinhas.esquerda = 0;
             }
@@ -930,16 +880,11 @@ int main()
         // Desenho
         BeginDrawing();
         DrawBase();
-        if (gameState == STATE_MENU)
-        {
-            DrawTexture(background, 0, 0, WHITE);
-        }
-
         switch (gameState)
         {
         case STATE_MENU:
             // Menu
-            ShowMenu(screenWidth, screenHeight, texture, anaMenu, frameRecAnaMenu, positionAnaMenu, quinhasMenu, frameRecQuinhasMenu, positionQuinhasMenu, startButton, howToPLayButton, creditsButton, exitButton);
+            ShowMenu(background, startButton, howToPLayButton, creditsButton, exitButton);
             break;
         case STATE_STORY:
             // Historia inicial
@@ -1022,7 +967,6 @@ int main()
     UnloadTexture(anaL);
     UnloadTexture(anaD);
     // Descarregamento das texturas
-    UnloadTexture(texture);
     UnloadTexture(textureHowToPlay);
     UnloadTexture(textureCredits);
     UnloadTexture(textureP);
