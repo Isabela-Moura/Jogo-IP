@@ -28,7 +28,7 @@ void DrawBorders(int borderWidth1, int borderWidth2, int borderWidth3, Color col
 void DrawBase()
 {
     ClearBackground(BLACK);
-    DrawBorders(8, 5, 5, SKYBLUE, BLACK, SKYBLUE);
+    DrawBorders(8, 5, 5, RED, BLACK, RED);
 }
 
 void DrawButton(Button button, int borderWidth1, Color borderColor1, int borderWidth2, Color borderColor2)

@@ -49,7 +49,7 @@ int main()
     int screenHeight = GetScreenHeight();
     int screenWidth = GetScreenWidth();
     int posXbutton = (screenWidth - 400) * 2 / 5;
-    int posYbuttonS = (screenHeight - 400) * 3 / 5;
+    int posYbuttonS = (screenHeight - 400) * 1 / 5;
     int posYbuttonH = posYbuttonS + 150;
     int posYbuttonC = posYbuttonH + 150;
     int posYbuttonE = posYbuttonC + 150;
