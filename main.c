@@ -30,7 +30,7 @@ int main()
     // Musica
     InitAudioDevice();
     Music music = LoadMusicStream("assets/music.mp3");
-    music.looping = false;
+    music.looping = true;
     PlayMusicStream(music);
 
     // Fonte
@@ -48,23 +48,23 @@ int main()
     // Botoes do menu
     int screenHeight = GetScreenHeight();
     int screenWidth = GetScreenWidth();
-    int posXbutton = (screenWidth - 400) * 2 / 5;
-    int posYbuttonS = (screenHeight - 400) * 1 / 5;
-    int posYbuttonH = posYbuttonS + 150;
-    int posYbuttonC = posYbuttonH + 150;
-    int posYbuttonE = posYbuttonC + 150;
-    int posXbuttonB = (screenWidth - 400) / 2;
-    int posYbuttonB = posYbuttonC + 150;
+    int posXbutton = (screenWidth - 300) * 2 / 5;
+    int posYbuttonS = (screenHeight - 300) * 1 / 5;
+    int posYbuttonH = posYbuttonS + 125;
+    int posYbuttonC = posYbuttonH + 125;
+    int posYbuttonE = posYbuttonC + 125;
+    int posXbuttonB = (screenWidth - 300) / 2;
+    int posYbuttonB = (screenHeight - 300) * 9 / 10;
     Color colorButton = RED;
-    Button startButton = {(Rectangle){posXbutton, posYbuttonS, 400, 100}, colorButton, MAROON, "COMEÇAR"};
-    Button howToPLayButton = {(Rectangle){posXbutton, posYbuttonH, 400, 100}, colorButton, MAROON, "COMO JOGAR"};
-    Button creditsButton = {(Rectangle){posXbutton, posYbuttonC, 400, 100}, colorButton, MAROON, "CRÉDITOS"};
-    Button exitButton = {(Rectangle){posXbutton, posYbuttonE, 400, 100}, colorButton, MAROON, "SAIR"};
-    Button backButton = {(Rectangle){posXbuttonB, posYbuttonB, 400, 100}, colorButton, MAROON, "VOLTAR"};
-    Button backButtonWin = {(Rectangle){posXbutton, posYbuttonB, 400, 100}, colorButton, MAROON, "GANHAR DE NOVO"};
-    Button exitButtonWin = {(Rectangle){posXbutton, posYbuttonE, 400, 100}, colorButton, MAROON, "SAIR DO JOGO"};
-    Button backButtonLose = {(Rectangle){posXbutton, posYbuttonB, 400, 100}, colorButton, MAROON, "TENTAR DE NOVO"};
-    Button exitButtonLose = {(Rectangle){posXbutton, posYbuttonE, 400, 100}, colorButton, MAROON, "SAIR DO JOGO"};
+    Button startButton = {(Rectangle){posXbutton, posYbuttonS, 300, 75}, colorButton, MAROON, "COMEÇAR"};
+    Button howToPLayButton = {(Rectangle){posXbutton, posYbuttonH, 300, 75}, colorButton, MAROON, "COMO JOGAR"};
+    Button creditsButton = {(Rectangle){posXbutton, posYbuttonC, 300, 75}, colorButton, MAROON, "CRÉDITOS"};
+    Button exitButton = {(Rectangle){posXbutton, posYbuttonE, 300, 75}, colorButton, MAROON, "SAIR"};
+    Button backButton = {(Rectangle){posXbuttonB, posYbuttonB, 300, 75}, colorButton, MAROON, "VOLTAR"};
+    Button backButtonWin = {(Rectangle){posXbutton, posYbuttonB, 300, 75}, colorButton, MAROON, "GANHAR DE NOVO"};
+    Button exitButtonWin = {(Rectangle){posXbutton, posYbuttonE, 300, 75}, colorButton, MAROON, "SAIR DO JOGO"};
+    Button backButtonLose = {(Rectangle){posXbutton, posYbuttonB, 300, 75}, colorButton, MAROON, "TENTAR DE NOVO"};
+    Button exitButtonLose = {(Rectangle){posXbutton, posYbuttonE, 300, 75}, colorButton, MAROON, "SAIR DO JOGO"};
 
     // movimentacao ana
     Texture2D anaR = LoadTexture("assets/analaura.direita.png");
