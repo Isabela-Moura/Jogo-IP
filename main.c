@@ -74,10 +74,6 @@ int main()
     Rectangle frameRecAna = {0.0f, 0.0f, (float)anaD.width / 4, (float)anaD.height};
     Vector2 anamovimento = {0, 0};
     int checagemAna = 0;
-    int currentFrameAna = 0;
-    int framesCounterAna = 0;
-    int framesSpeedAna = 8;
-    float tempodeframeAna = 0;
 
     // movimentacao quinhas
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
@@ -92,6 +88,20 @@ int main()
     int framesSpeedQuinhas = 8;
     float tempodeframeQuinhas = 0;
     Velocidade velocidadequinhas = {3, 3, 3, 3};
+    
+    //movimentacao nalauritas
+    int currentFrameAna = 0, currentFramenalaurita2 = 0;
+    int framesCounterAna = 0, framescounternalaurita2 = 0;
+    int framesSpeedAna = 8, framespeednalaurita2 = 8;
+    float tempodeframenalaurita1 = 0;
+    float tempodeframenalaurita2 = 0;
+    int nalaurita1modo = 1;
+    Velocidade nalaurita1velocidade = {1,1,1,1};
+    Vector2 nalaurita1movimento = {0,0};
+    int nalaurita2modo = 2;
+    Velocidade nalaurita2velocidade = {2,2,2,2};
+    Vector2 nalaurita2movimento = {0,0};
+    Rectangle frameRecnalaurita2 = {0.0f, 0.0f, (float)anaD.width / 4, (float)anaD.height};
 
     // Coisas do temporizador
     int segundospassados = 0;
@@ -132,7 +142,7 @@ int main()
         {
             segundospassados = (int)GetTime();
         }
-        // Posicao original de Ana(depois trocar para quinhas)
+        // Posicao original de Quinhas e nalauritas
         if (gameState != STATE_PLAY)
         {
             checagemAna = 0;
@@ -141,6 +151,12 @@ int main()
             checagemQuinhas = 0;
             quinhasmovimento.x = 144;
             quinhasmovimento.y = 872;
+            nalaurita1movimento.x = 250;
+            nalaurita1movimento.y = 784;
+            nalaurita1modo = 1;
+            nalaurita2modo = 1;
+            nalaurita2movimento.x = 112;
+            nalaurita2movimento.y = 175;
         }
         // Frames das animacões
         if (gameState == STATE_PLAY)
@@ -582,6 +598,79 @@ int main()
                     }
                 }
             }
+            //movimentacao de nalauritas
+            if(nalaurita1modo == 1){
+                DrawTextureRec(anaR, frameRecAna, nalaurita1movimento,WHITE);
+                nalaurita1movimento.x = nalaurita1movimento.x + nalaurita1velocidade.direita;
+                framesCounterAna++;
+                if (framesCounterAna >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita1 += GetFrameTime();
+                    if (tempodeframenalaurita1 >= 0.2)
+                    {
+                        tempodeframenalaurita1 = 0;
+                        currentFrameAna++;
+                    }
+                    if (currentFrameAna > 3)
+                    {
+                        frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                    }
+                } 
+            }
+            if(nalaurita1modo == 2){
+                DrawTextureRec(anaL, frameRecAna, nalaurita1movimento,WHITE);
+                nalaurita1movimento.x = nalaurita1movimento.x - nalaurita1velocidade.esquerda;
+                framesCounterAna++;
+                if (framesCounterAna >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita1 += GetFrameTime();
+                    if (tempodeframenalaurita1 >= 0.2)
+                    {
+                        tempodeframenalaurita1 = 0;
+                        currentFrameAna++;
+                    }
+                    if (currentFrameAna > 3)
+                    {
+                        frameRecAna.x = (float)currentFrameAna * (float)anaL.width / 4;
+                    }
+                }
+            }
+            if(nalaurita2modo == 1){
+                DrawTextureRec(anaD, frameRecnalaurita2, nalaurita2movimento,WHITE);
+                nalaurita2movimento.y = nalaurita2movimento.y + nalaurita2velocidade.baixo;
+                framescounternalaurita2++;
+                if (framescounternalaurita2 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita2 += GetFrameTime();
+                    if (tempodeframenalaurita2 >= 0.2)
+                    {
+                        tempodeframenalaurita2 = 0;
+                        currentFramenalaurita2++;
+                    }
+                    if (currentFramenalaurita2 > 3)
+                    {
+                        frameRecnalaurita2.x = (float)currentFramenalaurita2 * (float)anaD.width / 4;
+                    }
+                } 
+            }
+            if(nalaurita2modo == 2){
+                DrawTextureRec(anaU, frameRecnalaurita2, nalaurita2movimento,WHITE);
+                nalaurita2movimento.y = nalaurita2movimento.y - nalaurita2velocidade.cima;
+                framescounternalaurita2++;
+                if (framescounternalaurita2 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita2 += GetFrameTime();
+                    if (tempodeframenalaurita2 >= 0.2)
+                    {
+                        tempodeframenalaurita2 = 0;
+                        currentFramenalaurita2++;
+                    }
+                    if (currentFramenalaurita2 > 3)
+                    {
+                        frameRecnalaurita2.x = (float)currentFramenalaurita2 * (float)anaU.width / 4;
+                    }
+                } 
+            }
             // Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
             DrawRectangle(77, 136, 35, 850, GREEN);
             Rectangle retangulo1 = {77, 136, 35, 850};
@@ -814,6 +903,11 @@ int main()
             Rectangle retanguloquinhasD = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
             Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width / 4, quinhasL.height};
+            //retangulos para saber a width e height de cada nalaurita na hora da colisao
+            Rectangle retangulonalaurita1D = {nalaurita1movimento.x, nalaurita1movimento.y, (float)anaR.width / 4, anaR.height};
+            Rectangle retangulonalaurita1E = {nalaurita1movimento.x, nalaurita1movimento.y, (float)anaL.width / 4, anaL.height};
+             Rectangle retangulonalaurita2C = {nalaurita2movimento.x, nalaurita2movimento.y, (float)anaU.width / 4, anaU.height};
+            Rectangle retangulonalaurita2B = {nalaurita2movimento.x, nalaurita2movimento.y, (float)anaD.width / 4, anaD.height};
             // colisoes
             if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || (poster6.isVisible == 1 && CheckCollisionRecs(retanguloquinhasD,retangulop6)) ||(poster1.isVisible == 1 && CheckCollisionRecs(retanguloquinhasD,retangulop1))|| CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D) || CheckCollisionRecs(retanguloquinhasD, retangulo17D) || CheckCollisionRecs(retanguloquinhasD, retangulo18D) || CheckCollisionRecs(retanguloquinhasD, retangulo19D) || CheckCollisionRecs(retanguloquinhasD, retangulo20D) || CheckCollisionRecs(retanguloquinhasD, retangulo21D) || CheckCollisionRecs(retanguloquinhasD, retangulo22D) || CheckCollisionRecs(retanguloquinhasD, retangulo23D) || CheckCollisionRecs(retanguloquinhasD, retangulo24D) || CheckCollisionRecs(retanguloquinhasD, retangulo26D) || CheckCollisionRecs(retanguloquinhasD, retangulo28D) || CheckCollisionRecs(retanguloquinhasD, retangulo29D) || CheckCollisionRecs(retanguloquinhasD, retangulo31D) || CheckCollisionRecs(retanguloquinhasD, retangulo32D) || CheckCollisionRecs(retanguloquinhasD, retangulo33D) || CheckCollisionRecs(retanguloquinhasD, retangulo34D) || CheckCollisionRecs(retanguloquinhasD, retangulo36D) || CheckCollisionRecs(retanguloquinhasD, retangulo38D) || CheckCollisionRecs(retanguloquinhasD, retangulo39D) || CheckCollisionRecs(retanguloquinhasD, retangulo41D) || CheckCollisionRecs(retanguloquinhasD, retangulo43D) || CheckCollisionRecs(retanguloquinhasD, retangulo44D) || CheckCollisionRecs(retanguloquinhasD, retangulo46D) || CheckCollisionRecs(retanguloquinhasD, retangulo48D) || CheckCollisionRecs(retanguloquinhasD, retangulo50D) || CheckCollisionRecs(retanguloquinhasD, retangulo52D) || CheckCollisionRecs(retanguloquinhasD, retangulo53D) || CheckCollisionRecs(retanguloquinhasD, retangulo55D))
             {
@@ -847,6 +941,11 @@ int main()
             {
                 velocidadequinhas.esquerda = 3;
             }
+            //Colisoes de nalauritas
+            if(CheckCollisionRecs(retangulonalaurita1D, retangulo26E)){nalaurita1modo = 2;}
+            if(CheckCollisionRecs(retangulonalaurita1E, retangulo8E)){nalaurita1modo = 1;}
+            if(CheckCollisionRecs(retangulonalaurita2B, retangulo7C)){nalaurita2modo = 2;}
+            if(CheckCollisionRecs(retangulonalaurita2C, retangulo6)){nalaurita2modo = 1;}
             // variaveis que estao sendo usados na medida
             int ala = quinhasmovimento.x;
             int ala2 = quinhasmovimento.y;
