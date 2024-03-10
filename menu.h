@@ -30,5 +30,7 @@ void ShowMenu(Texture2D background, Button startButton, Button howToPLayButton, 
 void ShowStory(Texture2D texture);
 void ShowHowToPlay(int screenWidth, int screenHeight, Texture2D textureHowToPlay, Button backButton);
 void ShowCredits(int screenWidth, int screenHeight, Texture2D textureCredits, Button backButton);
+void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button backButtonWin, Button exitButtonWin);
+void ShowLose(int screenWidth, int screenHeight, Texture2D textureLose, Button backButtonLose, Button exitButtonLose);
 
 #endif

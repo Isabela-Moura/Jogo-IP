@@ -115,7 +115,7 @@ void ShowCredits(int screenWidth, int screenHeight, Texture2D textureCredits, Bu
     }
 }
 
-/*void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button backButtonWin, Button exitButtonWin)
+void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button backButtonWin, Button exitButtonWin)
 {
     static float alpha = 0.0f;
     alpha += GetFrameTime() * 0.5f;
@@ -123,17 +123,17 @@ void ShowCredits(int screenWidth, int screenHeight, Texture2D textureCredits, Bu
     {
         alpha = 1.0f;
     }
-    DrawTexturePro(texture, (Rectangle){0, 0, texture.width, texture.height}, (Rectangle){20, 20, GetScreenWidth() - 40, GetScreenHeight() - 40}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
+    DrawTexturePro(textureWin, (Rectangle){0, 0, textureWin.width, textureWin.height}, (Rectangle){40, 40, GetScreenWidth() - 80, GetScreenHeight() - 80}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
 
-    DrawButton(backButtonWin, 3, SKYBLUE, 5, BLACK);
-    DrawButton(exitButtonWin, 3, SKYBLUE, 5, BLACK);
+    DrawButton(backButtonWin, 5, RED, 8, BLACK);
+    DrawButton(exitButtonWin, 5, RED, 8, BLACK);
     if (CheckCollisionPointRec(GetMousePosition(), backButtonWin.rect))
     {
-        DrawButton(backButtonWin, 3, BLUE, 5, BLACK);
+        DrawButton(backButtonWin, 5, MAROON, 8, BLACK);
     }
     if (CheckCollisionPointRec(GetMousePosition(), exitButtonWin.rect))
     {
-        DrawButton(exitButtonWin, 3, BLUE, 5, BLACK);
+        DrawButton(exitButtonWin, 5, MAROON, 8, BLACK);
     }
 }
 
@@ -145,15 +145,15 @@ void ShowLose(int screenWidth, int screenHeight, Texture2D textureLose, Button b
     {
         alpha = 1.0f;
     }
-    DrawTexturePro(texture, (Rectangle){0, 0, texture.width, texture.height}, (Rectangle){20, 20, GetScreenWidth() - 40, GetScreenHeight() - 40}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
-    DrawButton(backButtonLose, 3, SKYBLUE, 5, BLACK);
-    DrawButton(exitButtonLose, 3, SKYBLUE, 5, BLACK);
+    DrawTexturePro(textureLose, (Rectangle){0, 0, textureLose.width, textureLose.height}, (Rectangle){40, 40, GetScreenWidth() - 80, GetScreenHeight() - 80}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
+    DrawButton(backButtonLose, 5, RED, 8, BLACK);
+    DrawButton(exitButtonLose, 5, RED, 8, BLACK);
     if (CheckCollisionPointRec(GetMousePosition(), backButtonLose.rect))
     {
-        DrawButton(backButtonLose, 3, BLUE, 5, BLACK);
+        DrawButton(backButtonLose, 5, MAROON, 8, BLACK);
     }
     if (CheckCollisionPointRec(GetMousePosition(), exitButtonLose.rect))
     {
-        DrawButton(exitButtonLose, 3, BLUE, 5, BLACK);
+        DrawButton(exitButtonLose, 5, MAROON, 8, BLACK);
     }
-}*/
+}
