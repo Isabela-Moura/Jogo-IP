@@ -94,10 +94,16 @@ int main()
     Texture2D nalaurita3C = LoadTexture("assets/analaura.cima.png");
     Texture2D nalaurita4E = LoadTexture("assets/analaura.esquerda.png");
     Texture2D nalaurita3B = LoadTexture("assets/analaura.frente.png");
-    int currentFrameAna = 0, currentFramenalaurita2 = 0, currentFramenalaurita3 = 0, currentFramenalaurita4 = 0;
-    int framesCounterAna = 0, framescounternalaurita2 = 0, framescounternalaurita3 = 0, framescounternalaurita4 = 0;
+    Texture2D nalaurita5E = LoadTexture("assets/analaura.esquerda.png");
+    Texture2D nalaurita5D = LoadTexture("assets/analaura.direita.png");
+    Texture2D nalaurita6E = LoadTexture("assets/analaura.esquerda.png");
+    Texture2D nalaurita6D = LoadTexture("assets/analaura.direita.png");
+    Texture2D nalaurita7E = LoadTexture("assets/analaura.esquerda.png");
+    Texture2D nalaurita7D = LoadTexture("assets/analaura.direita.png");
+    int currentFrameAna = 0, currentFramenalaurita2 = 0, currentFramenalaurita3 = 0, currentFramenalaurita4 = 0, currentFramenalaurita5 = 0, currentFramenalaurita6 = 0, currentFramenalaurita7 = 0;
+    int framesCounterAna = 0, framescounternalaurita2 = 0, framescounternalaurita3 = 0, framescounternalaurita4 = 0, framescounternalaurita5 = 0, framescounternalaurita6 = 0, framescounternalaurita7 = 0;
     int framesSpeedAna = 8, framespeednalaurita2 = 8;
-    float tempodeframenalaurita1 = 0,tempodeframenalaurita2 = 0, tempodeframenalaurita3 = 0, tempodeframenalaurita4 = 0;
+    float tempodeframenalaurita1 = 0,tempodeframenalaurita2 = 0, tempodeframenalaurita3 = 0, tempodeframenalaurita4 = 0, tempodeframenalaurita5 = 0, tempodeframenalaurita6 = 0, tempodeframenalaurita7 = 0;
     int nalaurita1modo = 0;
     Velocidade nalaurita1velocidade = {1,1,1,1};
     Vector2 nalaurita1movimento = {0,0};
@@ -113,6 +119,18 @@ int main()
     Velocidade nalaurita4velocidade = {2,2,2,2};
     Vector2 nalaurita4movimento = {0,0};
     Rectangle frameRecnalaurita4 = {0.0f, 0.0f, (float)nalaurita4D.width/4, (float)nalaurita4D.height};
+    int nalaurita5modo = 0;
+    Velocidade nalaurita5velocidade = {2,2,2,2};
+    Vector2 nalaurita5movimento = {0,0};
+    Rectangle frameRecnalaurita5 = {0.0f, 0.0f, (float)nalaurita5D.width/4, (float)nalaurita5D.height};
+    int nalaurita6modo = 0;
+    Velocidade nalaurita6velocidade = {2,2,2,2};
+    Vector2 nalaurita6movimento = {0,0};
+    Rectangle frameRecnalaurita6 = {0.0f, 0.0f, (float)nalaurita6D.width/4, (float)nalaurita6D.height};
+    int nalaurita7modo = 0;
+    Velocidade nalaurita7velocidade = {2,2,2,2};
+    Vector2 nalaurita7movimento = {0,0};
+    Rectangle frameRecnalaurita7 = {0.0f, 0.0f, (float)nalaurita7D.width/4, (float)nalaurita7D.height};
 
     // Coisas do temporizador
     int segundospassados = 0;
@@ -156,7 +174,7 @@ int main()
         // Posicao original de Quinhas e nalauritas
         if (gameState != STATE_PLAY)
         {
-            checagemAna = 0;
+           checagemAna = 0;
             anamovimento.x = 0;
             anamovimento.y = 830;
             checagemQuinhas = 0;
@@ -168,12 +186,21 @@ int main()
             nalaurita2modo = 1;
             nalaurita3modo = 1;
             nalaurita4modo = 1;
+            nalaurita5modo = 1;
+            nalaurita6modo = 1;
+            nalaurita7modo = 1;
             nalaurita2movimento.x = 112;
             nalaurita2movimento.y = 175;
             nalaurita3movimento.x = 833;
             nalaurita3movimento.y = 188;
             nalaurita4movimento.x = 846;
             nalaurita4movimento.y = 176;
+            nalaurita5movimento.x = 1245;
+            nalaurita5movimento.y = 416;
+            nalaurita6movimento.x = 1233;
+            nalaurita6movimento.y = 620;
+            nalaurita7movimento.x = 696;
+            nalaurita7movimento.y = 891;
         }
         // Frames das animacões
         if (gameState == STATE_PLAY)
@@ -763,6 +790,114 @@ int main()
                     }
                 } 
             }
+             if(nalaurita5modo == 1){
+                DrawTextureRec(nalaurita5D, frameRecnalaurita5, nalaurita5movimento,WHITE);
+                nalaurita5movimento.x = nalaurita5movimento.x + nalaurita5velocidade.direita;
+                framescounternalaurita5++;
+                if (framescounternalaurita5 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita5 += GetFrameTime();
+                    if (tempodeframenalaurita5 >= 0.2)
+                    {
+                        tempodeframenalaurita5 = 0;
+                        currentFramenalaurita5++;
+                    }
+                    if (currentFramenalaurita5 > 3)
+                    {
+                        frameRecnalaurita5.x = (float)currentFramenalaurita5 * (float)nalaurita5D.width / 4;
+                    }
+                } 
+            }
+            if(nalaurita5modo == 2){
+                DrawTextureRec(nalaurita5E, frameRecnalaurita5, nalaurita5movimento,WHITE);
+                nalaurita5movimento.x = nalaurita5movimento.x - nalaurita5velocidade.direita;
+                framescounternalaurita5++;
+                if (framescounternalaurita5 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita5 += GetFrameTime();
+                    if (tempodeframenalaurita5 >= 0.2)
+                    {
+                        tempodeframenalaurita5 = 0;
+                        currentFramenalaurita5++;
+                    }
+                    if (currentFramenalaurita5 > 3)
+                    {
+                        frameRecnalaurita5.x = (float)currentFramenalaurita5 * (float)nalaurita5E.width / 4;
+                    }
+                } 
+            }
+             if(nalaurita6modo == 1){
+                DrawTextureRec(nalaurita6D, frameRecnalaurita6, nalaurita6movimento,WHITE);
+                nalaurita6movimento.x = nalaurita6movimento.x + nalaurita6velocidade.direita;
+                framescounternalaurita6++;
+                if (framescounternalaurita6 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita6 += GetFrameTime();
+                    if (tempodeframenalaurita6 >= 0.2)
+                    {
+                        tempodeframenalaurita6 = 0;
+                        currentFramenalaurita6++;
+                    }
+                    if (currentFramenalaurita6 > 3)
+                    {
+                        frameRecnalaurita6.x = (float)currentFramenalaurita6 * (float)nalaurita6D.width / 4;
+                    }
+                } 
+            }
+            if(nalaurita6modo == 2){
+                DrawTextureRec(nalaurita6E, frameRecnalaurita6, nalaurita6movimento,WHITE);
+                nalaurita6movimento.x = nalaurita6movimento.x - nalaurita6velocidade.direita;
+                framescounternalaurita6++;
+                if (framescounternalaurita6 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita6 += GetFrameTime();
+                    if (tempodeframenalaurita6 >= 0.2)
+                    {
+                        tempodeframenalaurita6 = 0;
+                        currentFramenalaurita6++;
+                    }
+                    if (currentFramenalaurita6 > 3)
+                    {
+                        frameRecnalaurita6.x = (float)currentFramenalaurita6 * (float)nalaurita6E.width / 4;
+                    }
+                } 
+            }
+            if(nalaurita7modo == 1){
+                DrawTextureRec(nalaurita7D, frameRecnalaurita7, nalaurita7movimento,WHITE);
+                nalaurita7movimento.x = nalaurita7movimento.x + nalaurita7velocidade.direita;
+                framescounternalaurita7++;
+                if (framescounternalaurita7 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita7 += GetFrameTime();
+                    if (tempodeframenalaurita7 >= 0.2)
+                    {
+                        tempodeframenalaurita7 = 0;
+                        currentFramenalaurita7++;
+                    }
+                    if (currentFramenalaurita7 > 3)
+                    {
+                        frameRecnalaurita7.x = (float)currentFramenalaurita7 * (float)nalaurita7D.width / 4;
+                    }
+                } 
+            }
+            if(nalaurita7modo == 2){
+                DrawTextureRec(nalaurita7E, frameRecnalaurita7, nalaurita7movimento,WHITE);
+                nalaurita7movimento.x = nalaurita7movimento.x - nalaurita7velocidade.direita;
+                framescounternalaurita7++;
+                if (framescounternalaurita7 >= (60 / framesSpeedAna))
+                {
+                    tempodeframenalaurita7 += GetFrameTime();
+                    if (tempodeframenalaurita7 >= 0.2)
+                    {
+                        tempodeframenalaurita7 = 0;
+                        currentFramenalaurita7++;
+                    }
+                    if (currentFramenalaurita7 > 3)
+                    {
+                        frameRecnalaurita7.x = (float)currentFramenalaurita7 * (float)nalaurita7E.width / 4;
+                    }
+                } 
+            }
             // Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
             DrawRectangle(77, 136, 35, 850, GREEN);
             Rectangle retangulo1 = {77, 136, 35, 850};
@@ -1005,6 +1140,12 @@ int main()
             Rectangle retangulonalaurita3B = {nalaurita3movimento.x, nalaurita3movimento.y, (float)nalaurita3B.width / 4, nalaurita3B.height};
             Rectangle retangulonalaurita4D = {nalaurita4movimento.x, nalaurita4movimento.y, (float)nalaurita4D.width / 4, nalaurita4D.height};
             Rectangle retangulonalaurita4E = {nalaurita4movimento.x, nalaurita4movimento.y, (float)nalaurita4E.width / 4, nalaurita4E.height};
+            Rectangle retangulonalaurita5D = {nalaurita5movimento.x, nalaurita5movimento.y, (float)nalaurita5D.width / 4, nalaurita5D.height};
+            Rectangle retangulonalaurita5E = {nalaurita5movimento.x, nalaurita5movimento.y, (float)nalaurita5E.width / 4, nalaurita5E.height};
+            Rectangle retangulonalaurita6D = {nalaurita6movimento.x, nalaurita6movimento.y, (float)nalaurita6D.width / 4, nalaurita6D.height};
+            Rectangle retangulonalaurita6E = {nalaurita6movimento.x, nalaurita6movimento.y, (float)nalaurita6E.width / 4, nalaurita6E.height};
+            Rectangle retangulonalaurita7D = {nalaurita7movimento.x, nalaurita7movimento.y, (float)nalaurita7D.width / 4, nalaurita7D.height};
+            Rectangle retangulonalaurita7E = {nalaurita7movimento.x, nalaurita7movimento.y, (float)nalaurita7E.width / 4, nalaurita7E.height};
             // colisoes
             if (CheckCollisionRecs(retanguloquinhasD, retangulo3) || (poster6.isVisible == 1 && CheckCollisionRecs(retanguloquinhasD,retangulop6)) ||(poster1.isVisible == 1 && CheckCollisionRecs(retanguloquinhasD,retangulop1))|| CheckCollisionRecs(retanguloquinhasD2, retangulo8D) || CheckCollisionRecs(retanguloquinhasD, retangulo10D) || CheckCollisionRecs(retanguloquinhasD, retangulo11D) || CheckCollisionRecs(retanguloquinhasD, retangulo13D) || CheckCollisionRecs(retanguloquinhasD, retangulo14D) || CheckCollisionRecs(retanguloquinhasD, retangulo15D) || CheckCollisionRecs(retanguloquinhasD, retangulo17D) || CheckCollisionRecs(retanguloquinhasD, retangulo18D) || CheckCollisionRecs(retanguloquinhasD, retangulo19D) || CheckCollisionRecs(retanguloquinhasD, retangulo20D) || CheckCollisionRecs(retanguloquinhasD, retangulo21D) || CheckCollisionRecs(retanguloquinhasD, retangulo22D) || CheckCollisionRecs(retanguloquinhasD, retangulo23D) || CheckCollisionRecs(retanguloquinhasD, retangulo24D) || CheckCollisionRecs(retanguloquinhasD, retangulo26D) || CheckCollisionRecs(retanguloquinhasD, retangulo28D) || CheckCollisionRecs(retanguloquinhasD, retangulo29D) || CheckCollisionRecs(retanguloquinhasD, retangulo31D) || CheckCollisionRecs(retanguloquinhasD, retangulo32D) || CheckCollisionRecs(retanguloquinhasD, retangulo33D) || CheckCollisionRecs(retanguloquinhasD, retangulo34D) || CheckCollisionRecs(retanguloquinhasD, retangulo36D) || CheckCollisionRecs(retanguloquinhasD, retangulo38D) || CheckCollisionRecs(retanguloquinhasD, retangulo39D) || CheckCollisionRecs(retanguloquinhasD, retangulo41D) || CheckCollisionRecs(retanguloquinhasD, retangulo43D) || CheckCollisionRecs(retanguloquinhasD, retangulo44D) || CheckCollisionRecs(retanguloquinhasD, retangulo46D) || CheckCollisionRecs(retanguloquinhasD, retangulo48D) || CheckCollisionRecs(retanguloquinhasD, retangulo50D) || CheckCollisionRecs(retanguloquinhasD, retangulo52D) || CheckCollisionRecs(retanguloquinhasD, retangulo53D) || CheckCollisionRecs(retanguloquinhasD, retangulo55D))
             {
@@ -1047,6 +1188,12 @@ int main()
             if(CheckCollisionRecs(retangulonalaurita3B, retangulo33B) || (poster7.isVisible == 1 && CheckCollisionRecs(retangulonalaurita3B, retangulop7))){nalaurita3modo = 2;}
             if(CheckCollisionRecs(retangulonalaurita4D, retangulo28D)){nalaurita4modo = 2;}
             if(CheckCollisionRecs(retangulonalaurita4E,retangulo21E) || (poster9.isVisible && CheckCollisionRecs(retangulonalaurita4E, retangulop9))){nalaurita4modo = 1;}
+            if(CheckCollisionRecs(retangulonalaurita5D,retangulo3)){nalaurita5modo = 2;}
+            if(CheckCollisionRecs(retangulonalaurita5E, retangulo41E)){nalaurita5modo = 1;}
+            if(CheckCollisionRecs(retangulonalaurita6D,retangulo50D)){nalaurita6modo = 2;}
+            if(CheckCollisionRecs(retangulonalaurita6E,retangulo46E)){nalaurita6modo = 1;}
+            if(CheckCollisionRecs(retangulonalaurita7D, retangulo44D)){nalaurita7modo = 2;}
+            if(CheckCollisionRecs(retangulonalaurita7E, retangulo26E)){nalaurita7modo = 1;}
             // variaveis que estao sendo usados na medida
             int ala = quinhasmovimento.x;
             int ala2 = quinhasmovimento.y;
