@@ -199,6 +199,9 @@ int main()
             {
                 // Vai para historia
                 gameState = STATE_STORY;
+                //funcao resposavel por fechar as paredes caso o jogo recomece
+               recomeco();
+                
             }
             if (CheckCollisionPointRec(GetMousePosition(), howToPLayButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
@@ -1061,7 +1064,8 @@ int main()
             // Para voltar para o menu
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                gameState = STATE_MENU;
+                    gameState = STATE_MENU;
+                    
             }
             break;
         case STATE_CREDITS:
@@ -1172,6 +1176,17 @@ int main()
         case STATE_WIN:
             // Vitoria
             /*ShowWin(screenWidth, screenHeight, texture, exitButtonWin);*/
+         parede();
+         drawwallverticalbloqueio(4, 15, 16); // 1 coluna e 2 linhas
+         drawwallhorizontalbloqueio(14, 8, 9); // 1 linhas e 2 coluna
+         drawwallverticalbloqueio(37, 1, 2); // 1 coluna e 2 linhas
+         drawwallhorizontalbloqueio(7, 43, 44); // 1 linhas e 2 coluna
+         drawwallverticalbloqueio(4, 1, 2); // 1 coluna e 2 linhas
+         drawwallhorizontalbloqueio(13, 22, 23); // 1 linhas e 2 coluna
+         drawwallhorizontalbloqueio(11, 5, 6); // 1 linhas e 2 coluna
+         drawwallverticalbloqueio(21, 1, 2); // 1 coluna e 2 linhas
+         drawwallverticalbloqueio(20, 11, 12); // 1 coluna e 2 linhas
+         drawwallhorizontalbloqueio(0, 46, 47); // 1 linhas e 2 coluna
             break;
         case STATE_LOSE:
             // Derrota
