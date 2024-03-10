@@ -1,6 +1,8 @@
 #include "maze.h"
 #include "raylib.h"
 
+int perdeu = 0;
+
 int maze[26][51] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -37,7 +39,7 @@ void DrawMaze()
             if (maze[i][j] == 1)
             {
 
-                DrawRectangle((j * cellSize) + cellSize * 2.3, (i * cellSize) + cellSize * 4, cellSize, cellSize, SKYBLUE);
+                DrawRectangle((j * cellSize) + cellSize * 2.3, (i * cellSize) + cellSize * 4, cellSize, cellSize, RED);
             }
         }
     }
@@ -127,7 +129,7 @@ void parede (){
             Rectangle retangulop12 = {1637,169,68,1};
 }
 
-
+//funcao que chama outras funcoes para fechar as passagens
 void recomeco(){
          drawwallverticalbloqueio(4, 15, 16); // 1 coluna e 2 linhas
          drawwallhorizontalbloqueio(14, 8, 9); // 1 linhas e 2 coluna
@@ -142,3 +144,70 @@ void recomeco(){
          parede();
                 
 }
+
+ 
+ bool derrota( Vector2 quinhasmovimento, int radius, 
+  Rectangle  retangulonalaurita1D, 
+  Rectangle retangulonalaurita1E,  
+  Rectangle retangulonalaurita2B ,
+    Rectangle retangulonalaurita2C,
+     Rectangle retangulonalaurita3C ,  
+      Rectangle retangulonalaurita3B , 
+       Rectangle retangulonalaurita4D,
+       Rectangle retangulonalaurita4E,
+         Rectangle retangulonalaurita5D,//
+         Rectangle retangulonalaurita5E,
+           Rectangle etangulonalaurita6D,
+              Rectangle   retangulonalaurita7D,
+                Rectangle  retangulonalaurita7E  ){
+
+      if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita1D)){
+                         
+                }
+
+                  if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita1E)){
+                     return true;
+                }
+
+                  if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita2B)){
+                        return true;
+                }
+
+                  if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita2C)){
+                         return true;
+                }
+
+                  if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita3C)){
+                         return true;
+                }
+
+                  if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita3B)){
+                         return true;
+                }
+
+                  if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,  retangulonalaurita4D)){
+                         return true;
+                }
+                if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,   retangulonalaurita4E)){
+                         return true;
+                }
+                 if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,   retangulonalaurita5D)){
+                         return true;
+                }
+                 if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,   retangulonalaurita5E)){
+                         return true;
+                }
+                 if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,   etangulonalaurita6D)){
+                         return true;
+                }
+                 if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,   retangulonalaurita7D)){
+                         return true;
+                }
+                 if ( CheckCollisionCircleRec((Vector2){quinhasmovimento.x, quinhasmovimento.y}, radius,   retangulonalaurita7E)){
+                         return true;
+                }
+            return false;
+
+ }
+
+ 

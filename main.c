@@ -899,219 +899,219 @@ int main()
                 } 
             }
             // Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
-            DrawRectangle(77, 136, 35, 850, GREEN);
+            DrawRectangle(77, 136, 35, 850, RED);
             Rectangle retangulo1 = {77, 136, 35, 850};
-            DrawRectangle(1705, 136, 72, 34, GREEN);
+            DrawRectangle(1705, 136, 72, 34, RED);
             Rectangle retangulo2 = {1708, 136, 72, 34};
-            DrawRectangle(1744, 136, 34, 850, GREEN);
+            DrawRectangle(1744, 136, 34, 850, RED);
             Rectangle retangulo3 = {1744, 136, 34, 850};
-            DrawRectangle(215, 952, 1562, 34, GREEN);
+            DrawRectangle(215, 952, 1562, 34, RED);
             Rectangle retangulo4 = {215, 952, 1562, 34};
-            DrawRectangle(111, 952, 35, 34, GREEN);
+            DrawRectangle(111, 952, 35, 34, RED);
             Rectangle retangulo5 = {111, 952, 35, 34};
-            DrawRectangle(111, 136, 1530, 34, GREEN);
+            DrawRectangle(111, 136, 1530, 34, RED);
             Rectangle retangulo6 = {111, 136, 1526, 34};
-            DrawRectangle(110, 612, 239, 34, GREEN);
+            DrawRectangle(110, 612, 239, 34, RED);
             Rectangle retangulo7C = {110, 614, 236, 32};
             Rectangle retangulo7E = {110, 614, 238, 28};
             Rectangle retangulo7B = {110, 612, 236, 1};
-            DrawRectangle(214, 714, 34, 238, GREEN);
+            DrawRectangle(214, 714, 34, 238, RED);
             Rectangle retangulo8D = {214, 716, 32, 236};
             Rectangle retangulo8C = {216, 714, 30, 1};
             Rectangle retangulo8E = {216, 716, 32, 234};
-            DrawRectangle(246, 850, 274, 34, GREEN);
+            DrawRectangle(246, 850, 274, 34, RED);
             Rectangle retangulo9B = {246, 850, 266, 1};
             Rectangle retangulo9E = {246, 854, 270, 26};
             Rectangle retangulo9C = {246, 854, 266, 28};
-            DrawRectangle(316, 714, 103, 34, GREEN);
+            DrawRectangle(316, 714, 103, 34, RED);
             Rectangle retangulo10C = {318, 716, 98, 32};
             Rectangle retangulo10B = {318, 714, 98, 32};
             Rectangle retangulo10D = {316, 716, 2, 30};
-            DrawRectangle(418, 414, 34, 366, GREEN);
+            DrawRectangle(418, 414, 34, 366, RED);
             Rectangle retangulo11D = {418, 416, 30, 364};
             Rectangle retangulo11C = {420, 418, 28, 362};
             Rectangle retangulo11B = {420, 414, 28, 1};
             Rectangle retangulo11E = {422, 416, 30, 362};
-            DrawRectangle(450, 476, 306, 34, GREEN);
+            DrawRectangle(450, 476, 306, 34, RED);
             Rectangle retangulo12B = {452, 476, 300, 32};
             Rectangle retangulo12C = {452, 478, 300, 32};
-            DrawRectangle(316, 374, 34, 238, GREEN);
+            DrawRectangle(316, 374, 34, 238, RED);
             Rectangle retangulo13E = {318, 376, 32, 234};
             Rectangle retangulo13D = {316, 376, 32, 234};
             Rectangle retangulo13B = {318, 374, 30, 1};
-            DrawRectangle(180, 374, 136, 34, GREEN);
+            DrawRectangle(180, 374, 136, 34, RED);
             Rectangle retangulo14B = {182, 374, 132, 1};
             Rectangle retangulo14C = {182, 376, 132, 32};
             Rectangle retangulo14D = {180, 376, 132, 30};
-            DrawRectangle(180, 406, 34, 137, GREEN);
+            DrawRectangle(180, 406, 34, 137, RED);
             Rectangle retangulo15D = {180, 408, 32, 131};
             Rectangle retangulo15E = {182, 408, 32, 131};
             Rectangle retangulo15C = {182, 408, 30, 134};
-            DrawRectangle(212, 510, 34, 34, GREEN);
+            DrawRectangle(212, 510, 34, 34, RED);
             Rectangle retangulo16C = {214, 512, 27, 32};
             Rectangle retangulo16E = {214, 512, 32, 29};
             Rectangle retangulo16B = {214, 510, 30, 1};
-            DrawRectangle(213, 238, 238, 34, GREEN);
+            DrawRectangle(213, 238, 238, 34, RED);
             Rectangle retangulo17C = {216, 242, 232, 30};
             Rectangle retangulo17E = {216, 242, 235, 26};
             Rectangle retangulo17D = {213, 241, 1, 26};
             Rectangle retangulo17B = {216, 238, 232, 1};
-            DrawRectangle(418, 272, 135, 34, GREEN);
+            DrawRectangle(418, 272, 135, 34, RED);
             Rectangle retangulo18C = {421, 275, 129, 31};
             Rectangle retangulo18D = {418, 275, 1, 28};
             Rectangle retangulo18B = {421, 272, 129, 1};
             Rectangle retangulo18E = {421, 275, 132, 28};
-            DrawRectangle(520, 305, 34, 102, GREEN);
+            DrawRectangle(520, 305, 34, 102, RED);
             Rectangle retangulo19D = {520, 308, 1, 96};
             Rectangle retangulo19C = {523, 308, 28, 99};
             Rectangle retangulo19E = {523, 308, 31, 96};
             Rectangle retangulo19B = {523, 305, 28, 1};
-            DrawRectangle(555, 374, 236, 34, GREEN);
+            DrawRectangle(555, 374, 236, 34, RED);
             Rectangle retangulo20D = {555, 377, 1, 28};
             Rectangle retangulo20E = {558, 377, 233, 28};
             Rectangle retangulo20C = {558, 377, 230, 31};
             Rectangle retangulo20B = {558, 374, 230, 1};
-            DrawRectangle(621, 170, 34, 136, GREEN);
+            DrawRectangle(621, 170, 34, 136, RED);
             Rectangle retangulo21D = {621, 173, 1, 130};
             Rectangle retangulo21E = {624, 173, 31, 130};
             Rectangle retangulo21C = {624, 173, 28, 133};
             Rectangle retangulo21B = {624, 170, 28, 1};
-            DrawRectangle(656, 272, 169, 34, GREEN);
+            DrawRectangle(656, 272, 169, 34, RED);
             Rectangle retangulo22D = {656, 275, 1, 28};
             Rectangle retangulo22E = {659, 275, 166, 28};
             Rectangle retangulo22C = {659, 275, 163, 31};
             Rectangle retangulo22B = {659, 272, 163, 1};
-            DrawRectangle(792, 236, 34, 36, GREEN);
+            DrawRectangle(792, 236, 34, 36, RED);
             Rectangle retangulo23D = {792, 239, 1, 30};
             Rectangle retangulo23E = {795, 239, 31, 30};
             Rectangle retangulo23B = {795, 236, 28, 1};
-            DrawRectangle(757, 408, 34, 100, GREEN);
+            DrawRectangle(757, 408, 34, 100, RED);
             Rectangle retangulo24D = {757, 411, 1, 94};
             Rectangle retangulo24E = {760, 411, 31, 94};
             Rectangle retangulo24C = {760, 411, 28, 97};
-            DrawRectangle(450, 680, 136, 34, GREEN);
+            DrawRectangle(450, 680, 136, 34, RED);
             Rectangle retangulo25B = {453, 680, 130, 1};
             Rectangle retangulo25C = {453, 684, 130, 30};
-            DrawRectangle(588, 578, 34, 373, GREEN);
+            DrawRectangle(588, 578, 34, 373, RED);
             Rectangle retangulo26B = {591, 578, 28, 1};
             Rectangle retangulo26D = {588, 581, 1, 367};
             Rectangle retangulo26E = {591, 581, 31, 367};
-            DrawRectangle(621, 578, 204, 34, GREEN);
+            DrawRectangle(621, 578, 204, 34, RED);
             Rectangle retangulo27C = {624, 581, 198, 31};
             Rectangle retangulo27E = {624, 581, 201, 28};
             Rectangle retangulo27B = {624, 578, 198, 1};
-            DrawRectangle(1200, 167, 34, 105, GREEN);
+            DrawRectangle(1200, 167, 34, 105, RED);
             Rectangle retangulo28E = {1203, 170, 31, 99};
             Rectangle retangulo28D = {1200, 170, 1, 99};
             Rectangle retangulo28C = {1203, 170, 28, 102};
-            DrawRectangle(1029, 238, 170, 34, GREEN);
+            DrawRectangle(1029, 238, 170, 34, RED);
             Rectangle retangulo29C = {1032, 241, 164, 31};
             Rectangle retangulo29D = {1029, 241, 1, 28};
             Rectangle retangulo29B = {1032, 238, 164, 1};
-            DrawRectangle(1029, 272, 34, 66, GREEN);
+            DrawRectangle(1029, 272, 34, 66, RED);
             Rectangle retangulo30E = {1032, 275, 31, 60};
             Rectangle retangulo30C = {1032, 275, 28, 63};
-            DrawRectangle(894, 305, 135, 34, GREEN);
+            DrawRectangle(894, 305, 135, 34, RED);
             Rectangle retangulo31D = {894, 308, 1, 28};
             Rectangle retangulo31B = {897, 305, 129, 1};
             Rectangle retangulo31C = {897, 308, 129, 31};
-            DrawRectangle(894, 339, 34, 375, GREEN);
+            DrawRectangle(894, 339, 34, 375, RED);
             Rectangle retangulo32D = {894, 342, 1, 369};
             Rectangle retangulo32E = {897, 342, 31, 369};
             Rectangle retangulo32C = {897, 342, 28, 372};
-            DrawRectangle(690, 680, 204, 34, GREEN);
+            DrawRectangle(690, 680, 204, 34, RED);
             Rectangle retangulo33D = {690, 683, 1, 28};
             Rectangle retangulo33B = {693, 680, 198, 1};
             Rectangle retangulo33C = {693, 683, 198, 31};
-            DrawRectangle(690, 714, 34, 170, GREEN);
+            DrawRectangle(690, 714, 34, 170, RED);
             Rectangle retangulo34D = {690, 717, 1, 164};
             Rectangle retangulo34E = {693, 717, 31, 164};
             Rectangle retangulo34C = {693, 717, 28, 167};
-            DrawRectangle(724, 850, 237, 34, GREEN);
+            DrawRectangle(724, 850, 237, 34, RED);
             Rectangle retangulo35B = {727, 850, 231, 1};
             Rectangle retangulo35C = {727, 853, 231, 31};
             Rectangle retangulo35E = {727, 853, 234, 28};
-            DrawRectangle(927, 781, 34, 71, GREEN);
+            DrawRectangle(927, 781, 34, 71, RED);
             Rectangle retangulo36E = {930, 784, 31, 65};
             Rectangle retangulo36D = {927, 784, 1, 65};
-            DrawRectangle(927, 781, 409, 34, GREEN);
+            DrawRectangle(927, 781, 409, 34, RED);
             Rectangle retangulo37E = {930, 784, 406, 28};
             Rectangle retangulo37C = {930, 784, 400, 31};
             Rectangle retangulo37B = {930, 781, 400, 1};
-            DrawRectangle(1301, 815, 34, 69, GREEN);
+            DrawRectangle(1301, 815, 34, 69, RED);
             Rectangle retangulo38D = {1301, 818, 1, 63};
             Rectangle retangulo38E = {1304, 818, 31, 63};
             Rectangle retangulo38C = {1304, 818, 28, 66};
-            DrawRectangle(996, 476, 34, 305, GREEN);
+            DrawRectangle(996, 476, 34, 305, RED);
             Rectangle retangulo39D = {996, 479, 1, 299};
             Rectangle retangulo39E = {999, 479, 31, 299};
-            DrawRectangle(996, 476, 136, 34, GREEN);
+            DrawRectangle(996, 476, 136, 34, RED);
             Rectangle retangulo40C = {999, 479, 130, 31};
             Rectangle retangulo40B = {999, 476, 130, 1};
-            DrawRectangle(1131, 341, 34, 168, GREEN);
+            DrawRectangle(1131, 341, 34, 168, RED);
             Rectangle retangulo41E = {1134, 344, 31, 162};
             Rectangle retangulo41D = {1131, 344, 1, 162};
             Rectangle retangulo41C = {1134, 344, 28, 165};
             Rectangle retangulo41B = {1134, 341, 28, 1};
-            DrawRectangle(1165, 340, 205, 34, GREEN);
+            DrawRectangle(1165, 340, 205, 34, RED);
             Rectangle retangulo42B = {1168, 340, 199, 1};
             Rectangle retangulo42C = {1168, 343, 199, 31};
             Rectangle retangulo42E = {1168, 343, 202, 28};
-            DrawRectangle(1336, 239, 34, 102, GREEN);
+            DrawRectangle(1336, 239, 34, 102, RED);
             Rectangle retangulo43D = {1336, 242, 1, 96};
             Rectangle retangulo43E = {1339, 242, 31, 96};
             Rectangle retangulo43B = {1339, 239, 28, 1};
             Rectangle retangulo43C = {1339, 242, 28, 99};
-            DrawRectangle(1404, 680, 34, 272, GREEN);
+            DrawRectangle(1404, 680, 34, 272, RED);
             Rectangle retangulo44B = {1407, 680, 28, 1};
             Rectangle retangulo44D = {1404, 683, 1, 266};
             Rectangle retangulo44E = {1407, 683, 31, 266};
-            DrawRectangle(1131, 680, 273, 34, GREEN);
+            DrawRectangle(1131, 680, 273, 34, RED);
             Rectangle retangulo45B = {1134, 680, 267, 1};
             Rectangle retangulo45C = {1134, 683, 267, 31};
-            DrawRectangle(1098, 578, 34, 136, GREEN);
+            DrawRectangle(1098, 578, 34, 136, RED);
             Rectangle retangulo46D = {1098, 581, 1, 130};
             Rectangle retangulo46E = {1101, 581, 31, 130};
             Rectangle retangulo46C = {1101, 581, 28, 133};
             Rectangle retangulo46B = {1101, 578, 28, 1};
-            DrawRectangle(1131, 578, 135, 34, GREEN);
+            DrawRectangle(1131, 578, 135, 34, RED);
             Rectangle retangulo47E = {1134, 581, 132, 28};
             Rectangle retangulo47B = {1134, 578, 129, 1};
             Rectangle retangulo47C = {1134, 581, 129, 31};
-            DrawRectangle(1233, 476, 34, 102, GREEN);
+            DrawRectangle(1233, 476, 34, 102, RED);
             Rectangle retangulo48D = {1233, 479, 1, 96};
             Rectangle retangulo48E = {1236, 479, 31, 96};
             Rectangle retangulo48B = {1236, 476, 28, 1};
-            DrawRectangle(1267, 476, 272, 34, GREEN);
+            DrawRectangle(1267, 476, 272, 34, RED);
             Rectangle retangulo49B = {1270, 476, 266, 1};
             Rectangle retangulo49C = {1270, 479, 266, 31};
-            DrawRectangle(1505, 476, 34, 408, GREEN);
+            DrawRectangle(1505, 476, 34, 408, RED);
             Rectangle retangulo50D = {1505, 479, 1, 402};
             Rectangle retangulo50E = {1508, 479, 31, 402};
             Rectangle retangulo50B = {1508, 476, 28, 1};
             Rectangle retangulo50C = {1508, 479, 28, 405};
-            DrawRectangle(1539, 850, 34, 34, GREEN);
+            DrawRectangle(1539, 850, 34, 34, RED);
             Rectangle retangulo51B = {1542, 850, 28, 1};
             Rectangle retangulo51C = {1542, 853, 28, 31};
             Rectangle retangulo51E = {1542, 853, 31, 28};
-            DrawRectangle(1641,510,34,443,GREEN);
+            DrawRectangle(1641,510,34,443,RED);
             Rectangle retangulo52D = {1641,513,1,437};
             Rectangle retangulo52E = {1644,513,31,437};
             Rectangle retangulo52B = {1644,510,28,1};
-            DrawRectangle(1438,169,34,238,GREEN);
+            DrawRectangle(1438,169,34,238,RED);
             Rectangle retangulo53D = {1438,172,1,232};
             Rectangle retangulo53E = {1441,172,31,232};
             Rectangle retangulo53C = {1441,172,28,235};
-            DrawRectangle(1472,374,69,34,GREEN);
+            DrawRectangle(1472,374,69,34,RED);
             Rectangle retangulo54E = {1475,377,66,28};
             Rectangle retangulo54B = {1475,374,63,1};
             Rectangle retangulo54C = {1475,377,63,31};
-            DrawRectangle(1608,238,34,171,GREEN);
+            DrawRectangle(1608,238,34,171,RED);
             Rectangle retangulo55B = {1611,238,28,1};
             Rectangle retangulo55D = {1608,241,1,165};
             Rectangle retangulo55E = {1611,241,31,165};
             Rectangle retangulo55C = {1611,241,28,168};
-            DrawRectangle(1642,238,102,34,GREEN);
+            DrawRectangle(1642,238,102,34,RED);
             Rectangle retangulo56B = {1645,238,96,1};
             Rectangle retangulo56C = {1645,241,96,31};
             //retangulos dos posteres
@@ -1194,6 +1194,28 @@ int main()
             if(CheckCollisionRecs(retangulonalaurita6E,retangulo46E)){nalaurita6modo = 1;}
             if(CheckCollisionRecs(retangulonalaurita7D, retangulo44D)){nalaurita7modo = 2;}
             if(CheckCollisionRecs(retangulonalaurita7E, retangulo26E)){nalaurita7modo = 1;}
+          
+          
+          //colisao entre quinhas e analaura 
+           int toqueinimigo = 5;
+            if (derrota(quinhasmovimento, toqueinimigo,  
+            retangulonalaurita1D, 
+            retangulonalaurita1E, 
+            retangulonalaurita2B, 
+            retangulonalaurita2C,
+             retangulonalaurita3C,
+              retangulonalaurita3B, 
+              retangulonalaurita4D,
+               retangulonalaurita4E,
+               retangulonalaurita5D,
+               retangulonalaurita5E,
+               retangulonalaurita6D,
+               retangulonalaurita7D,
+               retangulonalaurita7E
+               )){
+                gameState = STATE_LOSE;
+            }
+          
             // variaveis que estao sendo usados na medida
             int ala = quinhasmovimento.x;
             int ala2 = quinhasmovimento.y;
@@ -1210,8 +1232,10 @@ int main()
         case STATE_HOW_TO_PLAY:
             // Para voltar para o menu
             if (CheckCollisionPointRec(GetMousePosition(), backButton.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-            {
+            {         
+                
                     gameState = STATE_MENU;
+                   
                     
             }
             break;
@@ -1229,7 +1253,8 @@ int main()
             // Vitoria
             // Para voltar para o menu
             if (CheckCollisionPointRec(GetMousePosition(), backButtonWin.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-            {
+            {    
+                 recomeco();
                 gameState = STATE_MENU;
             }
             // Para sair do jogo
@@ -1244,6 +1269,7 @@ int main()
             // Para voltar para o menu
             if (CheckCollisionPointRec(GetMousePosition(), backButtonLose.rect) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                 recomeco();
                 gameState = STATE_MENU;
             }
             // Para sair do jogo
@@ -1262,10 +1288,13 @@ int main()
         {
         case STATE_MENU:
             // Menu
+           
             ShowMenu(background, startButton, howToPLayButton, creditsButton, exitButton);
+
             break;
         case STATE_STORY:
             // Historia inicial
+             recomeco();
             ShowStory(story);
             break;
         case STATE_PLAY:
@@ -1337,6 +1366,7 @@ int main()
             break;
         case STATE_LOSE:
             // Derrota
+            
             /*ShowLose(screenWidth, screenHeight, texture, backButtonLose, exitButtonLose);*/
             break;
         }
