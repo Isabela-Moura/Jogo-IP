@@ -83,14 +83,25 @@ int main()
     Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
     Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
     Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");
-    Vector2 quinhasmovimento = {300, 1100};
-    int checagemQuinhas = 0;
+  
+   //
+    int checagemQuinhas = -1; // Valor inicial para indicar que nenhum botão foi pressionado
+     Vector2 quinhasmovimento = { 0.0f, 0.0f };
+
+     //
+     Texture2D quinhasParadoD = LoadTexture("assets/quinhas.parado.png");
+     Texture2D quinhasParadoC = LoadTexture("assets/quinhas.cima.parado.png");
+     Texture2D quinhasParadoB = LoadTexture("assets/quinhas.frente.parado.png");
+     Texture2D quinhasParadoE = LoadTexture("assets/quinhas.esquerda.parado.png");
+
+
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasD.width / 4, (float)quinhasD.height};
     int currentFrameQuinhas = 0;
     int framesCounterQuinhas = 0;
     int framesSpeedQuinhas = 8;
     float tempodeframeQuinhas = 0;
     Velocidade velocidadequinhas = {3, 3, 3, 3};
+
 
     // movimentacao nalauritas
     Texture2D nalaurita4D = LoadTexture("assets/analaura.direita.png");
@@ -140,6 +151,7 @@ int main()
     int tempominutos = 0;
     int temposegundos = 0;
     int confirmador = 0;
+    int parado = 0;
 
     // Placar
     int pontuacaoPlacar = 0;
@@ -385,150 +397,122 @@ int main()
             temposegundos = GetTime() - tempominutos * 60 - segundospassados;
 
             // checar o valor da checagemAna
-            if (IsKeyReleased(KEY_D))
-            {
-                checagemQuinhas = 0;
-            }
-            if (IsKeyReleased(KEY_W))
-            {
-                checagemQuinhas = 1;
-            }
-            if (IsKeyReleased(KEY_A))
-            {
-                checagemQuinhas = 2;
-            }
-            if (IsKeyReleased(KEY_S))
-            {
-                checagemQuinhas = 3;
-            }
+ 
+if (IsKeyDown(KEY_D) && IsKeyDown(KEY_W))
+{
+    checagemQuinhas = 0;
+    quinhasmovimento.x += velocidadequinhas.direita;
+    quinhasmovimento.y -= velocidadequinhas.cima;
+    parado = 2;
+}
+else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_A))
+{
+    checagemQuinhas = 1;
+    quinhasmovimento.x -= velocidadequinhas.esquerda;  // Ajuste na ordem das operações
+    quinhasmovimento.y -= velocidadequinhas.cima;
+    parado = 2;
+}
+else if (IsKeyDown(KEY_S) && IsKeyDown(KEY_D))
+{
+    checagemQuinhas = 3;
+    quinhasmovimento.x += velocidadequinhas.direita;
+    quinhasmovimento.y += velocidadequinhas.baixo;
+    parado = 4;
+}
+else if (IsKeyDown(KEY_S) && IsKeyDown(KEY_A))
+{
+    checagemQuinhas = 3;
+    quinhasmovimento.x -= velocidadequinhas.esquerda;
+    quinhasmovimento.y += velocidadequinhas.baixo;
+    parado = 4;
+}
+else if (IsKeyDown(KEY_D))
+{
+    checagemQuinhas = 0;
+    quinhasmovimento.x += velocidadequinhas.direita;
+    parado = 1;
+}
+else if (IsKeyDown(KEY_W))
+{
+    checagemQuinhas = 1;
+    quinhasmovimento.y -= velocidadequinhas.cima;
+    parado = 2;
+}
+else if (IsKeyDown(KEY_A))
+{
+    checagemQuinhas = 2;
+    quinhasmovimento.x -= velocidadequinhas.esquerda;
+    parado = 3;
+}
+else if (IsKeyDown(KEY_S))
+{
+    checagemQuinhas = 3;
+    quinhasmovimento.y += velocidadequinhas.baixo;
+    parado = 4;
+}
 
-            if (checagemQuinhas == 0)
-            {
-                DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
-                if (IsKeyReleased(KEY_D))
-                {
-                    frameRecQuinhas.x = 0;
-                } // Para deixar o boneco no frame em que esta parado
-            }
 
-            if (checagemQuinhas == 1)
-            {
-                DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
-                if (IsKeyReleased(KEY_D))
-                {
-                    currentFrameQuinhas = 2;
-                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
-                } // Para deixar o boneco no frame em que esta parado
-            }
 
-            if (checagemQuinhas == 2)
-            {
-                DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
-                if (IsKeyReleased(KEY_D))
-                {
-                    currentFrameQuinhas = 3;
-                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
-                } // Para deixar o boneco no frame em que esta parado
-            }
+else
+{
+    checagemQuinhas = -1; // Nenhuma tecla está sendo pressionada
+}
 
-            if (checagemQuinhas == 3)
-            {
-                DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
-                if (IsKeyReleased(KEY_D))
-                {
-                    currentFrameQuinhas = 3;
-                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
-                } // Para deixar o boneco no frame em que esta parado
-            }
+// Atualiza a animação apenas se uma tecla estiver sendo pressionada
+if (checagemQuinhas != -1)
+{
+    framesCounterQuinhas++;
+    if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
+    {
+        tempodeframeQuinhas += GetFrameTime();
+        if (tempodeframeQuinhas >= 0.2)
+        {
+            tempodeframeQuinhas = 0;
+            currentFrameQuinhas++;
+        }
+        if (currentFrameQuinhas > 3)
+        {
+            frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
+            frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
+        }
+    }
+}
 
-            if (IsKeyDown(KEY_D)) // direita quinhas
-            {
-                checagemQuinhas = 0;
-                DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.x = quinhasmovimento.x + velocidadequinhas.direita;
-                framesCounterQuinhas++;
-                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
-                {
-                    tempodeframeQuinhas += GetFrameTime();
-                    if (tempodeframeQuinhas >= 0.2)
-                    {
-                        tempodeframeQuinhas = 0;
-                        currentFrameQuinhas++;
-                    }
-                    if (currentFrameQuinhas > 3)
-                    {
-                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
-                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
-                    }
-                }
-            }
-            // cima quinhas
-            if (IsKeyDown(KEY_W))
-            {
-                checagemQuinhas = 1;
-                DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.y = quinhasmovimento.y - velocidadequinhas.cima;
-                framesCounterQuinhas++;
-                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
-                {
-                    tempodeframeQuinhas += GetFrameTime();
-                    if (tempodeframeQuinhas >= 0.2)
-                    {
-                        tempodeframeQuinhas = 0;
-                        currentFrameQuinhas++;
-                    }
-                    if (currentFrameQuinhas > 3)
-                    {
-                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
-                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
-                    }
-                }
-            }
+// Desenha o boneco com base na última tecla pressionada
+if (!IsKeyDown(KEY_D) && !IsKeyDown(KEY_W) && !IsKeyDown(KEY_A) && !IsKeyDown(KEY_S))
+{
+    if (parado == 1){
+      DrawTexture(quinhasParadoD, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+    }
 
-            // esquerda quinhas
-            if (IsKeyDown(KEY_A))
-            {
-                checagemQuinhas = 2;
-                DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.x = quinhasmovimento.x - velocidadequinhas.esquerda;
-                framesCounterQuinhas++;
-                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
-                {
-                    tempodeframeQuinhas += GetFrameTime();
-                    if (tempodeframeQuinhas >= 0.2)
-                    {
-                        tempodeframeQuinhas = 0;
-                        currentFrameQuinhas++;
-                    }
-                    if (currentFrameQuinhas > 3)
-                    {
-                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
-                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
-                    }
-                }
-            }
-            // baixo quinhas
-            if (IsKeyDown(KEY_S))
-            {
-                checagemQuinhas = 3;
-                DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
-                quinhasmovimento.y = quinhasmovimento.y + velocidadequinhas.baixo;
-                framesCounterQuinhas++;
-                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
-                {
-                    tempodeframeQuinhas += GetFrameTime();
-                    if (tempodeframeQuinhas >= 0.2)
-                    {
-                        tempodeframeQuinhas = 0;
-                        currentFrameQuinhas++;
-                    }
-                    if (currentFrameQuinhas > 3)
-                    {
-                        frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
-                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
-                    }
-                }
-            }
+    if(parado == 2){
+      DrawTexture(quinhasParadoC, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+    }
+
+    if(parado == 3){
+          DrawTexture(quinhasParadoE, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+    }
+
+    if(parado == 4 || parado == 0){
+          DrawTexture(quinhasParadoB, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+    }
+}
+
+else{
+
+if (checagemQuinhas == 0)
+    DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
+else if (checagemQuinhas == 1)
+    DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
+else if (checagemQuinhas == 2)
+    DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
+else if (checagemQuinhas == 3)
+    DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
+
+}
+
+
+
             // movimentacao de nalauritas
             if (nalaurita1modo == 1)
             {
