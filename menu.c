@@ -115,7 +115,7 @@ void ShowCredits(int screenWidth, int screenHeight, Texture2D textureCredits, Bu
     }
 }
 
-void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button backButtonWin, Button exitButtonWin)
+void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button backButtonWin, Button exitButtonWin, int tempominutosvitoria, int temposegundosvitoria)
 {
     static float alpha = 0.0f;
     alpha += GetFrameTime() * 0.5f;
@@ -124,7 +124,7 @@ void ShowWin(int screenWidth, int screenHeight, Texture2D textureWin, Button bac
         alpha = 1.0f;
     }
     DrawTexturePro(textureWin, (Rectangle){0, 0, textureWin.width, textureWin.height}, (Rectangle){40, 40, GetScreenWidth() - 80, GetScreenHeight() - 80}, (Vector2){0, 0}, 0.0f, Fade(WHITE, alpha));
-
+    DrawText(TextFormat("E o seu tempo foi de: %d:%d", tempominutosvitoria, temposegundosvitoria), screenWidth/2-160, screenHeight/1.1,30,RED);
     DrawButton(backButtonWin, 5, RED, 8, BLACK);
     DrawButton(exitButtonWin, 5, RED, 8, BLACK);
     if (CheckCollisionPointRec(GetMousePosition(), backButtonWin.rect))

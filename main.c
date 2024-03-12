@@ -76,7 +76,6 @@ int main()
     Texture2D anaL = LoadTexture("assets/analaura.esquerda.png");
     Texture2D anaD = LoadTexture("assets/analaura.frente.png");
     Rectangle frameRecAna = {0.0f, 0.0f, (float)anaD.width / 4, (float)anaD.height};
-    Vector2 anamovimento = {0, 0};
 
     // movimentacao quinhas
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
@@ -116,7 +115,7 @@ int main()
     Texture2D nalaurita7D = LoadTexture("assets/analaura.direita.png");
     int currentFrameAna = 0, currentFramenalaurita2 = 0, currentFramenalaurita3 = 0, currentFramenalaurita4 = 0, currentFramenalaurita5 = 0, currentFramenalaurita6 = 0, currentFramenalaurita7 = 0;
     int framesCounterAna = 0, framescounternalaurita2 = 0, framescounternalaurita3 = 0, framescounternalaurita4 = 0, framescounternalaurita5 = 0, framescounternalaurita6 = 0, framescounternalaurita7 = 0;
-    int framesSpeedAna = 8, framespeednalaurita2 = 8;
+    int framesSpeedAna = 8;
     float tempodeframenalaurita1 = 0, tempodeframenalaurita2 = 0, tempodeframenalaurita3 = 0, tempodeframenalaurita4 = 0, tempodeframenalaurita5 = 0, tempodeframenalaurita6 = 0, tempodeframenalaurita7 = 0;
     int nalaurita1modo = 0;
     Velocidade nalaurita1velocidade = {1, 1, 1, 1};
@@ -152,6 +151,7 @@ int main()
     int temposegundos = 0;
     int confirmador = 0;
     int parado = 0;
+    int tempominutosvitoria = 0, temposegundosvitoria = 0;
 
     // Placar
     int pontuacaoPlacar = 0;
@@ -189,8 +189,6 @@ int main()
         // Posicao original de Quinhas e nalauritas
         if (gameState != STATE_PLAY)
         {
-            anamovimento.x = 0;
-            anamovimento.y = 830;
             checagemQuinhas = 0;
             quinhasmovimento.x = 144;
             quinhasmovimento.y = 872;
@@ -801,6 +799,7 @@ else if (checagemQuinhas == 3)
             Rectangle retangulo10C = {318, 716, 98, 32};
             Rectangle retangulo10B = {318, 714, 98, 32};
             Rectangle retangulo10D = {316, 716, 2, 30};
+            DrawRectangle(418,414,34,364,RED);
             Rectangle retangulo11D = {418, 416, 30, 364};
             Rectangle retangulo11C = {420, 418, 28, 362};
             Rectangle retangulo11B = {420, 414, 28, 1};
@@ -1068,7 +1067,7 @@ else if (checagemQuinhas == 3)
                 nalaurita7modo = 1;
             }
             //condicao de vitoria
-            if(CheckCollisionRecs(retanguloquinhasC,retangulovitoria)){gameState = STATE_WIN;}
+            if(CheckCollisionRecs(retanguloquinhasC,retangulovitoria)){tempominutosvitoria = tempominutos; temposegundosvitoria = temposegundos; gameState = STATE_WIN;}
             // colisao entre quinhas e analaura
             int toqueinimigo = 5;
             if (derrota(quinhasmovimento, toqueinimigo,
@@ -1222,8 +1221,7 @@ else if (checagemQuinhas == 3)
             break;
         case STATE_WIN:
             // Vitoria
-            ShowWin(screenWidth, screenHeight, textureWin, backButtonWin, exitButtonWin);
-            parede();
+            ShowWin(screenWidth, screenHeight, textureWin, backButtonWin, exitButtonWin, tempominutosvitoria, temposegundosvitoria);
             drawwallverticalbloqueio(4, 15, 16);    // 1 coluna e 2 linhas
             drawwallhorizontalbloqueio(14, 8, 9);   // 1 linhas e 2 coluna
             drawwallverticalbloqueio(37, 1, 2);     // 1 coluna e 2 linhas
@@ -1322,6 +1320,10 @@ else if (checagemQuinhas == 3)
     UnloadTexture(nalaurita6E);
     UnloadTexture(nalaurita7D);
     UnloadTexture(nalaurita7E);
+    UnloadTexture(quinhasParadoB);
+    UnloadTexture(quinhasParadoC);
+    UnloadTexture(quinhasParadoD);
+    UnloadTexture(quinhasParadoE);
     // Descarregamento das texturas
     UnloadTexture(textureHowToPlay);
     UnloadTexture(textureCredits);

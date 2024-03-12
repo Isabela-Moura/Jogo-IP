@@ -115,19 +115,6 @@ void drawwallhorizontalbloqueio(int linha, int coluna1, int coluna2)
         *ponteiro2 = 1;
     }
 }
-//funcao que desenha retangulos nas entradas das passagens
-void parede (){
-            Rectangle retangulop1 = {213,644,1,69};
-            Rectangle retangulop2 = {350,646,20,1};
-            Rectangle retangulop4 = {1369,170,1,69};
-            Rectangle retangulop5 = {1541,407,67,1};
-            Rectangle retangulop6 = {213,170,1,68};
-            Rectangle retangulop7 = {825,578,69,1};
-            Rectangle retangulop8 = {266,543,50,1};
-            Rectangle retangulop9 = {825,171,1,64};
-            Rectangle retangulop10 = {790,508,1,70};
-            Rectangle retangulop12 = {1637,169,68,1};
-}
 
 //funcao que chama outras funcoes para fechar as passagens
 void recomeco(){
@@ -141,7 +128,6 @@ void recomeco(){
          drawwallverticalbloqueio(21, 1, 2); // 1 coluna e 2 linhas
          drawwallverticalbloqueio(20, 11, 12); // 1 coluna e 2 linhas
          drawwallhorizontalbloqueio(0, 46, 47); // 1 linhas e 2 coluna
-         parede();
                 
 }
 
