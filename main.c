@@ -70,30 +70,21 @@ int main()
     Button backButtonLose = {(Rectangle){posXbuttonWB, posYbuttonWB, 460, 75}, colorButton, MAROON, "TENTAR DE NOVO"};
     Button exitButtonLose = {(Rectangle){posXbuttonWE, posYbuttonWE, 460, 75}, colorButton, MAROON, "SAIR DO JOGO"};
 
-    // movimentacao ana
-    Texture2D anaR = LoadTexture("assets/analaura.direita.png");
-    Texture2D anaU = LoadTexture("assets/analaura.cima.png");
-    Texture2D anaL = LoadTexture("assets/analaura.esquerda.png");
-    Texture2D anaD = LoadTexture("assets/analaura.frente.png");
-    Rectangle frameRecAna = {0.0f, 0.0f, (float)anaD.width / 4, (float)anaD.height};
-
     // movimentacao quinhas
     Texture2D quinhasR = LoadTexture("assets/quinhas.direita.png");
     Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
     Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
     Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");
   
-   //
+   //variavel para que quinhas pare de uma forma correta
     int checagemQuinhas = -1; // Valor inicial para indicar que nenhum botão foi pressionado
      Vector2 quinhasmovimento = { 0.0f, 0.0f };
 
-     //
+     //animacoes de quinhas parado e variaveis relacionado a sua movimentacao
      Texture2D quinhasParadoD = LoadTexture("assets/quinhas.parado.png");
      Texture2D quinhasParadoC = LoadTexture("assets/quinhas.cima.parado.png");
      Texture2D quinhasParadoB = LoadTexture("assets/quinhas.frente.parado.png");
      Texture2D quinhasParadoE = LoadTexture("assets/quinhas.esquerda.parado.png");
-
-
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasD.width / 4, (float)quinhasD.height};
     int currentFrameQuinhas = 0;
     int framesCounterQuinhas = 0;
@@ -101,12 +92,15 @@ int main()
     float tempodeframeQuinhas = 0;
     Velocidade velocidadequinhas = {3, 3, 3, 3};
 
-
     // movimentacao nalauritas
-    Texture2D nalaurita4D = LoadTexture("assets/analaura.direita.png");
-    Texture2D nalaurita3C = LoadTexture("assets/analaura.cima.png");
-    Texture2D nalaurita4E = LoadTexture("assets/analaura.esquerda.png");
+    Texture2D nalaurita1D = LoadTexture("assets/analaura.direita.png");
+    Texture2D nalaurita1E = LoadTexture("assets/analaura.esquerda.png");
+    Texture2D nalaurita2C = LoadTexture("assets/analaura.cima.png");
+    Texture2D nalaurita2B = LoadTexture("assets/analaura.frente.png");
     Texture2D nalaurita3B = LoadTexture("assets/analaura.frente.png");
+    Texture2D nalaurita3C = LoadTexture("assets/analaura.cima.png");
+    Texture2D nalaurita4D = LoadTexture("assets/analaura.direita.png");
+    Texture2D nalaurita4E = LoadTexture("assets/analaura.esquerda.png");
     Texture2D nalaurita5E = LoadTexture("assets/analaura.esquerda.png");
     Texture2D nalaurita5D = LoadTexture("assets/analaura.direita.png");
     Texture2D nalaurita6E = LoadTexture("assets/analaura.esquerda.png");
@@ -120,10 +114,11 @@ int main()
     int nalaurita1modo = 0;
     Velocidade nalaurita1velocidade = {1, 1, 1, 1};
     Vector2 nalaurita1movimento = {0, 0};
+    Rectangle frameRecnalaurita1 = {0.0f, 0.0f, (float)nalaurita1D.width / 4, (float)nalaurita1D.height};
     int nalaurita2modo = 0;
     Velocidade nalaurita2velocidade = {2, 2, 2, 2};
     Vector2 nalaurita2movimento = {0, 0};
-    Rectangle frameRecnalaurita2 = {0.0f, 0.0f, (float)anaD.width / 4, (float)anaD.height};
+    Rectangle frameRecnalaurita2 = {0.0f, 0.0f, (float)nalaurita2C.width / 4, (float)nalaurita2C.height};
     int nalaurita3modo = 0;
     Velocidade nalaurita3velocidade = {2, 2, 2, 2};
     Vector2 nalaurita3movimento = {0, 0};
@@ -181,14 +176,10 @@ int main()
         // Atualizacao
         UpdateMusicStream(music);
 
-        // Identificar quantos segundo se passaram antes do comeco do jogo para o temporizador comecar do 0
+        // Identificar quantos segundo se passaram antes do comeco do jogo para o temporizador comecar do 0 e variaveis para estabilizar a posicao original de Quinhas e Nalauritas
         if (gameState != STATE_PLAY)
         {
             segundospassados = (int)GetTime();
-        }
-        // Posicao original de Quinhas e nalauritas
-        if (gameState != STATE_PLAY)
-        {
             checagemQuinhas = 0;
             quinhasmovimento.x = 144;
             quinhasmovimento.y = 872;
@@ -214,21 +205,6 @@ int main()
             nalaurita7movimento.x = 696;
             nalaurita7movimento.y = 891;
         }
-        // Frames das animacões
-        if (gameState == STATE_PLAY)
-        {
-            framesCounterAna++;
-            if (framesCounterAna >= (60 / framesSpeedAna))
-            {
-                framesCounterAna = 0;
-                currentFrameAna++;
-                if (currentFrameAna > 3)
-                {
-                    frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
-                    frameRecQuinhas.x = (float)currentFrameAna * (float)quinhasR.width / 4;
-                }
-            }
-        } 
 
         switch (gameState)
         {
@@ -394,7 +370,6 @@ int main()
             }
             temposegundos = GetTime() - tempominutos * 60 - segundospassados;
 
-            // checar o valor da checagemAna
  
 if (IsKeyDown(KEY_D) && IsKeyDown(KEY_W))
 {
@@ -470,7 +445,6 @@ if (checagemQuinhas != -1)
         }
         if (currentFrameQuinhas > 3)
         {
-            frameRecAna.x = (float)currentFrameQuinhas * (float)anaR.width / 4;
             frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
         }
     }
@@ -509,12 +483,10 @@ else if (checagemQuinhas == 3)
 
 }
 
-
-
             // movimentacao de nalauritas
             if (nalaurita1modo == 1)
             {
-                DrawTextureRec(anaR, frameRecAna, nalaurita1movimento, WHITE);
+                DrawTextureRec(nalaurita1D, frameRecnalaurita1, nalaurita1movimento, WHITE);
                 nalaurita1movimento.x = nalaurita1movimento.x + nalaurita1velocidade.direita;
                 framesCounterAna++;
                 if (framesCounterAna >= (60 / framesSpeedAna))
@@ -527,13 +499,13 @@ else if (checagemQuinhas == 3)
                     }
                     if (currentFrameAna > 3)
                     {
-                        frameRecAna.x = (float)currentFrameAna * (float)anaR.width / 4;
+                        frameRecnalaurita1.x = (float)currentFrameAna * (float)nalaurita1D.width / 4;
                     }
                 }
             }
             if (nalaurita1modo == 2)
             {
-                DrawTextureRec(anaL, frameRecAna, nalaurita1movimento, WHITE);
+                DrawTextureRec(nalaurita1E, frameRecnalaurita1, nalaurita1movimento, WHITE);
                 nalaurita1movimento.x = nalaurita1movimento.x - nalaurita1velocidade.esquerda;
                 framesCounterAna++;
                 if (framesCounterAna >= (60 / framesSpeedAna))
@@ -546,13 +518,13 @@ else if (checagemQuinhas == 3)
                     }
                     if (currentFrameAna > 3)
                     {
-                        frameRecAna.x = (float)currentFrameAna * (float)anaL.width / 4;
+                        frameRecnalaurita1.x = (float)currentFrameAna * (float)nalaurita1E.width / 4;
                     }
                 }
             }
             if (nalaurita2modo == 1)
             {
-                DrawTextureRec(anaD, frameRecnalaurita2, nalaurita2movimento, WHITE);
+                DrawTextureRec(nalaurita2B, frameRecnalaurita2, nalaurita2movimento, WHITE);
                 nalaurita2movimento.y = nalaurita2movimento.y + nalaurita2velocidade.baixo;
                 framescounternalaurita2++;
                 if (framescounternalaurita2 >= (60 / framesSpeedAna))
@@ -565,13 +537,13 @@ else if (checagemQuinhas == 3)
                     }
                     if (currentFramenalaurita2 > 3)
                     {
-                        frameRecnalaurita2.x = (float)currentFramenalaurita2 * (float)anaD.width / 4;
+                        frameRecnalaurita2.x = (float)currentFramenalaurita2 * (float)nalaurita2B.width / 4;
                     }
                 }
             }
             if (nalaurita2modo == 2)
             {
-                DrawTextureRec(anaU, frameRecnalaurita2, nalaurita2movimento, WHITE);
+                DrawTextureRec(nalaurita2C, frameRecnalaurita2, nalaurita2movimento, WHITE);
                 nalaurita2movimento.y = nalaurita2movimento.y - nalaurita2velocidade.cima;
                 framescounternalaurita2++;
                 if (framescounternalaurita2 >= (60 / framesSpeedAna))
@@ -584,7 +556,7 @@ else if (checagemQuinhas == 3)
                     }
                     if (currentFramenalaurita2 > 3)
                     {
-                        frameRecnalaurita2.x = (float)currentFramenalaurita2 * (float)anaU.width / 4;
+                        frameRecnalaurita2.x = (float)currentFramenalaurita2 * (float)nalaurita2C.width / 4;
                     }
                 }
             }
@@ -962,10 +934,10 @@ else if (checagemQuinhas == 3)
             Rectangle retanguloquinhasD2 = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasR.width / 4, quinhasR.height};
             Rectangle retanguloquinhasE = {quinhasmovimento.x, quinhasmovimento.y, (float)quinhasL.width / 4, quinhasL.height};
             // retangulos para saber a width e height de cada nalaurita na hora da colisao
-            Rectangle retangulonalaurita1D = {nalaurita1movimento.x, nalaurita1movimento.y, (float)anaR.width / 4, anaR.height};
-            Rectangle retangulonalaurita1E = {nalaurita1movimento.x, nalaurita1movimento.y, (float)anaL.width / 4, anaL.height};
-            Rectangle retangulonalaurita2C = {nalaurita2movimento.x, nalaurita2movimento.y, (float)anaU.width / 4, anaU.height};
-            Rectangle retangulonalaurita2B = {nalaurita2movimento.x, nalaurita2movimento.y, (float)anaD.width / 4, anaD.height};
+            Rectangle retangulonalaurita1D = {nalaurita1movimento.x, nalaurita1movimento.y, (float)nalaurita1D.width / 4, nalaurita1D.height};
+            Rectangle retangulonalaurita1E = {nalaurita1movimento.x, nalaurita1movimento.y, (float)nalaurita1E.width / 4, nalaurita1E.height};
+            Rectangle retangulonalaurita2C = {nalaurita2movimento.x, nalaurita2movimento.y, (float)nalaurita2C.width / 4, nalaurita2C.height};
+            Rectangle retangulonalaurita2B = {nalaurita2movimento.x, nalaurita2movimento.y, (float)nalaurita2B.width / 4, nalaurita2B.height};
             Rectangle retangulonalaurita3C = {nalaurita3movimento.x, nalaurita3movimento.y, (float)nalaurita3C.width / 4, nalaurita3C.height};
             Rectangle retangulonalaurita3B = {nalaurita3movimento.x, nalaurita3movimento.y, (float)nalaurita3B.width / 4, nalaurita3B.height};
             Rectangle retangulonalaurita4D = {nalaurita4movimento.x, nalaurita4movimento.y, (float)nalaurita4D.width / 4, nalaurita4D.height};
@@ -1086,18 +1058,6 @@ else if (checagemQuinhas == 3)
                         retangulonalaurita7E))
             {
                 gameState = STATE_LOSE;
-            }
-
-            // variaveis que estao sendo usados na medida
-            int ala = quinhasmovimento.x;
-            int ala2 = quinhasmovimento.y;
-            DrawText(TextFormat("Posicao X: %d, Posicao Y: %d", ala, ala2), 900, 100, 32, WHITE);
-            // Invoca uma regua vermelha atras de quinhas para melhor medimento
-            if (IsKeyDown(KEY_X))
-            {
-                int platina = 1;
-                if (platina == 1)
-                    DrawRectangle(quinhasmovimento.x, quinhasmovimento.y, 5, 1900, RED);
             }
 
             break;
@@ -1233,7 +1193,7 @@ else if (checagemQuinhas == 3)
             drawwallverticalbloqueio(20, 11, 12);   // 1 coluna e 2 linhas
             drawwallhorizontalbloqueio(0, 46, 47);  // 1 linhas e 2 coluna
 
-            pontuacaoPlacar = 0; // Reiniciar o placar
+                    pontuacaoPlacar = 0; // Reiniciar o placar
                     // Resetar a pontuação de cada poster e a visibilidade de cada um
                     pontuacaoRegistrada[0] = 0;
                     poster1.isVisible = 1;
@@ -1306,10 +1266,10 @@ else if (checagemQuinhas == 3)
     UnloadTexture(quinhasD);
     UnloadTexture(quinhasL);
     UnloadTexture(quinhasU);
-    UnloadTexture(anaR);
-    UnloadTexture(anaU);
-    UnloadTexture(anaL);
-    UnloadTexture(anaD);
+    UnloadTexture(nalaurita1D);
+    UnloadTexture(nalaurita1E);
+    UnloadTexture(nalaurita2C);
+    UnloadTexture(nalaurita2B);
     UnloadTexture(nalaurita3B);
     UnloadTexture(nalaurita3C);
     UnloadTexture(nalaurita4D);
