@@ -17,13 +17,12 @@ typedef struct
 
 void DrawMaze();
 void recomeco();
-bool derrota ();
-void  drawwallverticalbloqueio();
-void  drawwallhorizontalbloqueio();
-void ShowPlay(int screenWidth, int screenHeight, int tempominutos, int temposegundos, int pontuacaoPlacar);
+bool derrota();
+void drawwallverticalbloqueio();
+void drawwallhorizontalbloqueio();
+void ShowPlay(int screenWidth, int screenHeight, int pontuacaoPlacar);
 void DrawPoster(Texture2D textureP, Poster poster, float scale);
 void drawwallvertical(int coluna, int linha1, int linha2);
 void drawwallhorizontal(int linha, int coluna1, int coluna2);
-
 
 #endif

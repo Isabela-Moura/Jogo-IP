@@ -75,16 +75,16 @@ int main()
     Texture2D quinhasU = LoadTexture("assets/quinhas.cima.png");
     Texture2D quinhasL = LoadTexture("assets/quinhas.esquerda.png");
     Texture2D quinhasD = LoadTexture("assets/quinhas.frente.png");
-  
-   //variavel para que quinhas pare de uma forma correta
-    int checagemQuinhas = -1; // Valor inicial para indicar que nenhum botão foi pressionado
-     Vector2 quinhasmovimento = { 0.0f, 0.0f };
 
-     //animacoes de quinhas parado e variaveis relacionado a sua movimentacao
-     Texture2D quinhasParadoD = LoadTexture("assets/quinhas.parado.png");
-     Texture2D quinhasParadoC = LoadTexture("assets/quinhas.cima.parado.png");
-     Texture2D quinhasParadoB = LoadTexture("assets/quinhas.frente.parado.png");
-     Texture2D quinhasParadoE = LoadTexture("assets/quinhas.esquerda.parado.png");
+    // variavel para que quinhas pare de uma forma correta
+    int checagemQuinhas = -1; // Valor inicial para indicar que nenhum botão foi pressionado
+    Vector2 quinhasmovimento = {0.0f, 0.0f};
+
+    // animacoes de quinhas parado e variaveis relacionado a sua movimentacao
+    Texture2D quinhasParadoD = LoadTexture("assets/quinhas.parado.png");
+    Texture2D quinhasParadoC = LoadTexture("assets/quinhas.cima.parado.png");
+    Texture2D quinhasParadoB = LoadTexture("assets/quinhas.frente.parado.png");
+    Texture2D quinhasParadoE = LoadTexture("assets/quinhas.esquerda.parado.png");
     Rectangle frameRecQuinhas = {0.0f, 0.0f, (float)quinhasD.width / 4, (float)quinhasD.height};
     int currentFrameQuinhas = 0;
     int framesCounterQuinhas = 0;
@@ -370,118 +370,119 @@ int main()
             }
             temposegundos = GetTime() - tempominutos * 60 - segundospassados;
 
- 
-if (IsKeyDown(KEY_D) && IsKeyDown(KEY_W))
-{
-    checagemQuinhas = 0;
-    quinhasmovimento.x += velocidadequinhas.direita;
-    quinhasmovimento.y -= velocidadequinhas.cima;
-    parado = 2;
-}
-else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_A))
-{
-    checagemQuinhas = 1;
-    quinhasmovimento.x -= velocidadequinhas.esquerda;  // Ajuste na ordem das operações
-    quinhasmovimento.y -= velocidadequinhas.cima;
-    parado = 2;
-}
-else if (IsKeyDown(KEY_S) && IsKeyDown(KEY_D))
-{
-    checagemQuinhas = 3;
-    quinhasmovimento.x += velocidadequinhas.direita;
-    quinhasmovimento.y += velocidadequinhas.baixo;
-    parado = 4;
-}
-else if (IsKeyDown(KEY_S) && IsKeyDown(KEY_A))
-{
-    checagemQuinhas = 3;
-    quinhasmovimento.x -= velocidadequinhas.esquerda;
-    quinhasmovimento.y += velocidadequinhas.baixo;
-    parado = 4;
-}
-else if (IsKeyDown(KEY_D))
-{
-    checagemQuinhas = 0;
-    quinhasmovimento.x += velocidadequinhas.direita;
-    parado = 1;
-}
-else if (IsKeyDown(KEY_W))
-{
-    checagemQuinhas = 1;
-    quinhasmovimento.y -= velocidadequinhas.cima;
-    parado = 2;
-}
-else if (IsKeyDown(KEY_A))
-{
-    checagemQuinhas = 2;
-    quinhasmovimento.x -= velocidadequinhas.esquerda;
-    parado = 3;
-}
-else if (IsKeyDown(KEY_S))
-{
-    checagemQuinhas = 3;
-    quinhasmovimento.y += velocidadequinhas.baixo;
-    parado = 4;
-}
+            if (IsKeyDown(KEY_D) && IsKeyDown(KEY_W))
+            {
+                checagemQuinhas = 0;
+                quinhasmovimento.x += velocidadequinhas.direita;
+                quinhasmovimento.y -= velocidadequinhas.cima;
+                parado = 2;
+            }
+            else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_A))
+            {
+                checagemQuinhas = 1;
+                quinhasmovimento.x -= velocidadequinhas.esquerda; // Ajuste na ordem das operações
+                quinhasmovimento.y -= velocidadequinhas.cima;
+                parado = 2;
+            }
+            else if (IsKeyDown(KEY_S) && IsKeyDown(KEY_D))
+            {
+                checagemQuinhas = 3;
+                quinhasmovimento.x += velocidadequinhas.direita;
+                quinhasmovimento.y += velocidadequinhas.baixo;
+                parado = 4;
+            }
+            else if (IsKeyDown(KEY_S) && IsKeyDown(KEY_A))
+            {
+                checagemQuinhas = 3;
+                quinhasmovimento.x -= velocidadequinhas.esquerda;
+                quinhasmovimento.y += velocidadequinhas.baixo;
+                parado = 4;
+            }
+            else if (IsKeyDown(KEY_D))
+            {
+                checagemQuinhas = 0;
+                quinhasmovimento.x += velocidadequinhas.direita;
+                parado = 1;
+            }
+            else if (IsKeyDown(KEY_W))
+            {
+                checagemQuinhas = 1;
+                quinhasmovimento.y -= velocidadequinhas.cima;
+                parado = 2;
+            }
+            else if (IsKeyDown(KEY_A))
+            {
+                checagemQuinhas = 2;
+                quinhasmovimento.x -= velocidadequinhas.esquerda;
+                parado = 3;
+            }
+            else if (IsKeyDown(KEY_S))
+            {
+                checagemQuinhas = 3;
+                quinhasmovimento.y += velocidadequinhas.baixo;
+                parado = 4;
+            }
 
+            else
+            {
+                checagemQuinhas = -1; // Nenhuma tecla está sendo pressionada
+            }
 
+            // Atualiza a animação apenas se uma tecla estiver sendo pressionada
+            if (checagemQuinhas != -1)
+            {
+                framesCounterQuinhas++;
+                if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
+                {
+                    tempodeframeQuinhas += GetFrameTime();
+                    if (tempodeframeQuinhas >= 0.2)
+                    {
+                        tempodeframeQuinhas = 0;
+                        currentFrameQuinhas++;
+                    }
+                    if (currentFrameQuinhas > 3)
+                    {
+                        frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
+                    }
+                }
+            }
 
-else
-{
-    checagemQuinhas = -1; // Nenhuma tecla está sendo pressionada
-}
+            // Desenha o boneco com base na última tecla pressionada
+            if (!IsKeyDown(KEY_D) && !IsKeyDown(KEY_W) && !IsKeyDown(KEY_A) && !IsKeyDown(KEY_S))
+            {
+                if (parado == 1)
+                {
+                    DrawTexture(quinhasParadoD, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+                }
 
-// Atualiza a animação apenas se uma tecla estiver sendo pressionada
-if (checagemQuinhas != -1)
-{
-    framesCounterQuinhas++;
-    if (framesCounterQuinhas >= (60 / framesSpeedQuinhas))
-    {
-        tempodeframeQuinhas += GetFrameTime();
-        if (tempodeframeQuinhas >= 0.2)
-        {
-            tempodeframeQuinhas = 0;
-            currentFrameQuinhas++;
-        }
-        if (currentFrameQuinhas > 3)
-        {
-            frameRecQuinhas.x = (float)currentFrameQuinhas * (float)quinhasR.width / 4;
-        }
-    }
-}
+                if (parado == 2)
+                {
+                    DrawTexture(quinhasParadoC, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+                }
 
-// Desenha o boneco com base na última tecla pressionada
-if (!IsKeyDown(KEY_D) && !IsKeyDown(KEY_W) && !IsKeyDown(KEY_A) && !IsKeyDown(KEY_S))
-{
-    if (parado == 1){
-      DrawTexture(quinhasParadoD, quinhasmovimento.x, quinhasmovimento.y, WHITE);
-    }
+                if (parado == 3)
+                {
+                    DrawTexture(quinhasParadoE, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+                }
 
-    if(parado == 2){
-      DrawTexture(quinhasParadoC, quinhasmovimento.x, quinhasmovimento.y, WHITE);
-    }
+                if (parado == 4 || parado == 0)
+                {
+                    DrawTexture(quinhasParadoB, quinhasmovimento.x, quinhasmovimento.y, WHITE);
+                }
+            }
 
-    if(parado == 3){
-          DrawTexture(quinhasParadoE, quinhasmovimento.x, quinhasmovimento.y, WHITE);
-    }
+            else
+            {
 
-    if(parado == 4 || parado == 0){
-          DrawTexture(quinhasParadoB, quinhasmovimento.x, quinhasmovimento.y, WHITE);
-    }
-}
-
-else{
-
-if (checagemQuinhas == 0)
-    DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
-else if (checagemQuinhas == 1)
-    DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
-else if (checagemQuinhas == 2)
-    DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
-else if (checagemQuinhas == 3)
-    DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
-
-}
+                if (checagemQuinhas == 0)
+                    DrawTextureRec(quinhasR, frameRecQuinhas, quinhasmovimento, WHITE);
+                else if (checagemQuinhas == 1)
+                    DrawTextureRec(quinhasU, frameRecQuinhas, quinhasmovimento, WHITE);
+                else if (checagemQuinhas == 2)
+                    DrawTextureRec(quinhasL, frameRecQuinhas, quinhasmovimento, WHITE);
+                else if (checagemQuinhas == 3)
+                    DrawTextureRec(quinhasD, frameRecQuinhas, quinhasmovimento, WHITE);
+            }
 
             // movimentacao de nalauritas
             if (nalaurita1modo == 1)
@@ -753,7 +754,7 @@ else if (checagemQuinhas == 3)
             // Desenhando todos os retangulos e variaveis dos retangulos na mao para realizar a colisão
             Rectangle retangulo1 = {77, 136, 35, 850};
             Rectangle retangulo2 = {1708, 136, 72, 34};
-            Rectangle retangulo2D = {1705,139,1,28};
+            Rectangle retangulo2D = {1705, 139, 1, 28};
             Rectangle retangulo3 = {1744, 136, 34, 850};
             Rectangle retangulo4 = {215, 952, 1562, 34};
             Rectangle retangulo5 = {111, 952, 35, 34};
@@ -771,7 +772,7 @@ else if (checagemQuinhas == 3)
             Rectangle retangulo10C = {318, 716, 98, 32};
             Rectangle retangulo10B = {318, 714, 98, 32};
             Rectangle retangulo10D = {316, 716, 2, 30};
-            DrawRectangle(418,414,34,364,RED);
+            DrawRectangle(418, 414, 34, 364, RED);
             Rectangle retangulo11D = {418, 416, 30, 364};
             Rectangle retangulo11C = {420, 418, 28, 362};
             Rectangle retangulo11B = {420, 414, 28, 1};
@@ -913,9 +914,9 @@ else if (checagemQuinhas == 3)
             Rectangle retangulo55C = {1611, 241, 28, 168};
             Rectangle retangulo56B = {1645, 238, 96, 1};
             Rectangle retangulo56C = {1645, 241, 96, 31};
-            //retangulo identificado para saber se o jogador conquistou a vitoria e retangulo para impedir a passagem por baixo
-            Rectangle retangulovitoria = {1647,146,45,1};
-            Rectangle retangulofinal = {148,952,65,1};
+            // retangulo identificado para saber se o jogador conquistou a vitoria e retangulo para impedir a passagem por baixo
+            Rectangle retangulovitoria = {1647, 146, 45, 1};
+            Rectangle retangulofinal = {148, 952, 65, 1};
             // retangulos dos posteres
             Rectangle retangulop1 = {213, 644, 1, 69};
             Rectangle retangulop2 = {350, 646, 20, 1};
@@ -1038,8 +1039,13 @@ else if (checagemQuinhas == 3)
             {
                 nalaurita7modo = 1;
             }
-            //condicao de vitoria
-            if(CheckCollisionRecs(retanguloquinhasC,retangulovitoria)){tempominutosvitoria = tempominutos; temposegundosvitoria = temposegundos; gameState = STATE_WIN;}
+            // condicao de vitoria
+            if (CheckCollisionRecs(retanguloquinhasC, retangulovitoria))
+            {
+                tempominutosvitoria = tempominutos;
+                temposegundosvitoria = temposegundos;
+                gameState = STATE_WIN;
+            }
             // colisao entre quinhas e analaura
             int toqueinimigo = 5;
             if (derrota(quinhasmovimento, toqueinimigo,
@@ -1129,44 +1135,8 @@ else if (checagemQuinhas == 3)
             break;
         case STATE_PLAY:
             // Jogo
-            ShowPlay(screenWidth, screenHeight, tempominutos, temposegundos, pontuacaoPlacar);
-            // Botao de voltar temporario
-            DrawButton(backButton, 3, SKYBLUE, 5, BLACK);
-            if (CheckCollisionPointRec(GetMousePosition(), backButton.rect))
-            {
-                DrawButton(backButton, 3, BLUE, 5, BLACK);
-                if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-                {
-                    pontuacaoPlacar = 0; // Reiniciar o placar
-                    // Resetar a pontuação de cada poster e a visibilidade de cada um
-                    pontuacaoRegistrada[0] = 0;
-                    poster1.isVisible = 1;
-                    pontuacaoRegistrada[1] = 0;
-                    poster2.isVisible = 1;
-                    pontuacaoRegistrada[2] = 0;
-                    poster3.isVisible = 1;
-                    pontuacaoRegistrada[3] = 0;
-                    poster4.isVisible = 1;
-                    pontuacaoRegistrada[4] = 0;
-                    poster5.isVisible = 1;
-                    pontuacaoRegistrada[5] = 0;
-                    poster6.isVisible = 1;
-                    pontuacaoRegistrada[6] = 0;
-                    poster7.isVisible = 1;
-                    pontuacaoRegistrada[7] = 0;
-                    poster8.isVisible = 1;
-                    pontuacaoRegistrada[8] = 0;
-                    poster9.isVisible = 1;
-                    pontuacaoRegistrada[9] = 0;
-                    poster10.isVisible = 1;
-                    pontuacaoRegistrada[10] = 0;
-                    poster11.isVisible = 1;
-                    pontuacaoRegistrada[11] = 0;
-                    poster12.isVisible = 1;
-
-                    gameState = STATE_LOSE;
-                }
-            }
+            ShowPlay(screenWidth, screenHeight, pontuacaoPlacar);
+            DrawText(TextFormat("%d:%d", tempominutos, temposegundos), screenWidth / 5, screenHeight / 15, 30, WHITE);
             break;
         case STATE_HOW_TO_PLAY:
             // Como Jogar
@@ -1193,61 +1163,61 @@ else if (checagemQuinhas == 3)
             drawwallverticalbloqueio(20, 11, 12);   // 1 coluna e 2 linhas
             drawwallhorizontalbloqueio(0, 46, 47);  // 1 linhas e 2 coluna
 
-                    pontuacaoPlacar = 0; // Reiniciar o placar
-                    // Resetar a pontuação de cada poster e a visibilidade de cada um
-                    pontuacaoRegistrada[0] = 0;
-                    poster1.isVisible = 1;
-                    pontuacaoRegistrada[1] = 0;
-                    poster2.isVisible = 1;
-                    pontuacaoRegistrada[2] = 0;
-                    poster3.isVisible = 1;
-                    pontuacaoRegistrada[3] = 0;
-                    poster4.isVisible = 1;
-                    pontuacaoRegistrada[4] = 0;
-                    poster5.isVisible = 1;
-                    pontuacaoRegistrada[5] = 0;
-                    poster6.isVisible = 1;
-                    pontuacaoRegistrada[6] = 0;
-                    poster7.isVisible = 1;
-                    pontuacaoRegistrada[7] = 0;
-                    poster8.isVisible = 1;
-                    pontuacaoRegistrada[8] = 0;
-                    poster9.isVisible = 1;
-                    pontuacaoRegistrada[9] = 0;
-                    poster10.isVisible = 1;
-                    pontuacaoRegistrada[10] = 0;
-                    poster11.isVisible = 1;
-                    pontuacaoRegistrada[11] = 0;
-                    poster12.isVisible = 1;
+            pontuacaoPlacar = 0; // Reiniciar o placar
+            // Resetar a pontuação de cada poster e a visibilidade de cada um
+            pontuacaoRegistrada[0] = 0;
+            poster1.isVisible = 1;
+            pontuacaoRegistrada[1] = 0;
+            poster2.isVisible = 1;
+            pontuacaoRegistrada[2] = 0;
+            poster3.isVisible = 1;
+            pontuacaoRegistrada[3] = 0;
+            poster4.isVisible = 1;
+            pontuacaoRegistrada[4] = 0;
+            poster5.isVisible = 1;
+            pontuacaoRegistrada[5] = 0;
+            poster6.isVisible = 1;
+            pontuacaoRegistrada[6] = 0;
+            poster7.isVisible = 1;
+            pontuacaoRegistrada[7] = 0;
+            poster8.isVisible = 1;
+            pontuacaoRegistrada[8] = 0;
+            poster9.isVisible = 1;
+            pontuacaoRegistrada[9] = 0;
+            poster10.isVisible = 1;
+            pontuacaoRegistrada[10] = 0;
+            poster11.isVisible = 1;
+            pontuacaoRegistrada[11] = 0;
+            poster12.isVisible = 1;
             break;
         case STATE_LOSE:
             // Derrota
             pontuacaoPlacar = 0; // Reiniciar o placar
-                    // Resetar a pontuação de cada poster e a visibilidade de cada um
-                    pontuacaoRegistrada[0] = 0;
-                    poster1.isVisible = 1;
-                    pontuacaoRegistrada[1] = 0;
-                    poster2.isVisible = 1;
-                    pontuacaoRegistrada[2] = 0;
-                    poster3.isVisible = 1;
-                    pontuacaoRegistrada[3] = 0;
-                    poster4.isVisible = 1;
-                    pontuacaoRegistrada[4] = 0;
-                    poster5.isVisible = 1;
-                    pontuacaoRegistrada[5] = 0;
-                    poster6.isVisible = 1;
-                    pontuacaoRegistrada[6] = 0;
-                    poster7.isVisible = 1;
-                    pontuacaoRegistrada[7] = 0;
-                    poster8.isVisible = 1;
-                    pontuacaoRegistrada[8] = 0;
-                    poster9.isVisible = 1;
-                    pontuacaoRegistrada[9] = 0;
-                    poster10.isVisible = 1;
-                    pontuacaoRegistrada[10] = 0;
-                    poster11.isVisible = 1;
-                    pontuacaoRegistrada[11] = 0;
-                    poster12.isVisible = 1;
+            // Resetar a pontuação de cada poster e a visibilidade de cada um
+            pontuacaoRegistrada[0] = 0;
+            poster1.isVisible = 1;
+            pontuacaoRegistrada[1] = 0;
+            poster2.isVisible = 1;
+            pontuacaoRegistrada[2] = 0;
+            poster3.isVisible = 1;
+            pontuacaoRegistrada[3] = 0;
+            poster4.isVisible = 1;
+            pontuacaoRegistrada[4] = 0;
+            poster5.isVisible = 1;
+            pontuacaoRegistrada[5] = 0;
+            poster6.isVisible = 1;
+            pontuacaoRegistrada[6] = 0;
+            poster7.isVisible = 1;
+            pontuacaoRegistrada[7] = 0;
+            poster8.isVisible = 1;
+            pontuacaoRegistrada[8] = 0;
+            poster9.isVisible = 1;
+            pontuacaoRegistrada[9] = 0;
+            poster10.isVisible = 1;
+            pontuacaoRegistrada[10] = 0;
+            poster11.isVisible = 1;
+            pontuacaoRegistrada[11] = 0;
+            poster12.isVisible = 1;
 
             ShowLose(screenWidth, screenHeight, textureLose, backButtonLose, exitButtonLose);
             break;
