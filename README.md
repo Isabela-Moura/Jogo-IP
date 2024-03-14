@@ -1,4 +1,4 @@
-*Grupo 2*
+*Grupo 2*\n
 DEOCLECIO IVO DE MELO NETTO
 ERICK MELO DE SOUZA DE MENDONCA DA SILVA                        
 GLEDSON DANIEL BORGES CAMPELO                        
