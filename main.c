@@ -1189,6 +1189,9 @@ int main()
             poster11.isVisible = 1;
             pontuacaoRegistrada[11] = 0;
             poster12.isVisible = 1;
+
+            tempominutos=0;
+            
             break;
         case STATE_LOSE:
             // Derrota
@@ -1219,7 +1222,10 @@ int main()
             pontuacaoRegistrada[11] = 0;
             poster12.isVisible = 1;
 
+            tempominutos=0;
+
             ShowLose(screenWidth, screenHeight, textureLose, backButtonLose, exitButtonLose);
+            
             break;
         }
 
